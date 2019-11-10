@@ -18,34 +18,29 @@ public class WorldTile : MonoBehaviour
 	private void OnDrawGizmos()
 	{
 		// Only Draw if selected in WorldGenerator
-		if (WorldGenerator.staticDisplayLayer == layer ||WorldGenerator.staticDisplayLayer == -1)
+		if (WorldGenerator.staticDrawGridGizmos && (WorldGenerator.staticDisplayLayer == layer || WorldGenerator.staticDisplayLayer == -1))
 		{
 			Vector3 position = transform.position + Vector3.forward * layer;
 
 			Gizmos.color = Color.white;
-			//Gizmos.DrawWireCube(position, new Vector3(size.x, size.y, 0.5f));
 			
 			if (up != -1)
 			{
-				//Gizmos.color = GetColorBasedOnLayer(up);
 				int layerDifference = up - layer;
 				Gizmos.DrawRay(position, Vector3.up * size.y / 2f + Vector3.forward * layerDifference/2f);
 			}
 			if (down != -1)
 			{
-				//Gizmos.color = GetColorBasedOnLayer(down);
 				int layerDifference = down - layer;
 				Gizmos.DrawRay(position, Vector3.down * size.y / 2f + Vector3.forward * layerDifference/2f);
 			}
 			if (left != -1)
 			{
-				//Gizmos.color = GetColorBasedOnLayer(left);
 				int layerDifference = left - layer;
 				Gizmos.DrawRay(position, Vector3.left * size.x / 2f + Vector3.forward * layerDifference/2f);
 			}
 			if (right != -1)
 			{
-				//Gizmos.color = GetColorBasedOnLayer(right);
 				int layerDifference = right - layer;
 				Gizmos.DrawRay(position, Vector3.right * size.x / 2f + Vector3.forward * layerDifference/2f);
 			}
@@ -69,7 +64,7 @@ public class WorldTile : MonoBehaviour
 		}
 	}
 
-
+	// Sets the connection direction to the given layer
 	public void Connect(Direction direction, int layer)
 	{
 		switch (direction)
@@ -89,6 +84,7 @@ public class WorldTile : MonoBehaviour
 		}
 	}
 
+	// Returns the layer of the connection in the given direction
 	public int GetConnectionLayerInDirection(Direction direction)
 	{
 		switch (direction)

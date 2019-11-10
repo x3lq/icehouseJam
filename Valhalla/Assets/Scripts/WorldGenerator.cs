@@ -15,6 +15,8 @@ public class WorldGenerator : MonoBehaviour
 	public WorldLayer[] layers;
 
 	[Header("Debug")]
+	public bool drawGridGizmos;
+	public static bool staticDrawGridGizmos;
 	[Range(-1, 3)]
 	public int displayLayer;
 	public static int staticDisplayLayer;
@@ -31,8 +33,10 @@ public class WorldGenerator : MonoBehaviour
     void Update()
     {
 		staticDisplayLayer = displayLayer;
+		staticDrawGridGizmos = drawGridGizmos;
     }
 
+	// Creates all the layers needed for the map and populates them
 	void CreateLayers()
 	{
 		layers = new WorldLayer[numberOfLayers];
@@ -55,6 +59,7 @@ public class WorldGenerator : MonoBehaviour
 		}
 	}
 
+	// Creates the whole map with all the possible connections
 	void CreateMap()
 	{
 		WorldTile baseTile = layers[0].tiles[sizeX / 2, sizeY / 2];
@@ -88,7 +93,7 @@ public class WorldGenerator : MonoBehaviour
 				possibleDirections.RemoveAt(index);
 
 				// Get all possible layers in specified direction
-				List<int> possibleLayers = GetPossibleLayers(tile, direction);
+				List<int> possibleLayers = GetPossibleLayersInDirection(tile, direction);
 
 				if (possibleLayers.Count > 0)
 				{
@@ -107,7 +112,8 @@ public class WorldGenerator : MonoBehaviour
 		}
 	}
 
-	List<int> GetPossibleLayers(WorldTile tile, Direction direction)
+	// Returns all the possible layers for a connection and a given tile
+	List<int> GetPossibleLayersInDirection(WorldTile tile, Direction direction)
 	{
 		Vector3 nextTilePosition = tile.transform.position + (Vector3)(Util.GetVectorFromDirection(direction) * tileSize);
 
@@ -128,11 +134,10 @@ public class WorldGenerator : MonoBehaviour
 			}
 		}
 
-		Debug.Log(possibleLayers.Count);
-
 		return possibleLayers;
 	}
 
+	// Connects the base tile to all the surrounding tiles on all layers
 	void ConnectBaseTile(WorldTile baseTile, List<WorldTile> open)
 	{
 		// Make a connection to every neighbour Tile on base layer
@@ -180,6 +185,7 @@ public class WorldGenerator : MonoBehaviour
 		}
 	}
 
+	// Connects the given tile to the neighbouring tile in the specified direction and layer
 	void MakeConnection(WorldTile tile, Direction direction, int layer)
 	{
 		tile.Connect(direction, layer);

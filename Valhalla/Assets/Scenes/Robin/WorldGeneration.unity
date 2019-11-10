@@ -153,7 +153,7 @@ MonoBehaviour:
     type: 3}
   sizeX: 8
   sizeY: 8
-  tileSize: {x: 10, y: 10}
+  tileSize: {x: 1, y: 1}
   numberOfLayers: 4
   layers: []
   displayLayer: -1

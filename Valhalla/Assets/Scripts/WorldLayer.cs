@@ -13,6 +13,7 @@ public class WorldLayer: MonoBehaviour
 
 	public WorldTile[,] tiles;
 	
+	// Populate the layer with tiles
 	public void Populate(Vector3 startPosition)
 	{
 		tiles = new WorldTile[sizeX, sizeY];
@@ -33,6 +34,7 @@ public class WorldLayer: MonoBehaviour
 		}
 	}
 
+	// Returns the tile of this layer at the given position
 	public WorldTile GetTileAtWorldPosition(Vector3 worldPosition)
 	{
 		if (worldPosition.x < 0 || worldPosition.y < 0)
@@ -43,8 +45,6 @@ public class WorldLayer: MonoBehaviour
 		int indexX = (int)(worldPosition.x / tileSize.x);
 		int indexY = (int)(worldPosition.y / tileSize.y);
 
-		Debug.Log(indexX);
-
 		try
 		{
 			return tiles[indexX, indexY];
@@ -54,6 +54,7 @@ public class WorldLayer: MonoBehaviour
 		}
 	}
 
+	// Returns all neighbouring tiles on this layer of the given tile
 	public WorldTile[] GetNeighbours(WorldTile tile)
 	{
 		WorldTile[] neighbours = new WorldTile[4];
@@ -82,11 +83,13 @@ public class WorldLayer: MonoBehaviour
 		return neighbours;
 	}
 
+	// Returns the neighbour tile on this layer of the given tile
 	public WorldTile GetNeighbour(WorldTile tile, Direction direction)
 	{
 		return GetTileAtWorldPosition(tile.transform.position + (Vector3)(Util.GetVectorFromDirection(direction) * tileSize));
 	}
 
+	// Returns all possible connection directions on this layer of the given tile
 	public List<Direction> GetPossibleConnectionDirections(WorldTile tile)
 	{
 		List<Direction> possibleDirections = new List<Direction>();
