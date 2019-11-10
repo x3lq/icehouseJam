@@ -10,6 +10,9 @@ public class WorldTile : MonoBehaviour
 	[Header("Attributes")]
 	public int up, down, left, right;
 
+	[Header("Loading")]
+	public bool active;
+
 	private void Awake()
 	{
 		up = down = left = right = -1;
@@ -17,8 +20,8 @@ public class WorldTile : MonoBehaviour
 
 	private void OnDrawGizmos()
 	{
-		// Only Draw if selected in WorldGenerator
-		if (WorldGenerator.staticDrawGridGizmos && (WorldGenerator.staticDisplayLayer == layer || WorldGenerator.staticDisplayLayer == -1))
+		// Only Draw if selected in WorldGenerator and if active
+		if (active && WorldGenerator.staticDrawGridGizmos && (WorldGenerator.staticDisplayLayer == layer || WorldGenerator.staticDisplayLayer == -1))
 		{
 			Vector3 position = transform.position + Vector3.forward * layer;
 
