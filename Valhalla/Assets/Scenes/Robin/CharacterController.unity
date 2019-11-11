@@ -450,14 +450,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizontal: 0
   wantsToJump: 0
+  wantsToDash: 0
   speed: 10
   groundAcceleration: 15
   groundDeceleration: 25
   airAcceleration: 15
   airDeceleration: 15
   jumpHeight: 4
+  dashSpeed: 20
+  dashDistance: 3
   velocity: {x: 0, y: 0}
   grounded: 0
+  dashing: 0
   hits: []
 --- !u!1 &1865119559
 GameObject:

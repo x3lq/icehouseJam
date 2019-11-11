@@ -8,6 +8,8 @@ public class CharacterMovement : MonoBehaviour
 	[Header("Input")]
 	public float horizontal;
 	public bool wantsToJump;
+	public bool wantsToDash;
+	private Vector2 dashDirection;
 
 	[Header("Settings")]
 	public float speed;
@@ -16,10 +18,14 @@ public class CharacterMovement : MonoBehaviour
 	public float airAcceleration;
 	public float airDeceleration;
 	public float jumpHeight;
+	public float dashSpeed;
+	public float dashDistance;
 
 	[Header("Status")]
 	public Vector2 velocity;
 	public bool grounded;
+	public bool dashing;
+	private float dashTimer;
 
 	[Header("Collision")]
 	public Collider2D[] hits;
@@ -36,7 +42,15 @@ public class CharacterMovement : MonoBehaviour
     {
 		PlayerInput();
 
-		ModifyVelocity();
+		if (dashTimer <= 0)
+		{
+			dashing = false;
+			ModifyVelocity();
+		} else
+		{
+			dashing = true;
+			DashModifyVelocity();
+		}
 
 		Move();
 
@@ -48,6 +62,13 @@ public class CharacterMovement : MonoBehaviour
 	{
 		horizontal = Input.GetAxis("Horizontal");
 		wantsToJump = Input.GetButtonDown("Jump");
+		wantsToDash = Input.GetKeyDown(KeyCode.LeftShift);
+
+		if (grounded && wantsToDash)
+		{
+			dashTimer = dashDistance / dashSpeed;
+			dashDirection = new Vector2(horizontal, 0).normalized;
+		}
 	}
 
 	void ModifyVelocity()
@@ -67,13 +88,26 @@ public class CharacterMovement : MonoBehaviour
 		{
 			velocity.y = 0;
 
-			if (wantsToJump)
+			if (wantsToJump && !wantsToDash)
 			{
 				velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
 			}
 		}
 
 		velocity.y += Physics2D.gravity.y * Time.deltaTime;
+	}
+
+	void DashModifyVelocity()
+	{
+		dashTimer -= Time.deltaTime;
+
+		if (dashTimer > 0)
+		{
+			velocity.x = dashDirection.x * dashSpeed;
+		} else
+		{
+			velocity.x = velocity.x/Mathf.Abs(velocity.x)*speed;
+		}
 	}
 
 	void Move()
@@ -97,7 +131,7 @@ public class CharacterMovement : MonoBehaviour
 
 			ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
 
-			if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 90 && velocity.y < 0)
+			if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 45 && velocity.y < 0)
 			{
 				grounded = true;
 			}
