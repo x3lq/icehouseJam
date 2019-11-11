@@ -7,7 +7,11 @@ public class CharacterMovement : MonoBehaviour
 {
 	[Header("Input")]
 	public float horizontal;
+	public float vertical;
 	public bool wantsToJump;
+	public bool wantsToDash;
+	public bool wantsToBlink;
+	private Vector2 dashDirection;
 
 	[Header("Settings")]
 	public float speed;
@@ -16,10 +20,18 @@ public class CharacterMovement : MonoBehaviour
 	public float airAcceleration;
 	public float airDeceleration;
 	public float jumpHeight;
+	public float dashSpeed;
+	public float dashDistance;
+	public float blinkDelay;
+	public LayerMask blinkCollisionLayer;
+	public float blinkDistance;
 
 	[Header("Status")]
 	public Vector2 velocity;
 	public bool grounded;
+	public bool dashing;
+	private float dashTimer;
+	private float blinkTimer;
 
 	[Header("Collision")]
 	public Collider2D[] hits;
@@ -31,23 +43,58 @@ public class CharacterMovement : MonoBehaviour
 		boxCollider = GetComponent<BoxCollider2D>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+	// Update is called once per frame
+	void Update()
+	{
 		PlayerInput();
 
-		ModifyVelocity();
+		if (blinkTimer <= 0)
+		{
+			if (dashTimer <= 0)
+			{
+				dashing = false;
+				ModifyVelocity();
+			}
+			else
+			{
+				dashing = true;
+				DashModifyVelocity();
+			}
 
-		Move();
+			Move();
+
+			if (wantsToBlink)
+			{
+				blinkTimer = blinkDelay;
+			}
+		}
+		else
+		{
+			blinkTimer -= Time.deltaTime;
+
+			if (blinkTimer <= 0)
+			{
+				Blink();
+			}
+		}
 
 		CollisionDetection();
 		CollisionResolution();
-    }
+	}
 
 	void PlayerInput()
 	{
 		horizontal = Input.GetAxis("Horizontal");
+		vertical = Input.GetAxis("Vertical");
 		wantsToJump = Input.GetButtonDown("Jump");
+		wantsToDash = Input.GetMouseButtonDown(0);
+		wantsToBlink = Input.GetMouseButtonDown(1);
+
+		if (grounded && wantsToDash)
+		{
+			dashTimer = dashDistance / dashSpeed;
+			dashDirection = new Vector2(horizontal, 0).normalized;
+		}
 	}
 
 	void ModifyVelocity()
@@ -67,7 +114,7 @@ public class CharacterMovement : MonoBehaviour
 		{
 			velocity.y = 0;
 
-			if (wantsToJump)
+			if (wantsToJump && !wantsToDash)
 			{
 				velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
 			}
@@ -76,9 +123,39 @@ public class CharacterMovement : MonoBehaviour
 		velocity.y += Physics2D.gravity.y * Time.deltaTime;
 	}
 
+	void DashModifyVelocity()
+	{
+		dashTimer -= Time.deltaTime;
+
+		if (dashTimer > 0)
+		{
+			velocity.x = dashDirection.x * dashSpeed;
+		} else
+		{
+			velocity.x = velocity.x/Mathf.Abs(velocity.x)*speed;
+		}
+	}
+
 	void Move()
 	{
 		transform.Translate(velocity * Time.deltaTime);
+	}
+
+	void Blink()
+	{
+		Vector2 direction = new Vector2(horizontal, vertical).normalized;
+		Vector2 blinkTargetPosition = transform.position + (Vector3)direction * blinkDistance;
+
+		RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, blinkDistance, blinkCollisionLayer);
+		
+		if (hit)
+		{
+			Debug.Log("Hit");
+			blinkTargetPosition = hit.point - direction;
+		}
+
+		transform.position = blinkTargetPosition;
+		velocity = direction * speed;
 	}
 
 	void CollisionDetection()
@@ -97,7 +174,7 @@ public class CharacterMovement : MonoBehaviour
 
 			ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
 
-			if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 90 && velocity.y < 0)
+			if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 45 && velocity.y < 0)
 			{
 				grounded = true;
 			}
