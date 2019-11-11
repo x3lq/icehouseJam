@@ -9,9 +9,13 @@ public class WorldTile : MonoBehaviour
 
 	[Header("Attributes")]
 	public int up, down, left, right;
+	public TileKind kind;
+	public int variant;
 
 	[Header("Loading")]
 	public bool active;
+	private bool lastActive;
+	public GameObject prefab;
 
 	private void Awake()
 	{
@@ -48,6 +52,46 @@ public class WorldTile : MonoBehaviour
 				Gizmos.DrawRay(position, Vector3.right * size.x / 2f + Vector3.forward * layerDifference/2f);
 			}
 		}
+	}
+
+	private void Update()
+	{
+		CheckActiveState();
+	}
+
+	private void CheckActiveState()
+	{
+		if (lastActive != active)
+		{
+			// Load
+			if (active)
+			{
+				Load();
+			}
+			// UnLoad
+			else
+			{
+				Unload();
+			}
+		}
+
+		lastActive = active;
+	}
+
+	public void Setup()
+	{
+		kind = TilePool.current.GetTileKind(up >= 0, down >= 0, left >= 0, right >= 0);
+		variant = TilePool.current.GetRandomTileVariant(kind);
+	}
+
+	public void Load()
+	{
+		prefab = Instantiate(TilePool.current.GetTile(kind, variant), transform.position, Quaternion.identity, transform);
+	}
+
+	public void Unload()
+	{
+		Destroy(prefab);
 	}
 
 	private Color GetColorBasedOnLayer(int layer)

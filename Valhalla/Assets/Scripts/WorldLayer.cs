@@ -34,6 +34,14 @@ public class WorldLayer: MonoBehaviour
 		}
 	}
 
+	public void SetupTiles()
+	{
+		foreach (WorldTile tile in tiles)
+		{
+			tile.Setup();
+		}
+	}
+
 	// Returns the tile of this layer at the given position
 	public WorldTile GetTileAtWorldPosition(Vector3 worldPosition)
 	{

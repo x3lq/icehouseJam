@@ -27,6 +27,8 @@ public class WorldGenerator : MonoBehaviour
 		CreateLayers();
 
 		CreateMap();
+
+		SetupTiles();
 	}
 
     // Update is called once per frame
@@ -112,6 +114,14 @@ public class WorldGenerator : MonoBehaviour
 		}
 
 		WorldLoader.worldGenerated = true;
+	}
+
+	void SetupTiles()
+	{
+		foreach (WorldLayer layer in layers)
+		{
+			layer.SetupTiles();
+		}
 	}
 
 	// Returns all the possible layers for a connection and a given tile

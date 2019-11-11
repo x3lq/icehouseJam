@@ -60,7 +60,7 @@ public class WorldLoader : MonoBehaviour
 				}
 			}
 
-			if (tile != currentTile)
+			if (tile && tile != currentTile)
 			{
 				if (currentTile)
 				{
