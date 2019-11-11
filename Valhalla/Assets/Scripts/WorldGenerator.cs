@@ -27,6 +27,8 @@ public class WorldGenerator : MonoBehaviour
 		CreateLayers();
 
 		CreateMap();
+
+		SetupTiles();
 	}
 
     // Update is called once per frame
@@ -109,6 +111,16 @@ public class WorldGenerator : MonoBehaviour
 			}
 
 			closed.Add(tile);
+		}
+
+		WorldLoader.worldGenerated = true;
+	}
+
+	void SetupTiles()
+	{
+		foreach (WorldLayer layer in layers)
+		{
+			layer.SetupTiles();
 		}
 	}
 
@@ -196,4 +208,23 @@ public class WorldGenerator : MonoBehaviour
 		connectTilelayers.Connect(Util.GetOppositeDirection(direction), tile.layer);
 	}
 
+	public Vector3 GetTilePositionFromWorldPosition(Vector3 worldPosition)
+	{
+		if (worldPosition.x < 0 || worldPosition.y < 0)
+		{
+			return Vector3.zero;
+		}
+
+		int indexX = (int)(worldPosition.x / tileSize.x);
+		int indexY = (int)(worldPosition.y / tileSize.y);
+
+		try
+		{
+			return layers[0].tiles[indexX, indexY].transform.position;
+		}
+		catch
+		{
+			return Vector3.zero;
+		}
+	}
 }
