@@ -449,8 +449,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   horizontal: 0
+  vertical: 0
   wantsToJump: 0
   wantsToDash: 0
+  wantsToBlink: 0
   speed: 10
   groundAcceleration: 15
   groundDeceleration: 25
@@ -459,6 +461,11 @@ MonoBehaviour:
   jumpHeight: 4
   dashSpeed: 20
   dashDistance: 3
+  blinkDelay: 0.2
+  blinkCollisionLayer:
+    serializedVersion: 2
+    m_Bits: 512
+  blinkDistance: 5
   velocity: {x: 0, y: 0}
   grounded: 0
   dashing: 0
