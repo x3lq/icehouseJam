@@ -76,8 +76,42 @@ public class CameraShake : MonoBehaviour
         trauma = Mathf.Clamp01(trauma - recoverySpeed * Time.deltaTime);
     }
 
-    public void InduceStress(float stress)
+    public void shakeCamera(float stress)
     {
+        if (trauma > 0)
+        {
+            return;
+        }
+        trauma = Mathf.Clamp01(trauma + stress);
+    }
+
+    /*
+     * stress dictates the magnitude
+     * duration the power
+     */
+    public void shakeCamera(float stress, float duration)
+    {
+        if (trauma > 0)
+        {
+            return;
+        }
+        recoverySpeed = duration;
+        trauma = Mathf.Clamp01(trauma + stress);
+    }
+    
+    /*
+     * stress dictates the magnitude
+     * duration the power
+     * frequency determines the speed
+     */
+    public void shakeCamera(float stress, float duration, float frequency)
+    {
+        if (trauma > 0)
+        {
+            return;
+        }
+        recoverySpeed = duration;
+        this.frequency = frequency;
         trauma = Mathf.Clamp01(trauma + stress);
     }
 }
