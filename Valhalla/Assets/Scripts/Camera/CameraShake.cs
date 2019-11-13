@@ -1,55 +1,117 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
-using Random = UnityEngine.Random;
+﻿using UnityEngine;
 
-public class CameraShake : MonoBehaviour
+public class CameraShake : MonoBehaviour 
 {
-    //shakes Camera based on duration and magnitude
-    //script has to applied to a game object, which has the camera as a child
+    /// <summary>
+    /// Maximum distance in each direction the transform
+    /// with translate during shaking.
+    /// </summary>
+    [SerializeField]
+    Vector3 maximumTranslationShake = Vector3.one;
 
-    /*private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            shakeFixedNumber(3, 3);
-        }
-    }*/
+    /// <summary>
+    /// Maximum angle, in degrees, the transform will rotate
+    /// during shaking.
+    /// </summary>
+    [SerializeField]
+    Vector3 maximumAngularShake = Vector3.one * 15;
 
-    public void shake(float duration, float magnitude)
+    /// <summary>
+    /// Frequency of the Perlin noise function. Higher values
+    /// will result in faster shaking.
+    /// </summary>
+    [SerializeField]
+    float frequency = 25;
+
+    /// <summary>
+    /// <see cref="trauma"/> is taken to this power before
+    /// shaking is applied. Higher values will result in a smoother
+    /// falloff as trauma reduces.
+    /// </summary>
+    [SerializeField]
+    float traumaExponent = 1;
+
+    /// <summary>
+    /// Amount of trauma per second that is recovered.
+    /// </summary>
+    [SerializeField]
+    float recoverySpeed = 1;
+
+    /// <summary>
+    /// Value between 0 and 1 defining the current amount
+    /// of stress this transform is enduring.
+    /// </summary>
+    private float trauma;
+
+    private float seed;
+
+    private void Awake()
     {
-        StartCoroutine(shakeHelper(duration, magnitude / 100f));
+        seed = Random.value;
     }
 
-    public void shakeFixedNumber(float amount, float magnitude)
+    private void Update()
     {
-        while (amount > 0)
-        {
-            amount -= 1;
-            StartCoroutine(shakeHelper(0.2f, magnitude / 100f));
+        // Taking trauma to an exponent allows the ability to smoothen
+        // out the transition from shaking to being static.
+        float shake = Mathf.Pow(trauma, traumaExponent);
 
-        }
+        // This x value of each Perlin noise sample is fixed,
+        // allowing a vertical strip of noise to be sampled by each dimension
+        // of the translational and rotational shake.
+        // PerlinNoise returns a value in the 0...1 range; this is transformed to
+        // be in the -1...1 range to ensure the shake travels in all directions.
+        transform.localPosition = new Vector3(
+            maximumTranslationShake.x * (Mathf.PerlinNoise(seed, Time.time * frequency) * 2 - 1),
+            maximumTranslationShake.y * (Mathf.PerlinNoise(seed + 1, Time.time * frequency) * 2 - 1),
+            maximumTranslationShake.z * (Mathf.PerlinNoise(seed + 2, Time.time * frequency) * 2 - 1)
+        ) * shake;
+
+        transform.localRotation = Quaternion.Euler(new Vector3(
+            maximumAngularShake.x * (Mathf.PerlinNoise(seed + 3, Time.time * frequency) * 2 - 1),
+            maximumAngularShake.y * (Mathf.PerlinNoise(seed + 4, Time.time * frequency) * 2 - 1),
+            maximumAngularShake.z * (Mathf.PerlinNoise(seed + 5, Time.time * frequency) * 2 - 1)
+        ) * shake);
+
+        trauma = Mathf.Clamp01(trauma - recoverySpeed * Time.deltaTime);
     }
 
-    IEnumerator shakeHelper(float duration, float magnitude)
+    public void shakeCamera(float stress)
     {
-        Vector3 originalPosition = transform.localPosition;
-
-        float elapsed = 0;
-
-        while (elapsed < duration)
+        if (trauma > 0)
         {
-            float x = Random.Range(-1f, 1f) * magnitude;
-            float y = Random.Range(-1f, 1f) * magnitude;
-            
-            transform.localPosition = originalPosition + new Vector3(x, y, 0);
-            
-            elapsed += Time.deltaTime;
-            yield return null;
+            return;
         }
+        trauma = Mathf.Clamp01(trauma + stress);
+    }
 
-        transform.localPosition = originalPosition;
+    /*
+     * stress dictates the magnitude
+     * duration the power
+     */
+    public void shakeCamera(float stress, float duration)
+    {
+        if (trauma > 0)
+        {
+            return;
+        }
+        recoverySpeed = duration;
+        trauma = Mathf.Clamp01(trauma + stress);
+    }
+    
+    /*
+     * stress dictates the magnitude
+     * duration the power
+     * frequency determines the speed
+     */
+    public void shakeCamera(float stress, float duration, float frequency)
+    {
+        if (trauma > 0)
+        {
+            return;
+        }
+        recoverySpeed = duration;
+        this.frequency = frequency;
+        trauma = Mathf.Clamp01(trauma + stress);
     }
 }
