@@ -85,5 +85,6 @@ public class HealthManager : MonoBehaviour
     public void applyDamage(float damage)
     {
         health -= damage;
+        lastDamage = DateTime.Now;
     }
 }
