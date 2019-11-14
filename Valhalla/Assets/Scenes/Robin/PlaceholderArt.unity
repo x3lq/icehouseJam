@@ -5831,9 +5831,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  distance: 10
+  distance: 9
   lookAheadDistance: 3
-  offset: {x: 0, y: 1}
+  offset: {x: 0, y: 3}
   target: {fileID: 170181352}
 --- !u!1 &1054086554
 GameObject:
