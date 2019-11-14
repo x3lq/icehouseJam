@@ -6,34 +6,39 @@ using UnityEngine.Serialization;
 
 public class CameraFollow : MonoBehaviour
 {
-    public float interpVelocity;
-    public float movementSpeed;
-    public GameObject leftPosition, rightPosition, target;
-    public Vector3 offset;
-    Vector3 targetPos;
+    public float speed;
+	public float distance;
+	public float lookAheadDistance;
+    public Vector2 offset;
 
-    public Boolean movingLeft;
+	public CharacterMovement target;
+	private bool lookingRight;
+
     // Use this for initialization
     void Start () {
-        targetPos = transform.position;
+
     }
 
     private void Update()
     {
-        if (leftPosition && rightPosition)
-        {
-            Vector3 posNoZ = transform.position;
-            posNoZ.z = leftPosition.transform.position.z;
-  
-            Vector3 targetDirection = movingLeft ? (leftPosition.transform.position - posNoZ) : (rightPosition.transform.position - posNoZ);
-  
-            movingLeft = targetDirection.x < 0;
-            interpVelocity = targetDirection.magnitude * movementSpeed;
-  
-            targetPos = transform.position + (targetDirection.normalized * interpVelocity * Time.deltaTime); 
-  
-            transform.position = Vector3.Lerp( transform.position, targetPos + offset, 0.25f);
-  
-        }
+		Follow();
     }
+
+	private void Follow()
+	{
+		if (target.velocity.x > 0)
+		{
+			lookingRight = true;
+		}
+		if (target.velocity.x < 0)
+		{
+			lookingRight = false;
+		}
+
+		Vector3 targetPosition = target.transform.position + (Vector3)offset + Vector3.back * distance;
+
+		targetPosition += lookingRight ? Vector3.right * lookAheadDistance : Vector3.left * lookAheadDistance;
+
+		transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
+	}
 }
