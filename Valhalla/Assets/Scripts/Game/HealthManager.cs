@@ -19,6 +19,8 @@ public class HealthManager : MonoBehaviour
 
     public DateTime lastDamage;
 
+    public GameManager gameManager;
+
     
     // Start is called before the first frame update
     void Start()
@@ -71,9 +73,10 @@ public class HealthManager : MonoBehaviour
             respawn();
             return;
         }
+        
+        //Todo maybe no hardcut of the scene
 
-        //ToDo show death Screen
-        throw new NotImplementedException("");
+        gameManager.playerLost();
     }
 
     private void respawn()
