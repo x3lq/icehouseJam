@@ -90,7 +90,7 @@ public class CharacterMovement : MonoBehaviour
 		wantsToDash = Input.GetMouseButtonDown(0);
 		wantsToBlink = Input.GetMouseButtonDown(1);
 
-		if (grounded && wantsToDash)
+		if (grounded && wantsToDash && horizontal != 0)
 		{
 			dashTimer = dashDistance / dashSpeed;
 			dashDirection = new Vector2(horizontal, 0).normalized;
@@ -183,7 +183,7 @@ public class CharacterMovement : MonoBehaviour
 			{
 				Vector2 correction = colliderDistance.pointA - colliderDistance.pointB;
 				transform.Translate(correction);
-				velocity += correction / Time.deltaTime;
+				velocity += correction / Mathf.Max(0.001f, Time.deltaTime);
 			}
 		}
 	}
