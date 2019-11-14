@@ -11,6 +11,15 @@ public class CharacterAnimator : MonoBehaviour
 	private Animator animator;
 	private CharacterMovement movement;
 
+	public ParticleSystem snowJumpParticles;
+	public ParticleSystem snowLandParticles;
+	public float snowTime;
+	private float particleTimer;
+	private float landTimer;
+
+
+	private bool lastGrounded = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -27,6 +36,10 @@ public class CharacterAnimator : MonoBehaviour
 		SetParameters();
 
 		AdjustSpeed();
+
+		Particles();
+
+		lastGrounded = movement.grounded;
     }
 
 	void Flip()
@@ -50,6 +63,12 @@ public class CharacterAnimator : MonoBehaviour
 
 	void AdjustSpeed()
 	{
+		if (!movement.grounded)
+		{
+			animator.speed = 1;
+			return;
+		}
+
 		if (movement.velocity.x != 0)
 		{
 			animator.speed = Mathf.Abs(movement.velocity.x) / movement.speed;
@@ -57,6 +76,50 @@ public class CharacterAnimator : MonoBehaviour
 		else
 		{
 			animator.speed = 1;
+		}
+	}
+
+	void Particles()
+	{
+		if (!movement.grounded)
+		{
+			particleTimer -= Time.deltaTime;
+		}
+		else
+		{
+			particleTimer = snowTime;
+		}
+
+		ParticleSystem.EmissionModule emission = snowJumpParticles.emission;
+
+		if ((movement.velocity.x <= -3 || movement.velocity.x >= 3) && movement.grounded || !movement.grounded && particleTimer > 0)
+		{
+			emission.enabled = true;
+		}
+		else
+		{
+			emission.enabled = false;
+		}
+
+		LandingParticleBurst();
+	}
+
+	void LandingParticleBurst()
+	{
+		ParticleSystem.EmissionModule emission = snowLandParticles.emission;
+
+		landTimer -= Time.deltaTime;
+
+		if (!lastGrounded && movement.grounded)
+		{
+			landTimer = 0.2f;
+			snowLandParticles.time = 0;
+			emission.enabled = true;
+		}
+
+		if (landTimer < 0)
+		{
+			emission.enabled = false;
 		}
 	}
 }
