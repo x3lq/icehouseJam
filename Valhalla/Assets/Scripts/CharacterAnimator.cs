@@ -92,7 +92,7 @@ public class CharacterAnimator : MonoBehaviour
 
 		ParticleSystem.EmissionModule emission = snowJumpParticles.emission;
 
-		if ((movement.velocity.x <= -3 || movement.velocity.x >= 3) && movement.grounded || !movement.grounded && particleTimer > 0)
+		if (!movement.grounded && particleTimer > 0)
 		{
 			emission.enabled = true;
 		}

@@ -167,6 +167,8 @@ public class CharacterMovement : MonoBehaviour
 	{
 		grounded = false;
 
+		float x = velocity.x;
+
 		foreach (Collider2D hit in hits)
 		{
 			if (hit == boxCollider)
@@ -183,7 +185,7 @@ public class CharacterMovement : MonoBehaviour
 			{
 				Vector2 correction = colliderDistance.pointA - colliderDistance.pointB;
 				transform.Translate(correction);
-				velocity += correction / Mathf.Max(0.001f, Time.deltaTime);
+				velocity += correction / Time.deltaTime / 6;
 			}
 		}
 	}
