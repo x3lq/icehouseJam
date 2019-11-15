@@ -12,6 +12,10 @@
             <e p="CameraShake.cs" t="Include" />
           </e>
           <e p="CameraController.cs" t="Include" />
+          <e p="Character" t="Include">
+            <e p="Axt.cs" t="Include" />
+          </e>
+          <e p="CharacterAnimator.cs" t="Include" />
           <e p="CharacterMovement.cs" t="Include" />
           <e p="Util.cs" t="Include" />
           <e p="World" t="Include">

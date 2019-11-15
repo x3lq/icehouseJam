@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -33,19 +34,31 @@ public class CharacterMovement : MonoBehaviour
 	private float dashTimer;
 	private float blinkTimer;
 
-	[Header("Collision")]
+	[Header("Collision")] 
+	public LayerMask collisionLayers;
 	public Collider2D[] hits;
 	private BoxCollider2D boxCollider;
 
-    // Start is called before the first frame update
+	[Header("Weapon Status")] 
+	private Axt axt;
+
+	public Boolean wantsAxtJump;
+
+	// Start is called before the first frame update
     void Start()
     {
 		boxCollider = GetComponent<BoxCollider2D>();
+		axt = GetComponent<Axt>();
     }
 
 	// Update is called once per frame
 	void Update()
 	{
+		if (axt.pullToAxt)
+		{
+			return;
+		}
+		
 		PlayerInput();
 
 		if (blinkTimer <= 0)
@@ -119,6 +132,14 @@ public class CharacterMovement : MonoBehaviour
 				velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
 			}
 		}
+		
+		if (wantsAxtJump)
+		{
+			Debug.Log("AxtJump");
+			wantsAxtJump = false;
+			velocity.y = 0;
+			velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+		}
 
 		velocity.y += Physics2D.gravity.y * Time.deltaTime;
 	}
@@ -160,7 +181,7 @@ public class CharacterMovement : MonoBehaviour
 
 	void CollisionDetection()
 	{
-		hits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0);
+		hits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0, collisionLayers);
 	}
 
 	void CollisionResolution()
@@ -171,7 +192,7 @@ public class CharacterMovement : MonoBehaviour
 		{
 			if (hit == boxCollider)
 				continue;
-
+			
 			ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
 
 			if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 45 && velocity.y < 0)
