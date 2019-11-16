@@ -171,7 +171,7 @@ public class HandDrop : GoblinAttack
         {
             resetDurationElapsed = 0;
             reset = false;
-            goblinManager.setCooldownTimer(3);
+            goblinManager.setCooldownTimer(cooldown);
         }
 
         Vector3 direction = (defaultPosition - attackingHand.transform.position).normalized;

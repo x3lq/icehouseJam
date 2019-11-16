@@ -11,6 +11,11 @@
             <e p="Goblin" t="Include">
               <e p="Arms.cs" t="Include" />
               <e p="Goblin.cs" t="Include" />
+              <e p="GoblinAttack.cs" t="Include" />
+              <e p="HandDrop.cs" t="Include" />
+              <e p="Roar.cs" t="Include" />
+              <e p="SoundWave.cs" t="Include" />
+              <e p="Spike.cs" t="Include" />
             </e>
           </e>
           <e p="Camera" t="Include">
@@ -20,8 +25,6 @@
           <e p="CameraController.cs" t="Include" />
           <e p="Character" t="Include">
             <e p="Axt.cs" t="Include" />
-            <e p="GoblinAttack.cs" t="Include" />
-            <e p="HandDrop.cs" t="Include" />
           </e>
           <e p="CharacterAnimator.cs" t="Include" />
           <e p="CharacterMovement.cs" t="Include" />
