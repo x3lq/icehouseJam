@@ -23,9 +23,9 @@ public class Goblin : MonoBehaviour
     void Start()
     {
         attacks = new List<GoblinAttack>();
-        //attacks.Add(GetComponent<HandDrop>());
+        attacks.Add(GetComponent<HandDrop>());
         //attacks.Add(GetComponent<Roar>());
-        attacks.Add(GetComponent<JumpSmash>());
+        //attacks.Add(GetComponent<JumpSmash>());
     }
 
     // Update is called once per frame
