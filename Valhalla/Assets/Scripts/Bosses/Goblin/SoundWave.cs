@@ -17,5 +17,7 @@ public class SoundWave : MonoBehaviour
 
         transform.position += travelSpeed * Time.deltaTime;
         transform.localScale += transform.localScale * scaleIncreaseFactor;
+
+        lifeTime -= Time.deltaTime;
     }
 }

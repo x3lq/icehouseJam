@@ -538,19 +538,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2072b576b6f24c9cadb3000c0b84ba5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ground: {fileID: 0}
+  ground: {fileID: 1957620365}
   goblinManager: {fileID: 0}
   attack: 0
   cooldown: 10
-  attackDuration: 10
-  attackElapsedTime: 0
-  roarDuration: 4
-  roarElapsedTime: 0
   spikePrefab: {fileID: 3674442986808986681, guid: 4dba43e090ce84f17ad32d327f33f336,
     type: 3}
   head: {fileID: 1771911252}
   soundWavePrefab: {fileID: 1363663555429274611, guid: 725db99f6b4e344fcba0f7737a045daf,
     type: 3}
+  leftFoot: {fileID: 256890229}
+  rightFoot: {fileID: 841588388}
+  attackDuration: 10
+  attackElapsedTime: 0
+  roarDuration: 4
+  roarElapsedTime: 0
+  breathingTime: 0.9
+  breathTaken: 0
+  firedSpikes: 0
+  spikeAmount: 200
+  spikeSpawnTimeDiff: 0.3
+  stompingFoot: {fileID: 0}
+  probabilityFoots: 0.5
+  probabilityChange: 0.1
+  rising: 0
+  stomp: 0
+  risingSpeed: 5
+  risingDuration: 1.5
+  stompSpeed: 0.5
 --- !u!1 &256890229
 GameObject:
   m_ObjectHideFlags: 0
@@ -564,7 +579,7 @@ GameObject:
   - component: {fileID: 256890232}
   - component: {fileID: 256890231}
   m_Layer: 0
-  m_Name: Foot
+  m_Name: LeftFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -872,7 +887,7 @@ GameObject:
   - component: {fileID: 841588391}
   - component: {fileID: 841588390}
   m_Layer: 0
-  m_Name: Foot (1)
+  m_Name: RightFoot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1242,7 +1257,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957620365}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.057, y: -5.02, z: -4}
+  m_LocalPosition: {x: 0.057, y: -5.02, z: 0}
   m_LocalScale: {x: 18.38184, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
