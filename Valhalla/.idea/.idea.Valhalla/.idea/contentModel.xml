@@ -13,6 +13,7 @@
               <e p="Goblin.cs" t="Include" />
               <e p="GoblinAttack.cs" t="Include" />
               <e p="HandDrop.cs" t="Include" />
+              <e p="JumpSmash.cs" t="Include" />
               <e p="Roar.cs" t="Include" />
               <e p="SoundWave.cs" t="Include" />
               <e p="Spike.cs" t="Include" />
