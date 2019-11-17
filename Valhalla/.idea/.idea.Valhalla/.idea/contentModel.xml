@@ -26,6 +26,7 @@
           <e p="CameraController.cs" t="Include" />
           <e p="Character" t="Include">
             <e p="Axt.cs" t="Include" />
+            <e p="AxtRotation.cs" t="Include" />
           </e>
           <e p="CharacterAnimator.cs" t="Include" />
           <e p="CharacterMovement.cs" t="Include" />

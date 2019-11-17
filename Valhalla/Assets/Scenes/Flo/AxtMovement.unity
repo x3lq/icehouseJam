@@ -132,6 +132,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1762236321, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8736148035927511297, guid: eae1014dbb41eb54284e6d07570c68df,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -185,6 +189,47 @@ PrefabInstance:
     - target: {fileID: 8736148035927511297, guid: eae1014dbb41eb54284e6d07570c68df,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8736148036324835345, guid: eae1014dbb41eb54284e6d07570c68df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
+      propertyPath: m_Parameters.widthMultiplier
+      value: 0.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
+      propertyPath: m_Parameters.colorGradient.key0.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
+      propertyPath: m_Parameters.colorGradient.ctime0
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

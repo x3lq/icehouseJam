@@ -168,6 +168,7 @@ public class Axt : MonoBehaviour
         }
 
         axt = Instantiate(axtPrefab, transform.position, Quaternion.identity);
+        axt.GetComponent<AxtRotation>().rotate = true;
         boxCollider = axt.GetComponent<BoxCollider2D>();
     }
 
@@ -193,6 +194,7 @@ public class Axt : MonoBehaviour
 
             if (colliderDistance.distance < 0.1 && !axtReturns)
             {
+                axt.GetComponent<AxtRotation>().rotate = false;
                 currentSpeed = 0;
                 pullToAxt = true;
                 pullDurationBasedOnDistance =
