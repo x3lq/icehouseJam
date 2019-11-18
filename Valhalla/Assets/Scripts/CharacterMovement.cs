@@ -23,16 +23,12 @@ public class CharacterMovement : MonoBehaviour
 	public float jumpHeight;
 	public float dashSpeed;
 	public float dashDistance;
-	public float blinkDelay;
-	public LayerMask blinkCollisionLayer;
-	public float blinkDistance;
 
 	[Header("Status")]
 	public Vector2 velocity;
 	public bool grounded;
 	public bool dashing;
 	private float dashTimer;
-	private float blinkTimer;
 
 	[Header("Collision")] 
 	public LayerMask collisionLayers;
@@ -58,38 +54,21 @@ public class CharacterMovement : MonoBehaviour
 		{
 			return;
 		}
-		
+
 		PlayerInput();
 
-		if (blinkTimer <= 0)
+		if (dashTimer <= 0)
 		{
-			if (dashTimer <= 0)
-			{
-				dashing = false;
-				ModifyVelocity();
-			}
-			else
-			{
-				dashing = true;
-				DashModifyVelocity();
-			}
-
-			Move();
-
-			if (wantsToBlink)
-			{
-				blinkTimer = blinkDelay;
-			}
+			dashing = false;
+			ModifyVelocity();
 		}
 		else
 		{
-			blinkTimer -= Time.deltaTime;
-
-			if (blinkTimer <= 0)
-			{
-				Blink();
-			}
+			dashing = true;
+			DashModifyVelocity();
 		}
+
+		Move();
 
 		CollisionDetection();
 		CollisionResolution();
@@ -160,23 +139,6 @@ public class CharacterMovement : MonoBehaviour
 	void Move()
 	{
 		transform.Translate(velocity * Time.deltaTime);
-	}
-
-	void Blink()
-	{
-		Vector2 direction = new Vector2(horizontal, vertical).normalized;
-		Vector2 blinkTargetPosition = transform.position + (Vector3)direction * blinkDistance;
-
-		RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, blinkDistance, blinkCollisionLayer);
-		
-		if (hit)
-		{
-			Debug.Log("Hit");
-			blinkTargetPosition = hit.point - direction;
-		}
-
-		transform.position = blinkTargetPosition;
-		velocity = direction * speed;
 	}
 
 	void CollisionDetection()
