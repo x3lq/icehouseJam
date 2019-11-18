@@ -241,6 +241,12 @@ PrefabInstance:
       propertyPath: dashSpeed
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 8736148035927511296, guid: eae1014dbb41eb54284e6d07570c68df,
+        type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -6123250321644221001, guid: eb65af9099bbefc44a8ce199e35c7577,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
 --- !u!4 &216900876 stripped
