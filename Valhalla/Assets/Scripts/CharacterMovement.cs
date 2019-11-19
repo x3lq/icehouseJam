@@ -94,6 +94,10 @@ public class CharacterMovement : MonoBehaviour
 		float acceleration = grounded ? groundAcceleration : airAcceleration;
 		float deceleration = grounded ? groundDeceleration : airDeceleration;
 
+		Debug.Log($"Before Velocity X: {velocity.x}");
+		Debug.Log($"Before Horizontal: {horizontal}");
+
+
 		if (horizontal > 0 && velocity.x >= 0 || horizontal < 0 && velocity.x <= 0)
 		{
 			velocity.x = Mathf.MoveTowards(velocity.x, speed * horizontal, acceleration * Time.deltaTime);
@@ -114,7 +118,6 @@ public class CharacterMovement : MonoBehaviour
 		
 		if (wantsAxtJump)
 		{
-			Debug.Log("AxtJump");
 			wantsAxtJump = false;
 			velocity.y = 0;
 			velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
@@ -138,6 +141,7 @@ public class CharacterMovement : MonoBehaviour
 
 	void Move()
 	{
+		Debug.Log($"Velocity X: {velocity.x}");
 		transform.Translate(velocity * Time.deltaTime);
 	}
 
