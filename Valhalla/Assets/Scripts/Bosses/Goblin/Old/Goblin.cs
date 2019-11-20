@@ -13,7 +13,10 @@ public class Goblin : MonoBehaviour
     public GameObject rightHand;
     public GameObject leftShoulder;
     public GameObject rightShoulder;
-    // Start is called before the first frame update
+    
+    [Header("Boss Properties")] 
+    public float health;
+    public Boolean rage;
 
     [Header("Attack Properties")] 
     public List<GoblinAttack> attacks;
@@ -31,17 +34,23 @@ public class Goblin : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (globalAttackCooldown > 0)
+        if (health <= 25)
         {
-            globalAttackCooldown -= Time.deltaTime;
-            return;
+            rage = true;
         }
         
-        if(attackInProgress)
-            return;
+        
+        //if (globalAttackCooldown > 0)
+        //{
+        //    globalAttackCooldown -= Time.deltaTime;
+        //    return;
+        //}
+        //
+        //if(attackInProgress)
+        //    return;
 
-        attacks[0].startAttack();
-        attackInProgress = true;
+        //attacks[0].startAttack();
+        //attackInProgress = true;
 
         //randomly select attack
     }
