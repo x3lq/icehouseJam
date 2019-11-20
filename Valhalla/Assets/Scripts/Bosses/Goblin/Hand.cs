@@ -12,6 +12,7 @@ public class Hand : MonoBehaviour
     public Collider2D[] hits;
     
     public UnityEvent<float> triggerDamageWithDistance;
+
     // Start is called before the first frame update
     void Start()
     {

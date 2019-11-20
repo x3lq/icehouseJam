@@ -26,6 +26,10 @@ public class GoblinBoss : MonoBehaviour
     public float[] damageZonesSmash;
 
     public float maxSmashDistance;
+
+	[Header("Movement")]
+	public Vector2 velocity;
+	public float speed;
     
     // Start is called before the first frame update
     void Start()
@@ -34,8 +38,8 @@ public class GoblinBoss : MonoBehaviour
         leftHandDamage = leftHand.GetComponent<Hand>().triggerDamageWithDistance;
         rightHandDamage = rightHand.GetComponent<Hand>().triggerDamageWithDistance;
         
-        leftHandDamage.AddListener(calculateDamage);
-        rightHandDamage.AddListener(calculateDamage);
+        leftHandDamage?.AddListener(calculateDamage);
+        rightHandDamage?.AddListener(calculateDamage);
     }
 
     // Update is called once per frame
@@ -48,8 +52,15 @@ public class GoblinBoss : MonoBehaviour
         {
             rage = true;
         }
+
+		Move();
         
     }
+
+	void Move()
+	{
+		transform.position += (Vector3)velocity * Time.deltaTime;
+	}
 
     void calculateDamage(float distance)
     {
@@ -85,4 +96,9 @@ public class GoblinBoss : MonoBehaviour
     {
         
     }
+
+	public void SetVelocity(Vector2 velocity)
+	{
+		this.velocity = velocity;
+	}
 }
