@@ -4974,6 +4974,7 @@ MonoBehaviour:
   maxDistance: 5
   speed: 15
   axt: {fileID: 0}
+  bottomAnchor: {fileID: 0}
   axtPrefab: {fileID: 9127035102588744131, guid: 57b31618d126f447e8f8e47c7a63c2e1,
     type: 3}
   axtChain: {fileID: 0}
@@ -5034,7 +5035,7 @@ LineRenderer:
   - {x: 0, y: 0, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.5
+    widthMultiplier: 0.05
     widthCurve:
       serializedVersion: 2
       m_Curve:

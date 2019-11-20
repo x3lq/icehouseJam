@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2534047416947498361}
   - component: {fileID: 2534047416947498363}
   - component: {fileID: 2534047416947498362}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Rock-Cliff
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,6 +12,7 @@ public class Axt : MonoBehaviour
     public float speed;
     private float currentSpeed;
     public GameObject axt;
+    public GameObject bottomAnchor;
 
     public GameObject axtPrefab;
     public GameObject axtChain;
@@ -52,6 +53,7 @@ public class Axt : MonoBehaviour
     {
         characterMovment = GetComponent<CharacterMovement>();
         lineRenderer = GetComponent<LineRenderer>();
+        coolDownDuration = jumpTimeAfterPull;
     }
 
     // Update is called once per frame
@@ -151,7 +153,7 @@ public class Axt : MonoBehaviour
             //keeping chain link
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, axt.transform.position);
+            lineRenderer.SetPosition(1, axt.transform.GetChild(0).position);
         }
 
         collisionDetection();
