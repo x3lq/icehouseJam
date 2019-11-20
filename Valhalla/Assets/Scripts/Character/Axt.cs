@@ -160,7 +160,7 @@ public class Axt : MonoBehaviour
 
     private void throwAxt()
     {
-        lineRenderer.enabled = true;
+        lineRenderer.enabled = false;
 
         if (axt)
         {
