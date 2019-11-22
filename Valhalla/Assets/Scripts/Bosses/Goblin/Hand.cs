@@ -30,9 +30,6 @@ public class Hand : MonoBehaviour
                 continue;
 			
             ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
-            
-            //TODO differentiate between weapon and playerhit
-            triggerDamageWithDistance.Invoke(colliderDistance.distance);
         }
     }
     

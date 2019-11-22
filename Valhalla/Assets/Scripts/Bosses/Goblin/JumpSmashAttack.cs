@@ -50,7 +50,7 @@ public class JumpSmashAttack : MonoBehaviour
 
         if (distance < maxSmashDistance)
         {
-            float damagePercent = distance / maxSmashDistance;
+            float damagePercent = (maxSmashDistance - distance) / maxSmashDistance;
             characterHealth.applyDamage(damagePercent * maxDamage);
         }
     }
