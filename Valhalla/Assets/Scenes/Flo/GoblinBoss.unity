@@ -290,7 +290,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.00000011920929, y: 0}
+  m_Offset: {x: -0.16634965, y: 0.012796879}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -301,7 +301,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.8957298, y: 2.1516523}
   m_EdgeRadius: 0
 --- !u!212 &90829791
 SpriteRenderer:
@@ -363,6 +363,7 @@ GameObject:
   - component: {fileID: 181916945}
   - component: {fileID: 181916950}
   - component: {fileID: 181916951}
+  - component: {fileID: 181916946}
   m_Layer: 0
   m_Name: GoblinBoss
   m_TagString: Untagged
@@ -392,6 +393,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &181916946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181916944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a45e6c445251364b85d9b08c1876e06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHand: {fileID: 90829786}
+  rightHand: {fileID: 279336248}
+  smashingHand: {fileID: 0}
+  characterHealth: {fileID: 985019534}
+  maxSmashDistance: 5
+  maxDamage: 80
 --- !u!95 &181916950
 Animator:
   serializedVersion: 3
@@ -423,17 +442,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad518068887795348a5e8e1d43954283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterHealth: {fileID: 0}
   leftHand: {fileID: 90829786}
   rightHand: {fileID: 279336248}
   health: 100
   rageHealth: 1
   rage: 0
-  damageZonesSmash:
-  - 1
-  maxSmashDistance: 0
+  animationState: 
   velocity: {x: 0, y: 0}
   speed: 1
+  jumpHeight: 0.5
+  jumpTimer: 2
+  timeTillNextJump: 0
 --- !u!1 &256890229
 GameObject:
   m_ObjectHideFlags: 0
@@ -840,6 +859,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &985019534 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3590106095041097712, guid: eae1014dbb41eb54284e6d07570c68df,
+    type: 3}
+  m_PrefabInstance: {fileID: 1534306059}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ff5a9226d1869498cf95f386acea03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1032953655
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,11 +1037,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8736148035927511299, guid: eae1014dbb41eb54284e6d07570c68df,
-        type: 3}
-      propertyPath: m_TagString
-      value: Player
-      objectReference: {fileID: 0}
     - target: {fileID: 8736148035927511297, guid: eae1014dbb41eb54284e6d07570c68df,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1066,17 +1092,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8736148036324835345, guid: eae1014dbb41eb54284e6d07570c68df,
+    - target: {fileID: 3590106095041097712, guid: eae1014dbb41eb54284e6d07570c68df,
         type: 3}
-      propertyPath: m_IsActive
-      value: 0
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
-    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
-      propertyPath: m_Enabled
-      value: 0
+    - target: {fileID: 3590106095041097712, guid: eae1014dbb41eb54284e6d07570c68df,
+        type: 3}
+      propertyPath: regenerationSpeed
+      value: 5
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
+    - target: {fileID: 3590106095041097712, guid: eae1014dbb41eb54284e6d07570c68df,
+        type: 3}
+      propertyPath: regenerationTime
+      value: 10
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
 --- !u!1 &1702543605
 GameObject:

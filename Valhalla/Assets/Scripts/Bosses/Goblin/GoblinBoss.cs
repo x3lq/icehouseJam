@@ -6,47 +6,41 @@ using UnityEngine.Events;
 
 public class GoblinBoss : MonoBehaviour
 {
-    public CharacterHealth characterHealth;
 
+    private Vector3 originalPos;
     public GameObject leftHand;
     public GameObject rightHand;
-    private UnityEvent<float> leftHandDamage;
-    private UnityEvent<float> rightHandDamage;
 
     [Header("Boss Properties")]
     public float health;
     public float rageHealth;
-
+    
     public Boolean rage;
 
-    private String animationState;
+    public String animationState;
     private Animator animator;
 
-    [Header("Damage Properties")] 
-    public float[] damageZonesSmash;
-
-    public float maxSmashDistance;
-
-	[Header("Movement")]
+    [Header("Movement")]
 	public Vector2 velocity;
 	public float speed;
     
+    public float jumpHeight;
+    public float jumpTimer;
+    public float timeTillNextJump;
+    
+    
+
     // Start is called before the first frame update
     void Start()
     {
-        animator = GetComponent<Animator>();
-        leftHandDamage = leftHand.GetComponent<Hand>().triggerDamageWithDistance;
-        rightHandDamage = rightHand.GetComponent<Hand>().triggerDamageWithDistance;
+        originalPos = transform.position;
         
-        leftHandDamage?.AddListener(calculateDamage);
-        rightHandDamage?.AddListener(calculateDamage);
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        animationState = animator.GetBehaviour<StateMachineBehaviour>().ToString().Substring(9);
-        animationState = animationState.Remove(animationState.Length - 1);
         
         if (health < rageHealth)
         {
@@ -54,51 +48,53 @@ public class GoblinBoss : MonoBehaviour
         }
 
 		Move();
-        
+
     }
 
 	void Move()
-	{
-		transform.position += (Vector3)velocity * Time.deltaTime;
-	}
-
-    void calculateDamage(float distance)
     {
-        if (animationState == "Smash")
+        if (animationState == "Idle")
         {
-            applySmashDamageToPlayer(distance);
-        }
-    }
-
-    void applySmashDamageToPlayer(float distance)
-    {
-        Vector2 handSize = leftHand.GetComponent<BoxCollider2D>().size;
-        if (distance < handSize.x / 2)
-        {
-            characterHealth.applyDamage(characterHealth.maxHealth);
-        } else
-        {
-            float damge = 80;
-            foreach(float damageAreaSize in damageZonesSmash)
+            if (timeTillNextJump <= 0)
             {
-                if (distance < handSize.x + damageAreaSize)
-                {
-                    characterHealth.applyDamage(damge);
-                    break;
-                }
+                timeTillNextJump = jumpTimer;
+            }
 
-                damge -= 20;
+            float elapsedTimePercentage = (jumpTimer - timeTillNextJump) / jumpTimer;
+            velocity.y = Mathf.Lerp(4f, -10f, elapsedTimePercentage);
+        
+            if(transform.position.y < originalPos.y)
+            {
+                velocity.y = 0;
+                transform.position = new Vector3(transform.position.x, originalPos.y, originalPos.z);
+            }
+            timeTillNextJump -= Time.deltaTime;
+        }
+        
+        if (animationState == "LeftSmash" || animationState == "RightSmash")
+        {
+            if (transform.position.y > originalPos.y)
+            {
+                velocity.y += Physics2D.gravity.y * Time.deltaTime;
+            }
+            else
+            {
+                velocity.y = 0;
+                transform.position = new Vector3(transform.position.x, originalPos.y, originalPos.z);
             }
         }
+
+		transform.position += (Vector3)velocity * Time.deltaTime;
     }
 
     public void applyDamageToGoblin(float damage)
     {
-        
+        health -= damage;
     }
 
 	public void SetVelocity(Vector2 velocity)
-	{
+    {
+        velocity.y = this.velocity.y;
 		this.velocity = velocity;
 	}
 }

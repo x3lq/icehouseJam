@@ -28,6 +28,7 @@
                 <e p="SoundWave.cs" t="Include" />
                 <e p="Spike.cs" t="Include" />
               </e>
+              <e p="SmashAttack.cs" t="Include" />
             </e>
           </e>
           <e p="Camera" t="Include">
@@ -39,6 +40,7 @@
             <e p="Axt.cs" t="Include" />
             <e p="AxtRotation.cs" t="Include" />
             <e p="CharacterHealth.cs" t="Include" />
+            <e p="HandAttack.cs" t="Include" />
           </e>
           <e p="CharacterAnimator.cs" t="Include" />
           <e p="CharacterMovement.cs" t="Include" />

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class CharacterHealth : MonoBehaviour
 {
 
-    private float health;
+    public float health;
     public float maxHealth;
 
     public float lastDamage;
@@ -28,9 +28,14 @@ public class CharacterHealth : MonoBehaviour
     void Update()
     {
         //health regeneration
-        if (Time.time - lastDamage > regenerationTime)
+        if (Time.time - lastDamage > regenerationTime && health < maxHealth)
         {
-            health += regenerationSpeed;
+            health += regenerationSpeed * Time.deltaTime;
+            
+            if (health > maxHealth)
+            {
+                health = maxHealth;
+            }
         }
 
         //Adjust damage visuality of blur
@@ -40,13 +45,14 @@ public class CharacterHealth : MonoBehaviour
             healthPercentage = minAlpha;
         }
 
-        var tmpColor = blur.color;
-        tmpColor.a = healthPercentage;
-        blur.color = tmpColor;
+        //var tmpColor = blur.color;
+        //tmpColor.a = healthPercentage;
+        //blur.color = tmpColor;
     }
 
     public void applyDamage(float damage)
     {
+        Debug.Log("Damage " + damage);
         health -= damage;
         lastDamage = Time.time;
     }

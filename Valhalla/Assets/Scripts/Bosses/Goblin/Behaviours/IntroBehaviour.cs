@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class IntroBehaviour : StateMachineBehaviour
 {
+    public GoblinBoss goblin;
      //OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
      override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
      {
-
+         goblin = animator.GetComponent<GoblinBoss>();
+         goblin.animationState = "Idle";
      }
 
      //OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

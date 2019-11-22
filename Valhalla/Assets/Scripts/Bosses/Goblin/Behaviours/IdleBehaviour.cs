@@ -18,6 +18,8 @@ public class IdleBehaviour : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         goblin = animator.GetComponent<GoblinBoss>();
+        goblin.animationState = "Idle";
+
 		playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
 
         if (goblin.rage && !playedRage)
@@ -35,7 +37,7 @@ public class IdleBehaviour : StateMachineBehaviour
         if (timer <= 0)
         {
             int random = Random.Range(0, attacks.Count);
-            //animator.SetTrigger(attacks[random]);
+            animator.SetTrigger(attacks[random]);
         }
         else
         {
