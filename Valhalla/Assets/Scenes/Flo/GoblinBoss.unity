@@ -365,6 +365,7 @@ GameObject:
   - component: {fileID: 181916951}
   - component: {fileID: 181916947}
   - component: {fileID: 181916946}
+  - component: {fileID: 181916948}
   m_Layer: 0
   m_Name: GoblinBoss
   m_TagString: Untagged
@@ -411,7 +412,7 @@ MonoBehaviour:
   smashingHand: {fileID: 0}
   characterHealth: {fileID: 985019534}
   maxSmashDistance: 5
-  maxDamage: 80
+  maxDamage: 40
 --- !u!114 &181916947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -425,6 +426,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
+--- !u!114 &181916948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181916944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ef91d2b759290f44a9afdacafcb7f4a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftHand: {fileID: 90829786}
+  rightHand: {fileID: 279336248}
+  characterHealth: {fileID: 985019534}
+  maxSmashDistance: 10
+  maxDamage: 80
 --- !u!95 &181916950
 Animator:
   serializedVersion: 3
@@ -1239,7 +1257,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1771911252}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.41000003, y: 3.01, z: 1}
+  m_LocalPosition: {x: 0.41, y: 3.01, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 181916945}

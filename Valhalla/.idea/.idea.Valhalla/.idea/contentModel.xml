@@ -19,6 +19,7 @@
               <e p="GoblinAnimator.cs" t="Include" />
               <e p="GoblinBoss.cs" t="Include" />
               <e p="Hand.cs" t="Include" />
+              <e p="JumpSmashAttack.cs" t="Include" />
               <e p="Old" t="Include">
                 <e p="Arms.cs" t="Include" />
                 <e p="Goblin.cs" t="Include" />
