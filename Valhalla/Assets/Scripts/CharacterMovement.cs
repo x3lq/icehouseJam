@@ -114,7 +114,6 @@ public class CharacterMovement : MonoBehaviour
 		
 		if (wantsAxtJump)
 		{
-			Debug.Log("AxtJump");
 			wantsAxtJump = false;
 			velocity.y = 0;
 			velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
