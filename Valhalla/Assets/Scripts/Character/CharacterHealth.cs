@@ -52,7 +52,6 @@ public class CharacterHealth : MonoBehaviour
 
     public void applyDamage(float damage)
     {
-        Debug.Log("Damage " + damage);
         health -= damage;
         lastDamage = Time.time;
     }

@@ -16,6 +16,7 @@
                 <e p="RoarBehaviour.cs" t="Include" />
                 <e p="Smash.cs" t="Include" />
               </e>
+              <e p="GoblinAnimator.cs" t="Include" />
               <e p="GoblinBoss.cs" t="Include" />
               <e p="Hand.cs" t="Include" />
               <e p="Old" t="Include">
