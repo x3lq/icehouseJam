@@ -46,11 +46,11 @@ public class CharacterAnimator : MonoBehaviour
 	{
 		if (movement.velocity.x < 0)
 		{
-			spriteRenderer.flipX = false;
+			spriteRenderer.flipX = true;
 		}
 		if (movement.velocity.x > 0)
 		{
-			spriteRenderer.flipX = true;
+			spriteRenderer.flipX = false;
 		}
 	}
 
@@ -59,6 +59,7 @@ public class CharacterAnimator : MonoBehaviour
 		animator.SetFloat("Horizontal", movement.velocity.x);
 		animator.SetFloat("Vertical", movement.velocity.y);
 		animator.SetBool("Grounded", movement.grounded);
+		animator.SetBool("Dashing", movement.dashing);
 	}
 
 	void AdjustSpeed()
