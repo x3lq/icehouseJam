@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class CharacterHealth : MonoBehaviour
 {
+    public int lifes;
+    public GameObject spawn;
 
     public float health;
     public float maxHealth;
@@ -27,6 +29,15 @@ public class CharacterHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health < 0 && lifes == 0)
+        {
+            Camera.main.GetComponent<GameManager>().playerLost();
+        } else if(health < 0)
+        {
+            lifes -= 1;
+            resetPlayerToSpawn();
+        }
+        
         //health regeneration
         if (Time.time - lastDamage > regenerationTime && health < maxHealth)
         {
@@ -54,5 +65,10 @@ public class CharacterHealth : MonoBehaviour
     {
         health -= damage;
         lastDamage = Time.time;
+    }
+
+    private void resetPlayerToSpawn()
+    {
+        transform.position = spawn.transform.position;
     }
 }

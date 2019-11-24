@@ -366,6 +366,7 @@ GameObject:
   - component: {fileID: 181916947}
   - component: {fileID: 181916946}
   - component: {fileID: 181916948}
+  - component: {fileID: 181916949}
   m_Layer: 11
   m_Name: GoblinBoss
   m_TagString: Untagged
@@ -443,6 +444,22 @@ MonoBehaviour:
   characterHealth: {fileID: 985019534}
   maxSmashDistance: 10
   maxDamage: 80
+--- !u!114 &181916949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181916944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b3827c9b549fa14189df5951bb07891, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spikePrefabs: []
+  ground: {fileID: 0}
+  spikeAmount: 0
+  spikeSpawnTimeDiff: 0
 --- !u!95 &181916950
 Animator:
   serializedVersion: 3
@@ -1175,6 +1192,36 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6db2df9f3e9b454428085898315cc519, type: 3}
+--- !u!1 &1354417364
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1354417365}
+  m_Layer: 0
+  m_Name: Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1354417365
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354417364}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.58, y: -3.96, z: -1.6380827}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1534306059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1256,6 +1303,16 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 3590106095041097712, guid: eae1014dbb41eb54284e6d07570c68df,
+        type: 3}
+      propertyPath: lifes
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3590106095041097712, guid: eae1014dbb41eb54284e6d07570c68df,
+        type: 3}
+      propertyPath: spawn
+      value: 
+      objectReference: {fileID: 1354417364}
     - target: {fileID: 8736148035320291157, guid: eae1014dbb41eb54284e6d07570c68df,
         type: 3}
       propertyPath: m_Layer
@@ -1279,6 +1336,7 @@ GameObject:
   - component: {fileID: 1702543608}
   - component: {fileID: 1702543607}
   - component: {fileID: 1702543606}
+  - component: {fileID: 1702543609}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1351,6 +1409,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1702543609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702543605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c0046c4e49bd47648e97060d2eddd0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
 --- !u!1 &1771911252
 GameObject:
   m_ObjectHideFlags: 0

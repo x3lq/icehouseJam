@@ -30,6 +30,7 @@
                 <e p="SoundWave.cs" t="Include" />
                 <e p="Spike.cs" t="Include" />
               </e>
+              <e p="RoarAttack.cs" t="Include" />
               <e p="SmashAttack.cs" t="Include" />
             </e>
           </e>

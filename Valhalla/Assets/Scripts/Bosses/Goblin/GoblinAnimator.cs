@@ -12,7 +12,7 @@ public class GoblinAnimator : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void onSmashEnd()
+    public void onAttackEnd()
     {
         animator.SetTrigger("Idle");
     }
