@@ -456,10 +456,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b3827c9b549fa14189df5951bb07891, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spikePrefabs: []
-  ground: {fileID: 0}
-  spikeAmount: 0
-  spikeSpawnTimeDiff: 0
+  spikePrefabs:
+  - {fileID: 3674442986808986681, guid: 4dba43e090ce84f17ad32d327f33f336, type: 3}
+  ground: {fileID: 315851278}
+  characterHealth: {fileID: 985019534}
+  spikeAmount: 50
+  spikeSpawnTimeDiff: 0.1
 --- !u!95 &181916950
 Animator:
   serializedVersion: 3
@@ -734,6 +736,12 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &315851278 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6468644435550408522, guid: 6db2df9f3e9b454428085898315cc519,
+    type: 3}
+  m_PrefabInstance: {fileID: 1108214732}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &623711810 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8736148035927511299, guid: eae1014dbb41eb54284e6d07570c68df,

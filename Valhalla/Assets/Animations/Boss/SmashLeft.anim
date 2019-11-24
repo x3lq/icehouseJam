@@ -3683,7 +3683,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 4.4
-    functionName: onSmashEnd
+    functionName: onAttackEnd
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

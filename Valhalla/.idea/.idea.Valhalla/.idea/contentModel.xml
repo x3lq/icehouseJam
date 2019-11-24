@@ -28,10 +28,10 @@
                 <e p="JumpSmash.cs" t="Include" />
                 <e p="Roar.cs" t="Include" />
                 <e p="SoundWave.cs" t="Include" />
-                <e p="Spike.cs" t="Include" />
               </e>
               <e p="RoarAttack.cs" t="Include" />
               <e p="SmashAttack.cs" t="Include" />
+              <e p="Spike.cs" t="Include" />
             </e>
           </e>
           <e p="Camera" t="Include">

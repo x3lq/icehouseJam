@@ -10,10 +10,10 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("Start"))
+        /*if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("Start"))
         {
             //ToDo show Menu
-        }
+        }*/
     }
 
     public void startGame()

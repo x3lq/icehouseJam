@@ -9,7 +9,7 @@ public class Jumpsmash : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         goblin = animator.GetComponent<GoblinBoss>();
-        goblin.animationState = "LeftSmash";
+        goblin.animationState = "JumpSmash";
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

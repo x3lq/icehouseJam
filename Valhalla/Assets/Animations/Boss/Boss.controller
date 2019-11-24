@@ -294,9 +294,10 @@ MonoBehaviour:
   attacks:
   - LeftSmash
   - JumpSmash
+  - Roar
   timer: 0
-  minTime: 0
-  maxTime: 1
+  minTime: 5
+  maxTime: 6
 --- !u!1101 &-1614927879124378617
 AnimatorStateTransition:
   m_ObjectHideFlags: 1

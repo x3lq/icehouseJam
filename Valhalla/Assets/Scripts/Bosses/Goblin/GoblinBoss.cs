@@ -27,8 +27,7 @@ public class GoblinBoss : MonoBehaviour
     public float jumpHeight;
     public float jumpTimer;
     public float timeTillNextJump;
-    
-    
+
 
     // Start is called before the first frame update
     void Start()
@@ -71,7 +70,7 @@ public class GoblinBoss : MonoBehaviour
             timeTillNextJump -= Time.deltaTime;
         }
         
-        if (animationState == "LeftSmash" || animationState == "RightSmash")
+        if (animationState == "LeftSmash" || animationState == "RightSmash" ||  animationState == "JumpSmash")
         {
             if (transform.position.y > originalPos.y)
             {

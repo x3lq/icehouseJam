@@ -6,12 +6,13 @@ using Random = UnityEngine.Random;
 
 public class Spike : MonoBehaviour
 {
-    public Transform originalPos;
-
-    public float lifeTime;
-    public float aliveFor;
-    public float speedMultiplyer;
-
+    public float damageToPlayer;
+    public CharacterHealth player;
+    public float width;
+    public float height;
+    public float playerHeight;
+    public float playerWidth;
+    
     public float maxHeight;
     private float prevHeight = 0;
 
@@ -25,17 +26,21 @@ public class Spike : MonoBehaviour
     public float fallSpeed;
     private float fallDuration;
 
-    public Boolean rise;
     public Boolean shake;
     public Boolean fall;
+    public Boolean hit;
 
     private void Start()
     {
-        rise = true;
-        originalPos = transform;
         riseDuration = maxHeight / riseSpeed;
         shakeDurationTimer = shakeDuration;
         fallDuration = maxHeight / fallSpeed;
+        width = GetComponent<BoxCollider2D>().size.x;
+        height = GetComponent<BoxCollider2D>().size.y;
+
+        player = GameObject.FindWithTag("Player").GetComponent<CharacterHealth>();
+        playerHeight = player.GetComponent<BoxCollider2D>().size.y / 2;
+        playerWidth = player.GetComponent<BoxCollider2D>().size.x / 2;
     }
 
     // Update is called once per frame
@@ -66,6 +71,8 @@ public class Spike : MonoBehaviour
                 shake = false;
                 fall = true;
             }
+            
+            collisionDetection();
         }
 
         if (fall)
@@ -79,15 +86,21 @@ public class Spike : MonoBehaviour
             
             transform.position -= Vector3.up * (fallSpeed * Time.deltaTime); 
         }
+    }
 
-/*
-        float newHeight = (float) (maxHeight * Math.Sin(aliveFor * speedMultiplyer));
-        float newHeightOffset =  newHeight - prevHeight;
-        prevHeight = newHeight;
-        
-        transform.position += new Vector3(0, newHeightOffset, 0);
-*/
-        aliveFor += Time.deltaTime;
-        lifeTime -= Time.deltaTime;
+    private void collisionDetection()
+    {
+        if (hit)
+        {
+            return;
+        }
+        if (Math.Abs(transform.position.x - player.transform.position.x) < width + playerWidth)
+        {
+            if (Math.Abs(transform.position.y - player.transform.position.y) < height + playerHeight)
+            {
+                player.applyDamage(damageToPlayer);
+                hit = true;
+            }
+        }
     }
 }
