@@ -4849,7 +4849,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 21300000, guid: 3a1fe5ea45c1ef940b1e0414b15189b0, type: 3}
+  m_Sprite: {fileID: -6123250321644221001, guid: eb65af9099bbefc44a8ce199e35c7577,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -4896,7 +4897,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 2.5}
+    oldSize: {x: 2.56, y: 2.56}
     newSize: {x: 10, y: 10}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4928,7 +4929,7 @@ MonoBehaviour:
   airAcceleration: 15
   airDeceleration: 15
   jumpHeight: 4
-  dashSpeed: 10
+  dashSpeed: 15
   dashDistance: 4
   velocity: {x: 0, y: 0}
   grounded: 0
@@ -4938,6 +4939,7 @@ MonoBehaviour:
     m_Bits: 823
   hits: []
   wantsToAttack: 0
+  handAttack: {fileID: 0}
   wantsAxtJump: 0
 --- !u!114 &8736148035927511308
 MonoBehaviour:
@@ -4977,7 +4979,7 @@ MonoBehaviour:
   direction: {x: 0, y: 0, z: 0}
   slowedTimeSpeed: 0.2
   durationTime: 2
-  active: 1
+  active: 0
   axtReturns: 0
   pullToAxt: 0
   pullDurationBasedOnDistance: 0
@@ -5000,6 +5002,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9ff5a9226d1869498cf95f386acea03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lifes: 3
+  spawn: {fileID: 0}
   health: 0
   maxHealth: 100
   lastDamage: 0
