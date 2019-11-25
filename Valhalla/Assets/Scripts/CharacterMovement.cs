@@ -35,6 +35,11 @@ public class CharacterMovement : MonoBehaviour
 	public Collider2D[] hits;
 	private BoxCollider2D boxCollider;
 
+	[Header("Attack Status")] 
+	public Boolean wantsToAttack;
+
+	public HandAttack handAttack;
+	
 	[Header("Weapon Status")] 
 	private Axt axt;
 
@@ -43,6 +48,7 @@ public class CharacterMovement : MonoBehaviour
 	// Start is called before the first frame update
     void Start()
     {
+	    handAttack = GetComponent<HandAttack>();
 		boxCollider = GetComponent<BoxCollider2D>();
 		axt = GetComponent<Axt>();
     }
@@ -56,6 +62,11 @@ public class CharacterMovement : MonoBehaviour
 		}
 
 		PlayerInput();
+
+		if (wantsToAttack)
+		{
+			handAttack.attack = true;
+		}
 
 		if (dashTimer <= 0)
 		{
@@ -81,6 +92,7 @@ public class CharacterMovement : MonoBehaviour
 		wantsToJump = Input.GetButtonDown("Jump");
 		wantsToDash = Input.GetMouseButtonDown(0);
 		wantsToBlink = Input.GetMouseButtonDown(1);
+		wantsToAttack = Input.GetButtonDown("Attack");
 
 		if (grounded && wantsToDash && horizontal != 0)
 		{
@@ -91,6 +103,11 @@ public class CharacterMovement : MonoBehaviour
 
 	void ModifyVelocity()
 	{
+		if (axt.active)
+		{
+			return;
+		}
+		
 		float acceleration = grounded ? groundAcceleration : airAcceleration;
 		float deceleration = grounded ? groundDeceleration : airDeceleration;
 

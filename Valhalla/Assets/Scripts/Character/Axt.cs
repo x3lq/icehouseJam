@@ -7,15 +7,16 @@ public class Axt : MonoBehaviour
 {
     public float coolDownDuration;
     private float coolDownTimer;
-    
+
     public float maxDistance;
     public float speed;
     private float currentSpeed;
     public GameObject axt;
+    public GameObject bottomAnchor;
 
     public GameObject axtPrefab;
     public GameObject axtChain;
-    
+
     public Vector3 direction;
 
     public float slowedTimeSpeed;
@@ -28,8 +29,7 @@ public class Axt : MonoBehaviour
 
     public Boolean axtReturns;
 
-    [Header("Pulling Towards Axt")]
-    public Boolean pullToAxt;
+    [Header("Pulling Towards Axt")] public Boolean pullToAxt;
     public float pullDurationBasedOnDistance;
     public float pullDuration;
     public float pullSpeed;
@@ -40,19 +40,20 @@ public class Axt : MonoBehaviour
     private float jumpTimeAfterPullTimer;
     private Boolean usedAxtJump;
 
-    [Header("Collision")] 
-    public LayerMask collisionLayers;
+    [Header("Collision")] public LayerMask collisionLayers;
     public Collider2D[] hits;
     private BoxCollider2D boxCollider;
 
     private LineRenderer lineRenderer;
-    
+
     private CharacterMovement characterMovment;
+
     // Start is called before the first frame update
     void Start()
     {
         characterMovment = GetComponent<CharacterMovement>();
         lineRenderer = GetComponent<LineRenderer>();
+        coolDownDuration = jumpTimeAfterPull;
     }
 
     // Update is called once per frame
@@ -67,12 +68,12 @@ public class Axt : MonoBehaviour
                 usedAxtJump = true;
                 characterMovment.wantsAxtJump = true;
             }
-            
+
             coolDownTimer -= Time.deltaTime;
             jumpTimeAfterPullTimer -= Time.deltaTime;
             return;
         }
-        
+
         if (Input.GetButtonDown("LB") && !axt)
         {
             startTime = DateTime.Now;
@@ -81,12 +82,12 @@ public class Axt : MonoBehaviour
             //measure time and slow time
             StartCoroutine(startTimer());
             Time.timeScale = slowedTimeSpeed;
-            
+
             //show arrow Indicator with direction ?
         }
-        
-        
-        if(Input.GetButtonUp("LB") &&  !axt)
+
+
+        if (Input.GetButtonUp("LB") && !axt)
         {
             if (active)
             {
@@ -94,7 +95,11 @@ public class Axt : MonoBehaviour
                 Time.timeScale = 1;
                 //throw axt on release
                 direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-                throwAxt();
+
+                if (direction != Vector3.zero)
+                {
+                    throwAxt();
+                }
             }
         }
 
@@ -107,7 +112,8 @@ public class Axt : MonoBehaviour
                 direction = (axt.transform.position - transform.position).normalized;
                 axt.transform.position += direction * currentSpeed * Time.deltaTime * -1;
 
-                if ((axt.transform.position - transform.position).magnitude < 0.5 || (axt.transform.position - transform.position).magnitude > 4*maxDistance)
+                if ((axt.transform.position - transform.position).magnitude < 0.5 ||
+                    (axt.transform.position - transform.position).magnitude > 4 * maxDistance)
                 {
                     axtReturns = false;
                     lineRenderer.positionCount = 0;
@@ -121,14 +127,14 @@ public class Axt : MonoBehaviour
             }
 
             if (pullToAxt)
-            { 
+            {
                 Vector3 distanceLeft = (axt.transform.position - transform.position);
                 float elapsedTimePercentage = (Time.time - startedAt) / pullDurationBasedOnDistance;
                 currentPullSpeed = Mathf.SmoothStep(speed / 2, speed, elapsedTimePercentage);
-                
+
                 Vector3 newPlayerPos = transform.position + distanceLeft.normalized * currentPullSpeed * Time.deltaTime;
 
-                
+
                 if ((newPlayerPos - axt.transform.position).magnitude < 0.6)
                 {
                     pullToAxt = false;
@@ -142,28 +148,29 @@ public class Axt : MonoBehaviour
                 {
                     transform.position = newPlayerPos;
                 }
-
             }
-            
+
             //keeping chain link
             lineRenderer.positionCount = 2;
             lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, axt.transform.position);
+            lineRenderer.SetPosition(1, axt.transform.GetChild(0).position);
         }
-        
+
         collisionDetection();
         collisionResolution();
     }
 
     private void throwAxt()
     {
-        lineRenderer.enabled = true;
+        lineRenderer.enabled = false;
 
         if (axt)
         {
             Destroy(axt);
         }
+
         axt = Instantiate(axtPrefab, transform.position, Quaternion.identity);
+        axt.GetComponent<AxtRotation>().rotate = true;
         boxCollider = axt.GetComponent<BoxCollider2D>();
     }
 
@@ -184,20 +191,19 @@ public class Axt : MonoBehaviour
 
             if (!axt)
                 return;
-			
+
             ColliderDistance2D colliderDistance = hit.Distance(boxCollider);
-            
+
             if (colliderDistance.distance < 0.1 && !axtReturns)
             {
+                axt.GetComponent<AxtRotation>().rotate = false;
                 currentSpeed = 0;
                 pullToAxt = true;
                 pullDurationBasedOnDistance =
                     pullDuration * ((axt.transform.position - transform.position).magnitude / maxDistance);
                 startedAt = Time.time;
                 usedAxtJump = false;
-                
             }
-
         }
     }
 
@@ -217,7 +223,7 @@ public class Axt : MonoBehaviour
         if (!axt)
         {
             active = false;
-            Time.timeScale = 1; 
+            Time.timeScale = 1;
         }
     }
 }

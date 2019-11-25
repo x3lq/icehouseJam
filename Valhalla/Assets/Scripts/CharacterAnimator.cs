@@ -60,6 +60,7 @@ public class CharacterAnimator : MonoBehaviour
 		animator.SetFloat("Vertical", movement.velocity.y);
 		animator.SetBool("Grounded", movement.grounded);
 		animator.SetBool("Dashing", movement.dashing);
+		animator.SetBool("Attack", movement.wantsToAttack);
 	}
 
 	void AdjustSpeed()
