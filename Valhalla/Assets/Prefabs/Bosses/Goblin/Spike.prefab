@@ -101,8 +101,8 @@ MonoBehaviour:
   playerHeight: 0
   playerWidth: 0
   maxHeight: 0.7
-  riseSpeed: 10
-  shakeDuration: 2
+  riseSpeed: 15
+  shakeDuration: 1.5
   maxAngle: 4
   fallSpeed: 20
   shake: 0
