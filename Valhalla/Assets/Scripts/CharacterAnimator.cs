@@ -65,7 +65,7 @@ public class CharacterAnimator : MonoBehaviour
 
 	void AdjustSpeed()
 	{
-		if (!movement.grounded)
+		if (!movement.grounded || animator.GetCurrentAnimatorStateInfo(0).IsName("Landing"))
 		{
 			animator.speed = 1;
 			return;
