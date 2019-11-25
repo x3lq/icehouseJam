@@ -70,7 +70,7 @@ public class GoblinBoss : MonoBehaviour
             timeTillNextJump -= Time.deltaTime;
         }
         
-        if (animationState == "LeftSmash" || animationState == "RightSmash" ||  animationState == "JumpSmash")
+        if (animationState == "LeftSmash" || animationState == "RightSmash" ||  animationState == "JumpSmash" || animationState == "Roar")
         {
             if (transform.position.y > originalPos.y)
             {

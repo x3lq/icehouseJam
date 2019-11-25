@@ -103,6 +103,11 @@ public class CharacterMovement : MonoBehaviour
 
 	void ModifyVelocity()
 	{
+		if (axt.active)
+		{
+			return;
+		}
+		
 		float acceleration = grounded ? groundAcceleration : airAcceleration;
 		float deceleration = grounded ? groundDeceleration : airDeceleration;
 

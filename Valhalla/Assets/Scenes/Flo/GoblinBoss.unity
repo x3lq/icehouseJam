@@ -1251,6 +1251,10 @@ PrefabInstance:
       propertyPath: collisionLayers.m_Bits
       value: 4608
       objectReference: {fileID: 0}
+    - target: {fileID: 1762236321, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
+      propertyPath: active
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8736148035927511297, guid: eae1014dbb41eb54284e6d07570c68df,
         type: 3}
       propertyPath: m_LocalPosition.x
