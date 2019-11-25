@@ -35,6 +35,7 @@ public class CharacterHealth : MonoBehaviour
         } else if(health < 0)
         {
             lifes -= 1;
+            health = maxHealth;
             resetPlayerToSpawn();
         }
         
