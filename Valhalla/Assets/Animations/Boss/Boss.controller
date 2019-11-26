@@ -162,6 +162,9 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: 8787196129136213307}
     m_Position: {x: -270, y: 540, z: 0}
+  - serializedVersion: 1
+    m_State: {fileID: -4804604480460093960}
+    m_Position: {x: -235, y: 605, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions:
   - {fileID: 5124455946382334068}
@@ -223,6 +226,32 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
+--- !u!1102 &-4804604480460093960
+AnimatorState:
+  serializedVersion: 5
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SmashRight
+  m_Speed: 1
+  m_CycleOffset: 0
+  m_Transitions: []
+  m_StateMachineBehaviours: []
+  m_Position: {x: 50, y: 50, z: 0}
+  m_IKOnFeet: 0
+  m_WriteDefaultValues: 1
+  m_Mirror: 0
+  m_SpeedParameterActive: 0
+  m_MirrorParameterActive: 0
+  m_CycleOffsetParameterActive: 0
+  m_TimeParameterActive: 0
+  m_Motion: {fileID: 7400000, guid: dfad68d4d015693419922cd6e5d3119b, type: 2}
+  m_Tag: 
+  m_SpeedParameter: 
+  m_MirrorParameter: 
+  m_CycleOffsetParameter: 
+  m_TimeParameter: 
 --- !u!1101 &-3963016247835168896
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -701,6 +730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67882daa1b4f3be4a84f275a091d62e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  goblin: {fileID: 0}
 --- !u!1102 &8635518734045856356
 AnimatorState:
   serializedVersion: 5
@@ -746,12 +776,12 @@ AnimatorState:
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
-  m_Mirror: 0
+  m_Mirror: 1
   m_SpeedParameterActive: 0
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: de8652bf09c1949439228602f07c3637, type: 2}
+  m_Motion: {fileID: 7400000, guid: dfad68d4d015693419922cd6e5d3119b, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
