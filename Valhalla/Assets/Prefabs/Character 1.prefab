@@ -4939,7 +4939,12 @@ MonoBehaviour:
     m_Bits: 823
   hits: []
   wantsToAttack: 0
+  wantsToHammer: 0
+  wantsToThrowSpeer: 0
   handAttack: {fileID: 0}
+  hammer: {fileID: 0}
+  speerPrefab: {fileID: 1484934885153272015, guid: ab64506b1ece44345b3714a68061432c,
+    type: 3}
   wantsAxtJump: 0
 --- !u!114 &8736148035927511308
 MonoBehaviour:
@@ -4968,9 +4973,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ca6da38f8134dd2bfe80155a2184ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDownDuration: 1
-  maxDistance: 5
-  speed: 15
+  coolDownDuration: 0
+  maxDistance: 10
+  speed: 30
   axt: {fileID: 0}
   bottomAnchor: {fileID: 0}
   axtPrefab: {fileID: 9127035102588744131, guid: 57b31618d126f447e8f8e47c7a63c2e1,
@@ -4984,7 +4989,7 @@ MonoBehaviour:
   pullToAxt: 0
   pullDurationBasedOnDistance: 0
   pullDuration: 1
-  pullSpeed: 20
+  pullSpeed: 25
   jumpTimeAfterPull: 1
   collisionLayers:
     serializedVersion: 2

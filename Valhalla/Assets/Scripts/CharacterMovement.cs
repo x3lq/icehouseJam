@@ -37,8 +37,15 @@ public class CharacterMovement : MonoBehaviour
 
 	[Header("Attack Status")] 
 	public Boolean wantsToAttack;
+	public Boolean wantsToHammer;
+	public Boolean wantsToThrowSpeer;
+
+	public Boolean blockedSpeer;
+	public float speerTimer;
 
 	public HandAttack handAttack;
+	public Hammer hammer;
+	public GameObject speerPrefab;
 	
 	[Header("Weapon Status")] 
 	private Axt axt;
@@ -48,6 +55,7 @@ public class CharacterMovement : MonoBehaviour
 	// Start is called before the first frame update
     void Start()
     {
+	    hammer = GetComponent<Hammer>();
 	    handAttack = GetComponent<HandAttack>();
 		boxCollider = GetComponent<BoxCollider2D>();
 		axt = GetComponent<Axt>();
@@ -68,6 +76,11 @@ public class CharacterMovement : MonoBehaviour
 			handAttack.attack = true;
 		}
 
+		if (wantsToHammer)
+		{
+			hammer.attack = true;
+		}
+
 		if (dashTimer <= 0)
 		{
 			dashing = false;
@@ -78,6 +91,15 @@ public class CharacterMovement : MonoBehaviour
 			dashing = true;
 			DashModifyVelocity();
 		}
+
+		if (wantsToThrowSpeer && !blockedSpeer)
+		{
+			Speer speer = Instantiate(speerPrefab, transform.position, Quaternion.identity).GetComponent<Speer>();
+			speer.throwSpeer(new Vector2(horizontal, vertical));
+			blockedSpeer = true;
+			StartCoroutine(unblockSpeerAfterTime());
+		}
+		wantsToThrowSpeer = false;
 
 		Move();
 
@@ -93,6 +115,8 @@ public class CharacterMovement : MonoBehaviour
 		wantsToDash = Input.GetMouseButtonDown(0);
 		wantsToBlink = Input.GetMouseButtonDown(1);
 		wantsToAttack = Input.GetButtonDown("Attack");
+		wantsToHammer = Input.GetButtonDown("HammerAttack");
+		wantsToThrowSpeer = Input.GetButtonDown("Speer");
 
 		if (grounded && wantsToDash && horizontal != 0)
 		{
@@ -117,6 +141,11 @@ public class CharacterMovement : MonoBehaviour
 		} else
 		{
 			velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
+		}
+
+		if (wantsToThrowSpeer)
+		{
+			velocity.x = 0;
 		}
 
 		if (grounded)
@@ -187,5 +216,11 @@ public class CharacterMovement : MonoBehaviour
 				velocity += correction / Time.deltaTime / 6;
 			}
 		}
+	}
+
+	IEnumerator unblockSpeerAfterTime()
+	{
+		yield return new WaitForSeconds(speerTimer);
+		blockedSpeer = false;
 	}
 }
