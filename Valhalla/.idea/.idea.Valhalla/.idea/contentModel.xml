@@ -53,6 +53,10 @@
             <e p="GameManager.cs" t="Include" />
             <e p="HealthManager.cs" t="Include" />
           </e>
+          <e p="Text" t="Include">
+            <e p="Letter.cs" t="Include" />
+            <e p="TextSwitcher.cs" t="Include" />
+          </e>
           <e p="Util.cs" t="Include" />
           <e p="World" t="Include">
             <e p="TilePool.cs" t="Include" />
