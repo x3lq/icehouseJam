@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum TileKind { fourWay, threeWayUp, threeWayDown, threeWayLeft, threeWayRight, twoWayVert, twoWayHor, twoWayLeftUp, twoWayUpRight, twoWayRightDown, twoWayDownLeft, up, down, left, right, empty }
+public enum TileKind { fourWay, threeWayUp, threeWayDown, threeWayLeft, threeWayRight, twoWayVert, twoWayHor, twoWayLeftUp, twoWayUpRight, twoWayRightDown, twoWayDownLeft, up, down, left, right, empty, spawn, boss }
 
 public class TilePool : MonoBehaviour
 {
@@ -24,7 +24,8 @@ public class TilePool : MonoBehaviour
 	public List<GameObject> leftTiles;
 	public List<GameObject> rightTiles;
 	public List<GameObject> emptyTiles;
-
+	public List<GameObject> spawnTiles;
+	public List<GameObject> bossTiles;
 
 	private void Awake()
 	{
@@ -161,6 +162,10 @@ public class TilePool : MonoBehaviour
 				return Random.Range(0, leftTiles.Count);
 			case TileKind.right:
 				return Random.Range(0, rightTiles.Count);
+			case TileKind.spawn:
+				return Random.Range(0, spawnTiles.Count);
+			case TileKind.boss:
+				return Random.Range(0, bossTiles.Count);
 			default:
 				return Random.Range(0, emptyTiles.Count);
 		}
@@ -200,6 +205,10 @@ public class TilePool : MonoBehaviour
 				return leftTiles[variant];
 			case TileKind.right:
 				return rightTiles[variant];
+			case TileKind.spawn:
+				return spawnTiles[variant];
+			case TileKind.boss:
+				return bossTiles[variant];
 			default:
 				return emptyTiles[variant];
 		}

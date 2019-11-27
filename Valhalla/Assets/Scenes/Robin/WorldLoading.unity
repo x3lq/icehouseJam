@@ -236,6 +236,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8736148036324835345, guid: eae1014dbb41eb54284e6d07570c68df,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
 --- !u!4 &216900876 stripped
@@ -319,6 +324,10 @@ MonoBehaviour:
   - {fileID: 8172800157738964164, guid: d3103233c278f5e44a1b5033041e84df, type: 3}
   emptyTiles:
   - {fileID: 9149814121901541710, guid: 7b8ff3738624bca4b8ea4f1a96c38b9c, type: 3}
+  spawnTiles:
+  - {fileID: 1601512282164830224, guid: 13408e9f24a796e4c98d83aa0357f1fe, type: 3}
+  bossTiles:
+  - {fileID: 7291221557725114728, guid: bdedb8e6b633cc84e9e39168c46e3616, type: 3}
 --- !u!1 &706517641
 GameObject:
   m_ObjectHideFlags: 0
@@ -350,9 +359,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldLayerPrefab: {fileID: 1252719797102238848, guid: 530f42d705104294d8f8518f9c272c48,
     type: 3}
-  sizeX: 8
-  sizeY: 8
+  sizeX: 5
+  sizeY: 5
   tileSize: {x: 100, y: 100}
+  bossTileDistance: 6
   numberOfLayers: 4
   layers: []
   drawGridGizmos: 1
@@ -413,7 +423,9 @@ GameObject:
   - component: {fileID: 1398413629}
   - component: {fileID: 1398413628}
   - component: {fileID: 1398413631}
-  m_Layer: 0
+  - component: {fileID: 1398413633}
+  - component: {fileID: 1398413632}
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -502,6 +514,83 @@ MonoBehaviour:
   lookAheadDistance: 4
   offset: {x: 0, y: 0}
   target: {fileID: 1762236322}
+--- !u!114 &1398413632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398413627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: cc074b15505aa7f46ad4805ec33f8779, type: 2}
+  isGlobal: 1
+  blendDistance: 0
+  weight: 1
+  priority: 0
+--- !u!114 &1398413633
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1398413627}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 948f4100a11a5c24981795d21301da5c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeTrigger: {fileID: 1398413630}
+  volumeLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  stopNaNPropagation: 1
+  finalBlitToCameraTarget: 1
+  antialiasingMode: 0
+  temporalAntialiasing:
+    jitterSpread: 0.75
+    sharpness: 0.25
+    stationaryBlending: 0.95
+    motionBlending: 0.85
+  subpixelMorphologicalAntialiasing:
+    quality: 2
+  fastApproximateAntialiasing:
+    fastMode: 0
+    keepAlpha: 0
+  fog:
+    enabled: 1
+    excludeSkybox: 1
+  debugLayer:
+    lightMeter:
+      width: 512
+      height: 256
+      showCurves: 1
+    histogram:
+      width: 512
+      height: 256
+      channel: 3
+    waveform:
+      exposure: 0.12
+      height: 256
+    vectorscope:
+      size: 256
+      exposure: 0.12
+    overlaySettings:
+      linearDepth: 0
+      motionColorIntensity: 4
+      motionGridSize: 64
+      colorBlindnessType: 0
+      colorBlindnessStrength: 1
+  m_Resources: {fileID: 11400000, guid: d82512f9c8e5d4a4d938b575d47f88d4, type: 2}
+  m_ShowToolkit: 0
+  m_ShowCustomSorter: 0
+  breakBeforeColorGrading: 0
+  m_BeforeTransparentBundles: []
+  m_BeforeStackBundles: []
+  m_AfterStackBundles: []
 --- !u!114 &1762236322 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8736148035927511310, guid: eae1014dbb41eb54284e6d07570c68df,
