@@ -229,12 +229,21 @@ public class CharacterMovement : MonoBehaviour
 				velocity.y = 0;
 				lastGroundedY = transform.position.y;
 			}
+			else if (Vector2.Angle(colliderDistance.normal, Vector2.left) < 45 && velocity.x > 0 || Vector2.Angle(colliderDistance.normal, Vector2.right) < 45 && velocity.x < 0)
+			{
+				velocity.x = 0;
+			} else if (Vector2.Angle(colliderDistance.normal, Vector2.down) < 45 && velocity.y > 0)
+			{
+				velocity.y = 0;
+			}
 
 			if (colliderDistance.isOverlapped)
 			{
 				Vector2 correction = colliderDistance.pointA - colliderDistance.pointB;
+
+				Debug.Log(correction);
 				transform.Translate(correction);
-				velocity += correction / Time.deltaTime / 6;
+				// velocity += correction / Time.deltaTime / 8;
 			}
 		}
 	}

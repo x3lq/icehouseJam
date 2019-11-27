@@ -4924,6 +4924,7 @@ MonoBehaviour:
   horizontal: 0
   vertical: 0
   wantsToJump: 0
+  holdJump: 0
   wantsToDash: 0
   wantsToBlink: 0
   speed: 6
@@ -4937,6 +4938,8 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   grounded: 0
   dashing: 0
+  fallDistance: 0
+  landing: 0
   collisionLayers:
     serializedVersion: 2
     m_Bits: 31543
@@ -4966,6 +4969,7 @@ MonoBehaviour:
   snowJumpParticles: {fileID: 8736148035320291152}
   snowLandParticles: {fileID: 8736148035999608229}
   snowTime: 0.3
+  landingHeight: 4
 --- !u!114 &1762236321
 MonoBehaviour:
   m_ObjectHideFlags: 0
