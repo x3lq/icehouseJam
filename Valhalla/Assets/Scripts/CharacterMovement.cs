@@ -10,6 +10,7 @@ public class CharacterMovement : MonoBehaviour
 	public float horizontal;
 	public float vertical;
 	public bool wantsToJump;
+	public bool holdJump;
 	public bool wantsToDash;
 	public bool wantsToBlink;
 	private Vector2 dashDirection;
@@ -27,8 +28,11 @@ public class CharacterMovement : MonoBehaviour
 	[Header("Status")]
 	public Vector2 velocity;
 	public bool grounded;
+	private float lastGroundedY;
 	public bool dashing;
 	private float dashTimer;
+	public float fallDistance;
+	public bool landing;
 
 	[Header("Collision")] 
 	public LayerMask collisionLayers;
@@ -69,6 +73,12 @@ public class CharacterMovement : MonoBehaviour
 			return;
 		}
 
+		if (landing)
+		{
+			velocity = Vector2.zero;
+			return;
+		}
+
 		PlayerInput();
 
 		if (wantsToAttack)
@@ -105,6 +115,8 @@ public class CharacterMovement : MonoBehaviour
 
 		CollisionDetection();
 		CollisionResolution();
+
+		CalculateFallDistance();
 	}
 
 	void PlayerInput()
@@ -112,13 +124,13 @@ public class CharacterMovement : MonoBehaviour
 		horizontal = Input.GetAxis("Horizontal");
 		vertical = Input.GetAxis("Vertical");
 		wantsToJump = Input.GetButtonDown("Jump");
-		wantsToDash = Input.GetMouseButtonDown(0);
-		wantsToBlink = Input.GetMouseButtonDown(1);
+		holdJump = Input.GetButton("Jump");
+		wantsToDash = Input.GetButtonDown("Dash");
 		wantsToAttack = Input.GetButtonDown("Attack");
 		wantsToHammer = Input.GetButtonDown("HammerAttack");
 		wantsToThrowSpeer = Input.GetButtonDown("Speer");
 
-		if (grounded && wantsToDash && horizontal != 0)
+		if (wantsToDash && horizontal != 0)
 		{
 			dashTimer = dashDistance / dashSpeed;
 			dashDirection = new Vector2(horizontal, 0).normalized;
@@ -166,6 +178,11 @@ public class CharacterMovement : MonoBehaviour
 		}
 
 		velocity.y += Physics2D.gravity.y * Time.deltaTime;
+
+		if (velocity.y > 0 && !holdJump)
+		{
+			velocity.y += Physics2D.gravity.y * Time.deltaTime;
+		}
 	}
 
 	void DashModifyVelocity()
@@ -179,6 +196,8 @@ public class CharacterMovement : MonoBehaviour
 		{
 			velocity.x = velocity.x/Mathf.Abs(velocity.x)*speed;
 		}
+
+		velocity.y = 0;
 	}
 
 	void Move()
@@ -207,6 +226,8 @@ public class CharacterMovement : MonoBehaviour
 			if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 45 && velocity.y < 0)
 			{
 				grounded = true;
+				velocity.y = 0;
+				lastGroundedY = transform.position.y;
 			}
 
 			if (colliderDistance.isOverlapped)
@@ -215,6 +236,14 @@ public class CharacterMovement : MonoBehaviour
 				transform.Translate(correction);
 				velocity += correction / Time.deltaTime / 6;
 			}
+		}
+	}
+
+	void CalculateFallDistance()
+	{
+		if (!grounded)
+		{
+			fallDistance = lastGroundedY - transform.position.y;
 		}
 	}
 
