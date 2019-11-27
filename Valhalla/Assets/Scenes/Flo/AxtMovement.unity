@@ -237,22 +237,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1762236321, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
-      propertyPath: speed
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 1762236321, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
-      propertyPath: coolDownDuration
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1762236321, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
-      propertyPath: maxDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1762236321, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
-      propertyPath: pullSpeed
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 8736148035927511297, guid: eae1014dbb41eb54284e6d07570c68df,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -306,47 +290,6 @@ PrefabInstance:
     - target: {fileID: 8736148035927511297, guid: eae1014dbb41eb54284e6d07570c68df,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8736148036324835345, guid: eae1014dbb41eb54284e6d07570c68df,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
-      propertyPath: m_Parameters.widthMultiplier
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
-      propertyPath: m_Parameters.colorGradient.m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
-      propertyPath: m_Parameters.colorGradient.key0.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
-      propertyPath: m_Parameters.colorGradient.key0.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
-      propertyPath: m_Parameters.colorGradient.key0.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
-      propertyPath: m_Parameters.colorGradient.ctime0
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.r
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2079682851, guid: eae1014dbb41eb54284e6d07570c68df, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.b
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -653,7 +596,7 @@ RectTransform:
   m_Children:
   - {fileID: 1608093335}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -829,7 +772,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1608093334
 GameObject:

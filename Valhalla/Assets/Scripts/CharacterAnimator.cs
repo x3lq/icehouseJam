@@ -61,6 +61,8 @@ public class CharacterAnimator : MonoBehaviour
 		animator.SetBool("Grounded", movement.grounded);
 		animator.SetBool("Dashing", movement.dashing);
 		animator.SetBool("Attack", movement.wantsToAttack);
+		animator.SetBool("Hammer", movement.wantsToHammer);
+		animator.SetBool("Speer", movement.wantsToThrowSpeer);
 	}
 
 	void AdjustSpeed()

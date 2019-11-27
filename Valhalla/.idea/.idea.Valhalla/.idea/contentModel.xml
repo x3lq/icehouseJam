@@ -43,13 +43,19 @@
             <e p="Axt.cs" t="Include" />
             <e p="AxtRotation.cs" t="Include" />
             <e p="CharacterHealth.cs" t="Include" />
+            <e p="Hammer.cs" t="Include" />
             <e p="HandAttack.cs" t="Include" />
+            <e p="Speer.cs" t="Include" />
           </e>
           <e p="CharacterAnimator.cs" t="Include" />
           <e p="CharacterMovement.cs" t="Include" />
           <e p="Game" t="Include">
             <e p="GameManager.cs" t="Include" />
             <e p="HealthManager.cs" t="Include" />
+          </e>
+          <e p="Text" t="Include">
+            <e p="Letter.cs" t="Include" />
+            <e p="TextSwitcher.cs" t="Include" />
           </e>
           <e p="Util.cs" t="Include" />
           <e p="World" t="Include">
@@ -60,6 +66,7 @@
             <e p="WorldTile.cs" t="Include" />
           </e>
         </e>
+        <e p="SpriteTest.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
