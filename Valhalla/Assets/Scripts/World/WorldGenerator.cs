@@ -10,6 +10,7 @@ public class WorldGenerator : MonoBehaviour
 	public int sizeX;
 	public int sizeY;
 	public Vector2 tileSize;
+	public int bossTileDistance;
 
 	public int numberOfLayers = 4;
 	public WorldLayer[] layers;
@@ -27,6 +28,8 @@ public class WorldGenerator : MonoBehaviour
 		CreateLayers();
 
 		CreateMap();
+
+		SetBossTile();
 
 		SetupTiles();
 	}
@@ -65,6 +68,8 @@ public class WorldGenerator : MonoBehaviour
 	void CreateMap()
 	{
 		WorldTile baseTile = layers[0].tiles[sizeX / 2, sizeY / 2];
+		baseTile.isSpawn = true;
+		baseTile.distanceFromSpawn = 0;
 
 		List<WorldTile> open = new List<WorldTile>();
 		List<WorldTile> closed = new List<WorldTile>();
@@ -205,6 +210,11 @@ public class WorldGenerator : MonoBehaviour
 		Vector2 positionOfConnectTile = (Vector2)tile.transform.position + Util.GetVectorFromDirection(direction) * tileSize;
 		WorldTile connectTilelayers = layers[layer].GetTileAtWorldPosition(positionOfConnectTile);
 
+		if (connectTilelayers.distanceFromSpawn > tile.distanceFromSpawn + 1)
+		{
+			connectTilelayers.distanceFromSpawn = tile.distanceFromSpawn + 1;
+		}
+
 		connectTilelayers.Connect(Util.GetOppositeDirection(direction), tile.layer);
 	}
 
@@ -226,5 +236,33 @@ public class WorldGenerator : MonoBehaviour
 		{
 			return Vector3.zero;
 		}
+	}
+
+	public void SetBossTile()
+	{
+		List<WorldTile> possibleTiles = new List<WorldTile>();
+
+		foreach (WorldLayer layer in layers)
+		{
+			foreach (WorldTile tile in layer.tiles)
+			{
+				if (tile.distanceFromSpawn < 100 && tile.distanceFromSpawn >= bossTileDistance)
+				{
+					possibleTiles.Add(tile);
+				}
+			}
+		}
+
+		if (possibleTiles.Count > 0)
+		{
+			WorldTile bossTile = possibleTiles[Random.Range(0, possibleTiles.Count)];
+			bossTile.isBoss = true;
+		}
+		else
+		{
+			bossTileDistance--;
+			SetBossTile();
+		}
+
 	}
 }

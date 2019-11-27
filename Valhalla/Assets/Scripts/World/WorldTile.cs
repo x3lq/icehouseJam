@@ -6,11 +6,14 @@ public class WorldTile : MonoBehaviour
 {
 	public Vector2 size;
 	public int layer;
+	public int distanceFromSpawn;
 
 	[Header("Attributes")]
 	public int up, down, left, right;
 	public TileKind kind;
 	public int variant;
+	public bool isSpawn;
+	public bool isBoss;
 
 	[Header("Loading")]
 	public bool active;
@@ -19,6 +22,7 @@ public class WorldTile : MonoBehaviour
 
 	private void Awake()
 	{
+		distanceFromSpawn = 10000;
 		up = down = left = right = -1;
 	}
 
@@ -81,12 +85,31 @@ public class WorldTile : MonoBehaviour
 	public void Setup()
 	{
 		kind = TilePool.current.GetTileKind(up >= 0, down >= 0, left >= 0, right >= 0);
+
+		if (isSpawn)
+		{
+			kind = TileKind.spawn;
+		}
+
+		if (isBoss)
+		{
+			Debug.Log($"Is Boss: {gameObject.name} on layer {layer}");
+			kind = TileKind.boss;
+		}
+
 		variant = TilePool.current.GetRandomTileVariant(kind);
+
+
 	}
 
 	public void Load()
 	{
 		prefab = Instantiate(TilePool.current.GetTile(kind, variant), transform.position, Quaternion.identity, transform);
+
+		if (isBoss)
+		{
+			prefab.GetComponent<BossTile>().tile = this;
+		}
 	}
 
 	public void Unload()
