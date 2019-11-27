@@ -44,15 +44,12 @@ public class Axt : MonoBehaviour
     public Collider2D[] hits;
     private BoxCollider2D boxCollider;
 
-    private LineRenderer lineRenderer;
-
     private CharacterMovement characterMovment;
 
     // Start is called before the first frame update
     void Start()
     {
         characterMovment = GetComponent<CharacterMovement>();
-        lineRenderer = GetComponent<LineRenderer>();
         coolDownDuration = jumpTimeAfterPull;
     }
 
@@ -116,8 +113,6 @@ public class Axt : MonoBehaviour
                     (axt.transform.position - transform.position).magnitude > 4 * maxDistance)
                 {
                     axtReturns = false;
-                    lineRenderer.positionCount = 0;
-                    lineRenderer.enabled = false;
                     Destroy(axt);
                 }
             }
@@ -141,19 +136,12 @@ public class Axt : MonoBehaviour
                     Destroy(axt);
                     coolDownTimer = coolDownDuration;
                     jumpTimeAfterPullTimer = jumpTimeAfterPull;
-                    lineRenderer.positionCount = 0;
-                    lineRenderer.enabled = false;
                 }
                 else
                 {
                     transform.position = newPlayerPos;
                 }
             }
-
-            //keeping chain link
-            lineRenderer.positionCount = 2;
-            lineRenderer.SetPosition(0, transform.position);
-            lineRenderer.SetPosition(1, axt.transform.GetChild(0).position);
         }
 
         collisionDetection();
@@ -162,7 +150,6 @@ public class Axt : MonoBehaviour
 
     private void throwAxt()
     {
-        lineRenderer.enabled = false;
 
         if (axt)
         {

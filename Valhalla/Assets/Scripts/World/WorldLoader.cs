@@ -36,6 +36,7 @@ public class WorldLoader : MonoBehaviour
 				currentTile.active = true;
 				playerLayer = currentTile.layer;
 				playerTransform.position = currentTile.transform.position;
+				Camera.main.transform.position = playerTransform.position + Vector3.back * 10;
 				playerLoaded = true;
 
 				LoadNeighbourTiles();

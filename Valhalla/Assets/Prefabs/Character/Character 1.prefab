@@ -4786,6 +4786,10 @@ GameObject:
   - component: {fileID: 8736148035927511310}
   - component: {fileID: 8736148035927511308}
   - component: {fileID: 1762236321}
+  - component: {fileID: 1678506065025381537}
+  - component: {fileID: -4213926305108524954}
+  - component: {fileID: 4084348723676011450}
+  - component: {fileID: 8401949938489381241}
   m_Layer: 0
   m_Name: Character 1
   m_TagString: Untagged
@@ -4848,12 +4852,13 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 100
-  m_Sprite: {fileID: 21300000, guid: 3a1fe5ea45c1ef940b1e0414b15189b0, type: 3}
+  m_Sprite: {fileID: -6123250321644221001, guid: eb65af9099bbefc44a8ce199e35c7577,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 10, y: 10}
+  m_Size: {x: 2.56, y: 2.56}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -4895,8 +4900,8 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.5, y: 2.5}
-    newSize: {x: 10, y: 10}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
@@ -4919,6 +4924,7 @@ MonoBehaviour:
   horizontal: 0
   vertical: 0
   wantsToJump: 0
+  holdJump: 0
   wantsToDash: 0
   wantsToBlink: 0
   speed: 6
@@ -4932,10 +4938,21 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   grounded: 0
   dashing: 0
+  fallDistance: 0
+  landing: 0
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 31543
   hits: []
+  wantsToAttack: 0
+  wantsToHammer: 0
+  wantsToThrowSpeer: 0
+  blockedSpeer: 0
+  speerTimer: 0
+  handAttack: {fileID: 0}
+  hammer: {fileID: 0}
+  speerPrefab: {fileID: 1484934885153272015, guid: ab64506b1ece44345b3714a68061432c,
+    type: 3}
   wantsAxtJump: 0
 --- !u!114 &8736148035927511308
 MonoBehaviour:
@@ -4952,7 +4969,42 @@ MonoBehaviour:
   snowJumpParticles: {fileID: 8736148035320291152}
   snowLandParticles: {fileID: 8736148035999608229}
   snowTime: 0.3
+  landingHeight: 4
 --- !u!114 &1762236321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8736148035927511299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67ca6da38f8134dd2bfe80155a2184ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coolDownDuration: 0
+  maxDistance: 10
+  speed: 30
+  axt: {fileID: 0}
+  bottomAnchor: {fileID: 0}
+  axtPrefab: {fileID: 9127035102588744131, guid: 57b31618d126f447e8f8e47c7a63c2e1,
+    type: 3}
+  axtChain: {fileID: 0}
+  direction: {x: 0, y: 0, z: 0}
+  slowedTimeSpeed: 0.2
+  durationTime: 2
+  active: 0
+  axtReturns: 0
+  pullToAxt: 0
+  pullDurationBasedOnDistance: 0
+  pullDuration: 1
+  pullSpeed: 25
+  jumpTimeAfterPull: 1
+  collisionLayers:
+    serializedVersion: 2
+    m_Bits: 512
+  hits: []
+--- !u!114 &1678506065025381537
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -4961,29 +5013,139 @@ MonoBehaviour:
   m_GameObject: {fileID: 8736148035927511299}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67ca6da38f8134dd2bfe80155a2184ee, type: 3}
+  m_Script: {fileID: 11500000, guid: 377c88b453782014b9f0e5d2b8873245, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coolDownDuration: 0
-  maxDistance: 0
-  speed: 0
-  axt: {fileID: 0}
-  axtPrefab: {fileID: 0}
-  axtChain: {fileID: 0}
-  direction: {x: 0, y: 0, z: 0}
-  slowedTimeSpeed: 0
-  durationTime: 0
-  active: 0
-  axtReturns: 0
-  pullToAxt: 0
-  pullDurationBasedOnDistance: 0
-  pullDuration: 0
-  pullSpeed: 0
-  jumpTimeAfterPull: 0
-  collisionLayers:
+  goblinBoss: {fileID: 0}
+  damage: 0
+  attackRange: 0
+  attack: 0
+--- !u!114 &-4213926305108524954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8736148035927511299}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11373dafd9f3841499d6458bce34ea83, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  goblinBoss: {fileID: 0}
+  hammerLength: 0
+  damage: 0
+  attackRange: 0
+  attack: 0
+--- !u!114 &4084348723676011450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8736148035927511299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a1845727986cf74c92e5bfa58d579e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstep: {fileID: 8300000, guid: 162afa90edf44ba469b1d64db93040c0, type: 3}
+--- !u!82 &8401949938489381241
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8736148035927511299}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
     serializedVersion: 2
-    m_Bits: 0
-  hits: []
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8736148035999608230
 GameObject:
   m_ObjectHideFlags: 0

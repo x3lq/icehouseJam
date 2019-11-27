@@ -21,7 +21,7 @@ public class Speer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        goblinBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<GoblinBoss>();
+        //goblinBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<GoblinBoss>();
         boxCollider = GetComponent<BoxCollider2D>();
     }
 
@@ -51,7 +51,7 @@ public class Speer : MonoBehaviour
             {
                 direction = Vector2.zero;
                 hitTarget = true;
-                goblinBoss.applyDamageToGoblin(damage);
+                // goblinBoss.applyDamageToGoblin(damage);
                 Destroy(gameObject, 0.1f);
             }
         }

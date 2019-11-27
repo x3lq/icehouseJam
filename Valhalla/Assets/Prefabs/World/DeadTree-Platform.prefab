@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8912349137405465959}
   - component: {fileID: 8912349137405465958}
   - component: {fileID: 8912349137405465956}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: DeadTree-Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 1.378006, y: -0.1419239}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}

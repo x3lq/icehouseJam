@@ -16,6 +16,7 @@ public class CharacterAnimator : MonoBehaviour
 	public float snowTime;
 	private float particleTimer;
 	private float landTimer;
+	public float landingHeight;
 
 
 	private bool lastGrounded = true;
@@ -40,6 +41,8 @@ public class CharacterAnimator : MonoBehaviour
 		Particles();
 
 		lastGrounded = movement.grounded;
+
+		AdjustMovement();
     }
 
 	void Flip()
@@ -63,6 +66,7 @@ public class CharacterAnimator : MonoBehaviour
 		animator.SetBool("Attack", movement.wantsToAttack);
 		animator.SetBool("Hammer", movement.wantsToHammer);
 		animator.SetBool("Speer", movement.wantsToThrowSpeer);
+		animator.SetBool("Landing", movement.fallDistance > landingHeight);
 	}
 
 	void AdjustSpeed()
@@ -125,5 +129,10 @@ public class CharacterAnimator : MonoBehaviour
 		{
 			emission.enabled = false;
 		}
+	}
+
+	void AdjustMovement()
+	{
+		movement.landing = animator.GetCurrentAnimatorStateInfo(0).IsName("Landing");
 	}
 }

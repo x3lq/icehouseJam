@@ -12,16 +12,17 @@ public class CameraFollow : MonoBehaviour
     public Vector2 offset;
 
 	public CharacterMovement target;
-	private bool lookingRight;
+	private bool lookingRight = true;
 
-    // Use this for initialization
-    void Start () {
+	public float verticalMaxDistance;
 
-    }
+	public float distanceToTarget;
+	
 
     private void Update()
     {
 		Follow();
+		VerticalLock();
     }
 
 	private void Follow()
@@ -35,10 +36,22 @@ public class CameraFollow : MonoBehaviour
 			lookingRight = false;
 		}
 
-		Vector3 targetPosition = target.transform.position + (Vector3)offset + Vector3.back * distance;
+		Vector3 targetPosition = target.transform.position + Vector3.back * distance + (Vector3)offset;
 
 		targetPosition += lookingRight ? Vector3.right * lookAheadDistance : Vector3.left * lookAheadDistance;
 
 		transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
+	}
+
+	void VerticalLock()
+	{
+		distanceToTarget = target.transform.position.y - transform.position.y;
+
+		if (Mathf.Abs(distanceToTarget) > verticalMaxDistance)
+		{
+			transform.position += Vector3.up * (Mathf.Abs(distanceToTarget) - verticalMaxDistance) * Mathf.Sign(distanceToTarget);
+		}
+
+		distanceToTarget = target.transform.position.y - transform.position.y;
 	}
 }
