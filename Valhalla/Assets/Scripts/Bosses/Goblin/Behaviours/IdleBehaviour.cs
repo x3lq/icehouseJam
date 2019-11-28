@@ -13,23 +13,31 @@ public class IdleBehaviour : StateMachineBehaviour
     
     public List<String> attacks = new List<string>();
 
+	public float timeTillNextJump;
+	public float jumpTimer;
     public float timer, minTime, maxTime;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         goblin = animator.GetComponent<GoblinBoss>();
-        goblin.animationState = "Idle";
 
-		playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+		if (!goblin.animationState.Equals("Jump"))
+		{
 
-        if (goblin.rage && !playedRage)
-        {
-            animator.SetTrigger("Rage");
-            playedRage = true;
-        }
-        
-        timer = Random.Range(minTime, maxTime);
-    }
+			playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
+			if (goblin.rage && !playedRage)
+			{
+				animator.SetTrigger("Rage");
+				playedRage = true;
+			}
+
+			timer = Random.Range(minTime, maxTime);
+		}
+
+		goblin.animationState = "Idle";
+	}
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -37,7 +45,14 @@ public class IdleBehaviour : StateMachineBehaviour
         if (timer <= 0)
         {
             int random = Random.Range(0, attacks.Count);
-            animator.SetTrigger(attacks[random]);
+
+			String attack = attacks[random];
+
+			if (attack.Equals("Smash"))
+			{
+				attack = playerTransform.transform.position.x > goblin.transform.position.x ? "RightSmash" : "LeftSmash";
+			}
+            animator.SetTrigger(attack);
         }
         else
         {
@@ -58,5 +73,6 @@ public class IdleBehaviour : StateMachineBehaviour
 		Vector2 direction = playerTransform.transform.position - goblin.transform.position;
 		direction.y = 0;
 		goblin.SetVelocity(direction * goblin.speed);
+		
 	}
 }

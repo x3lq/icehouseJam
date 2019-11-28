@@ -242,8 +242,6 @@ public class CharacterMovement : MonoBehaviour
 			if (colliderDistance.isOverlapped)
 			{
 				Vector2 correction = colliderDistance.pointA - colliderDistance.pointB;
-
-				Debug.Log(correction);
 				transform.Translate(correction);
 				// velocity += correction / Time.deltaTime / 8;
 			}

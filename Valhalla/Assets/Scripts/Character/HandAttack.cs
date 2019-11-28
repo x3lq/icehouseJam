@@ -25,6 +25,9 @@ public class HandAttack : MonoBehaviour
         {
             attack = false;
 
+
+
+			/*
             float leftHandDistance = (goblinBoss.leftHand.transform.position - transform.position).magnitude;
             float rightHandDistance = (goblinBoss.rightHand.transform.position - transform.position).magnitude;
             
@@ -32,6 +35,7 @@ public class HandAttack : MonoBehaviour
             {
                 goblinBoss.applyDamageToGoblin(damage);
             }
+			*/
         }
     }
 }
