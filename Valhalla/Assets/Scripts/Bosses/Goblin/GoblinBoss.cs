@@ -40,7 +40,6 @@ public class GoblinBoss : MonoBehaviour
         originalPos = transform.position;
         
         animator = GetComponent<Animator>();
-
 		character = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>();
     }
 
@@ -129,5 +128,10 @@ public class GoblinBoss : MonoBehaviour
 	{
 		GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterHealth>().hasWon = true;
 		GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>().onWin();
+	}
+
+	public void ScreenShake(float stress)
+	{
+		CameraShake.current.shakeCamera(0.5f, 5, 1);
 	}
 }

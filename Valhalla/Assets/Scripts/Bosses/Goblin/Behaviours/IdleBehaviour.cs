@@ -51,7 +51,6 @@ public class IdleBehaviour : StateMachineBehaviour
 			if (attack.Equals("Smash"))
 			{
 				attack = playerTransform.transform.position.x > goblin.transform.position.x ? "RightSmash" : "LeftSmash";
-				Debug.Log(attack);
 			}
             animator.SetTrigger(attack);
 
