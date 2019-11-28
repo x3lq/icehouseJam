@@ -129,7 +129,16 @@ public class CharacterMovement : MonoBehaviour
 		wantsToDash = Input.GetButtonDown("Dash" + ControllerSelector.type);
 		wantsToAttack = Input.GetButtonDown("Attack" + ControllerSelector.type);
 		wantsToHammer = Input.GetButtonDown("HammerAttack"+ ControllerSelector.type);
-		wantsToThrowSpeer = Input.GetAxis("Speer"+ ControllerSelector.type) == 1;
+
+		if (ControllerSelector.type == "XBox")
+		{
+			wantsToThrowSpeer = Input.GetAxis("Speer"+ ControllerSelector.type) == 1;
+		}
+		
+		if(ControllerSelector.type == "XBox")
+		{
+			wantsToThrowSpeer = Input.GetButtonDown("SpeerPS4");
+		}
 
 		if (wantsToDash && horizontal != 0)
 		{
@@ -260,11 +269,20 @@ public class CharacterMovement : MonoBehaviour
 	IEnumerator unblockSpeerAfterTime()
 	{
 		yield return new WaitForSeconds(speerTimer);
-		blockedSpeer = Input.GetAxis("Speer" + ControllerSelector.type) == 1;
 
-		if (blockedSpeer)
+		if (ControllerSelector.type == "XBox")
 		{
-			StartCoroutine(unblockSpeerAfterTime());
+			blockedSpeer = Input.GetAxis("Speer" + ControllerSelector.type) == 1;
+
+			if (blockedSpeer)
+			{
+				StartCoroutine(unblockSpeerAfterTime());
+			}
 		}
+		else
+		{
+			blockedSpeer = false;
+		}
+
 	}
 }
