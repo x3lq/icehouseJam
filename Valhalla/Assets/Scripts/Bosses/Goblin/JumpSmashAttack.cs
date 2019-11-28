@@ -18,6 +18,8 @@ public class JumpSmashAttack : MonoBehaviour
     private void Start()
     {
         goblinBoss = GetComponent<GoblinBoss>();
+        characterHealth = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterHealth>();
+
     }
 
     public void onJumpSmash()

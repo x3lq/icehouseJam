@@ -350,7 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cdffa3eeff9724888621dadc8405c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 0
+  duration: 8
   startPosition: {fileID: 681679210}
   text: The norse beliefed that only Wariors who have proven themselves to be worthy
     are allowed to enter the eternal hall of valhalla. Therefore death was only the
@@ -424,6 +424,16 @@ PrefabInstance:
     - target: {fileID: 8244760315541993794, guid: c0d9d0cbdf77bb5498c087d80b7e997a,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244760315541993793, guid: c0d9d0cbdf77bb5498c087d80b7e997a,
+        type: 3}
+      propertyPath: levelToLoad
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244760315446007085, guid: c0d9d0cbdf77bb5498c087d80b7e997a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
