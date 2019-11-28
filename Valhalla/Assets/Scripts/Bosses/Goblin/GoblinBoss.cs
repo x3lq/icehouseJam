@@ -6,7 +6,7 @@ using UnityEngine.Events;
 
 public class GoblinBoss : MonoBehaviour
 {
-
+	private CharacterMovement character;
     public Vector3 originalPos;
     public GameObject leftHand;
     public GameObject rightHand;
@@ -36,6 +36,8 @@ public class GoblinBoss : MonoBehaviour
         originalPos = transform.position;
         
         animator = GetComponent<Animator>();
+
+		character = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>();
     }
 
     // Update is called once per frame
@@ -50,6 +52,11 @@ public class GoblinBoss : MonoBehaviour
 		Move();
 
     }
+
+	void CheckPlayerDistance()
+	{
+
+	}
 
 	void Move()
 	{
