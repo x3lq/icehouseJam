@@ -57,6 +57,8 @@ public class CharacterMovement : MonoBehaviour
 
 	public Boolean wantsAxtJump;
 
+	private CharacterHealth characterHealth;
+
 	// Start is called before the first frame update
     void Start()
     {
@@ -64,11 +66,17 @@ public class CharacterMovement : MonoBehaviour
 	    handAttack = GetComponent<HandAttack>();
 		boxCollider = GetComponent<BoxCollider2D>();
 		axt = GetComponent<Axt>();
+		characterHealth = GetComponent<CharacterHealth>();
     }
 
 	// Update is called once per frame
 	void Update()
 	{
+		if (characterHealth.hasWon)
+		{
+			return;
+		}
+		
 		if (axt.pullToAxt)
 		{
 			return;
@@ -295,5 +303,24 @@ public class CharacterMovement : MonoBehaviour
 			blockedSpeer = false;
 		}
 
+	}
+
+	public void onWin()
+	{
+		StartCoroutine(onWinTimer());
+	}
+
+	IEnumerator onWinTimer()
+	{
+		yield return new WaitForSeconds(0.8f);
+		GetComponent<Animator>().SetTrigger("Death");
+	}
+
+	public void OnDeathFinished()
+	{
+		if (characterHealth.hasWon)
+		{
+			GameManager.instance.playerWon();
+		}
 	}
 }

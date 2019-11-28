@@ -5,9 +5,6 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/GameScenes/Controller.unity
     guid: 5534e52754f96a34e89cf5087b7dfb4b
@@ -21,6 +18,6 @@ EditorBuildSettings:
     path: Assets/Scenes/GameScenes/Losing.unity
     guid: c99a06e61c378455d9ca1bbe3cb0d4e1
   - enabled: 1
-    path: Assets/Scenes/GameScenes/Wining.unity
-    guid: adda6b3fcddc44636ae1597789c7aa95
+    path: Assets/Scenes/GameScenes/EnterHall.unity
+    guid: a1d536000af0ac542809abc0bb5e18f4
   m_configObjects: {}

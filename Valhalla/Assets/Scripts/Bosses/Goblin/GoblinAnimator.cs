@@ -16,4 +16,9 @@ public class GoblinAnimator : MonoBehaviour
     {
         animator.SetTrigger("Idle");
     }
+
+    public void playDeath()
+    {
+        animator.SetTrigger("Death");
+    }
 }
