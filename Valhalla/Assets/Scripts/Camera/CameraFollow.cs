@@ -17,6 +17,8 @@ public class CameraFollow : MonoBehaviour
 	public float verticalMaxDistance;
 
 	public float distanceToTarget;
+
+	public Vector3 position;
 	
 
     private void Update()
@@ -40,7 +42,7 @@ public class CameraFollow : MonoBehaviour
 
 		targetPosition += lookingRight ? Vector3.right * lookAheadDistance : Vector3.left * lookAheadDistance;
 
-		transform.position = Vector3.Lerp(transform.position, targetPosition, speed * Time.deltaTime);
+		position = Vector3.Lerp(position, targetPosition, speed * Time.deltaTime);
 	}
 
 	void VerticalLock()
@@ -49,7 +51,7 @@ public class CameraFollow : MonoBehaviour
 
 		if (Mathf.Abs(distanceToTarget) > verticalMaxDistance)
 		{
-			transform.position += Vector3.up * (Mathf.Abs(distanceToTarget) - verticalMaxDistance) * Mathf.Sign(distanceToTarget);
+			position += Vector3.up * (Mathf.Abs(distanceToTarget) - verticalMaxDistance) * Mathf.Sign(distanceToTarget);
 		}
 
 		distanceToTarget = target.transform.position.y - transform.position.y;

@@ -2,6 +2,10 @@
 
 public class CameraShake : MonoBehaviour 
 {
+	public static CameraShake current;
+
+	private CameraFollow cameraFollow;
+
     /// <summary>
     /// Maximum distance in each direction the transform
     /// with translate during shaking.
@@ -47,8 +51,10 @@ public class CameraShake : MonoBehaviour
 
     private void Awake()
     {
+		current = this;
         seed = Random.value;
-    }
+		cameraFollow = GetComponent<CameraFollow>();
+	}
 
     private void Update()
     {
@@ -61,13 +67,13 @@ public class CameraShake : MonoBehaviour
         // of the translational and rotational shake.
         // PerlinNoise returns a value in the 0...1 range; this is transformed to
         // be in the -1...1 range to ensure the shake travels in all directions.
-        transform.localPosition = new Vector3(
+        transform.position = cameraFollow.position + new Vector3(
             maximumTranslationShake.x * (Mathf.PerlinNoise(seed, Time.time * frequency) * 2 - 1),
             maximumTranslationShake.y * (Mathf.PerlinNoise(seed + 1, Time.time * frequency) * 2 - 1),
             maximumTranslationShake.z * (Mathf.PerlinNoise(seed + 2, Time.time * frequency) * 2 - 1)
         ) * shake;
 
-        transform.localRotation = Quaternion.Euler(new Vector3(
+        transform.rotation = Quaternion.Euler(new Vector3(
             maximumAngularShake.x * (Mathf.PerlinNoise(seed + 3, Time.time * frequency) * 2 - 1),
             maximumAngularShake.y * (Mathf.PerlinNoise(seed + 4, Time.time * frequency) * 2 - 1),
             maximumAngularShake.z * (Mathf.PerlinNoise(seed + 5, Time.time * frequency) * 2 - 1)

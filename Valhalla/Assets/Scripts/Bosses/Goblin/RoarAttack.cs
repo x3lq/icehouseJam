@@ -45,8 +45,8 @@ public class RoarAttack : MonoBehaviour
             GameObject leftSpike = spikePrefabs[Random.Range(0, spikePrefabs.Length)];
             GameObject rightSpike = spikePrefabs[Random.Range(0, spikePrefabs.Length)];
             
-            Instantiate(leftSpike, startPosition + new Vector3(totalXOffset, 0, -1), Quaternion.identity);
-            Instantiate(rightSpike, startPosition - new Vector3(totalXOffset, 0, 1), Quaternion.identity);
+            Instantiate(leftSpike, startPosition + new Vector3(totalXOffset, 0, 0), Quaternion.identity);
+            Instantiate(rightSpike, startPosition - new Vector3(totalXOffset, 0, 0), Quaternion.identity);
             totalXOffset += xOffset;
             yield return new WaitForSeconds(spikeSpawnTimeDiff);
         }  

@@ -6,8 +6,13 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager instance;
 
-    public GameObject player;
+    void Start()
+    {
+        instance = this;
+    }
+
     public void Update()
     {
         /*if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown("Start"))

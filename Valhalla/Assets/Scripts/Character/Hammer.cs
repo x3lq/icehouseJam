@@ -7,10 +7,7 @@ public class Hammer : MonoBehaviour
 {
     private CharacterMovement player;
     public GoblinBoss goblinBoss;
-    public float hammerLength; 
-
-    public float damage;
-    public float attackRange;
+	public GameObject splashPrefab;
 
     public Boolean attack;
 
@@ -26,14 +23,14 @@ public class Hammer : MonoBehaviour
         if (attack)
         {
             attack = false;
-
-            float leftHandDistance = (goblinBoss.leftHand.transform.position - transform.position).magnitude;
-            float rightHandDistance = (goblinBoss.rightHand.transform.position - transform.position).magnitude;
-            
-            if (leftHandDistance + hammerLength < attackRange || rightHandDistance + hammerLength < attackRange)
-            {
-                goblinBoss.applyDamageToGoblin(damage);
-            }
-        }
+		}
     }
+
+	void SpawnSplash()
+	{
+		Vector3 position = transform.position;
+		position += player.lookingRight ? Vector3.right * 1.5f : Vector3.left * 1.5f;
+
+		GameObject splash = Instantiate(splashPrefab, position, Quaternion.identity);
+	}
 }

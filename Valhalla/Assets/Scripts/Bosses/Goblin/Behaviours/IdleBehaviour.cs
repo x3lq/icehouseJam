@@ -53,6 +53,8 @@ public class IdleBehaviour : StateMachineBehaviour
 				attack = playerTransform.transform.position.x > goblin.transform.position.x ? "RightSmash" : "LeftSmash";
 			}
             animator.SetTrigger(attack);
+
+			timer = Random.Range(minTime, maxTime);
         }
         else
         {
