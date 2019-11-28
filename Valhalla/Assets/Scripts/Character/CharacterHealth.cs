@@ -57,9 +57,9 @@ public class CharacterHealth : MonoBehaviour
             healthPercentage = minAlpha;
         }
 
-        //var tmpColor = blur.color;
-        //tmpColor.a = healthPercentage;
-        //blur.color = tmpColor;
+        var tmpColor = blur.color;
+        tmpColor.a = 1 - healthPercentage;
+        blur.color = tmpColor;
     }
 
     public void applyDamage(float damage)

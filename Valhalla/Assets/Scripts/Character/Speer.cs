@@ -23,6 +23,8 @@ public class Speer : MonoBehaviour
     {
         //goblinBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<GoblinBoss>();
         boxCollider = GetComponent<BoxCollider2D>();
+
+		Rotate();
     }
 
     // Update is called once per frame
@@ -60,6 +62,15 @@ public class Speer : MonoBehaviour
         
         transform.position += (Vector3)direction * (speed * Time.deltaTime);
     }
+
+	void Rotate()
+	{
+		float angle = Vector3.Angle(Vector3.up, direction);
+
+		angle *= direction.x > 0 ? -1 : 1;
+
+		transform.Rotate(new Vector3(0, 0, angle));
+	}
 
     public void throwSpeer(Vector2 direction)
     {

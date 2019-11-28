@@ -6,14 +6,14 @@
     <e p="C:\Users\ga78feh\Projects\icehouseJam\Valhalla" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
-        <e p="BossTile.cs" t="Include" />
-        <e p="CharacterAudio.cs" t="Include" />
         <e p="Scripts" t="Include">
+          <e p="AttackRune.cs" t="Include" />
           <e p="Bosses" t="Include">
             <e p="Goblin" t="Include">
               <e p="Behaviours" t="Include">
                 <e p="IdleBehaviour.cs" t="Include" />
                 <e p="IntroBehaviour.cs" t="Include" />
+                <e p="JumpBehavior.cs" t="Include" />
                 <e p="JumpSmash.cs" t="Include" />
                 <e p="RoarBehaviour.cs" t="Include" />
                 <e p="Smash.cs" t="Include" />
@@ -36,6 +36,7 @@
               <e p="Spike.cs" t="Include" />
             </e>
           </e>
+          <e p="BossTile.cs" t="Include" />
           <e p="Camera" t="Include">
             <e p="CameraFollow.cs" t="Include" />
             <e p="CameraShake.cs" t="Include" />
@@ -50,14 +51,18 @@
             <e p="Speer.cs" t="Include" />
           </e>
           <e p="CharacterAnimator.cs" t="Include" />
+          <e p="CharacterAudio.cs" t="Include" />
           <e p="CharacterMovement.cs" t="Include" />
           <e p="Game" t="Include">
             <e p="GameManager.cs" t="Include" />
             <e p="HealthManager.cs" t="Include" />
           </e>
           <e p="Scenes" t="Include">
+            <e p="ControllerSelector.cs" t="Include" />
             <e p="LevelChanger.cs" t="Include" />
+            <e p="SceneSkip.cs" t="Include" />
           </e>
+          <e p="SpriteTest.cs" t="Include" />
           <e p="Text" t="Include">
             <e p="Letter.cs" t="Include" />
             <e p="TextSwitcher.cs" t="Include" />
@@ -71,7 +76,6 @@
             <e p="WorldTile.cs" t="Include" />
           </e>
         </e>
-        <e p="SpriteTest.cs" t="Include" />
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />

@@ -38,23 +38,7 @@ InputManager:
     axis: 1
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Jump
-    descriptiveName: 
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: joystick button 3
-    altNegativeButton: 
-    altPositiveButton: space
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
-    snap: 0
-    invert: 0
-    type: 0
-    axis: 0
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: LB
+    m_Name: LBPS4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -70,7 +54,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Jump
+    m_Name: JumpPS4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -86,7 +70,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Attack
+    m_Name: AttackPS4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -102,7 +86,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: HammerAttack
+    m_Name: HammerAttackPS4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -118,7 +102,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Speer
+    m_Name: SpeerPS4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -134,7 +118,7 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Dash
+    m_Name: DashPS4
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: 
@@ -166,10 +150,122 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Attack
+    m_Name: AttackXBox
     descriptiveName: 
     descriptiveNegativeName: 
     negativeButton: joystick button 5
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: LBXBox
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: joystick button 4
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: HammerAttackXBox
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: joystick button 5
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: SpeerXBox
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: joystick button 10
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1.5
+    dead: 0.3
+    sensitivity: 1.1
+    snap: 0
+    invert: 0
+    type: 2
+    axis: 9
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: DashXBox
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: joystick button 3
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: JumpXBox
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: joystick button 0
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: OptionsXBox
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: joystick button 7
+    positiveButton: 
+    altNegativeButton: 
+    altPositiveButton: 
+    gravity: 1000
+    dead: 0.001
+    sensitivity: 1000
+    snap: 0
+    invert: 0
+    type: 0
+    axis: 0
+    joyNum: 0
+  - serializedVersion: 3
+    m_Name: OptionsPS4
+    descriptiveName: 
+    descriptiveNegativeName: 
+    negativeButton: joystick button 9
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 

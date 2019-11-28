@@ -6,14 +6,16 @@ using UnityEngine.Events;
 
 public class GoblinBoss : MonoBehaviour
 {
-
+	private CharacterMovement character;
     public Vector3 originalPos;
     public GameObject leftHand;
     public GameObject rightHand;
+	private bool active;
 
-    [Header("Boss Properties")]
+	[Header("Boss Properties")]
     public float health;
     public float rageHealth;
+	public float wakeUpDistance;
     
     public Boolean rage;
 
@@ -36,6 +38,8 @@ public class GoblinBoss : MonoBehaviour
         originalPos = transform.position;
         
         animator = GetComponent<Animator>();
+
+		character = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>();
     }
 
     // Update is called once per frame
@@ -50,6 +54,21 @@ public class GoblinBoss : MonoBehaviour
 		Move();
 
     }
+
+	void CheckPlayerDistance()
+	{
+		if (!active && (character.transform.position - transform.position).magnitude < wakeUpDistance)
+		{
+			WakeUp();
+		}
+	}
+
+	void WakeUp()
+	{
+		active = true;
+
+
+	}
 
 	void Move()
 	{
