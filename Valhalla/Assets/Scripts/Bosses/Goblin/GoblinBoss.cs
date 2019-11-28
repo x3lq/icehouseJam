@@ -10,10 +10,12 @@ public class GoblinBoss : MonoBehaviour
     public Vector3 originalPos;
     public GameObject leftHand;
     public GameObject rightHand;
+	private bool active;
 
-    [Header("Boss Properties")]
+	[Header("Boss Properties")]
     public float health;
     public float rageHealth;
+	public float wakeUpDistance;
     
     public Boolean rage;
 
@@ -55,6 +57,16 @@ public class GoblinBoss : MonoBehaviour
 
 	void CheckPlayerDistance()
 	{
+		if (!active && (character.transform.position - transform.position).magnitude < wakeUpDistance)
+		{
+			WakeUp();
+		}
+	}
+
+	void WakeUp()
+	{
+		active = true;
+
 
 	}
 

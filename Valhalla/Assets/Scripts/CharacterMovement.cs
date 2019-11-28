@@ -146,7 +146,7 @@ public class CharacterMovement : MonoBehaviour
 			wantsToThrowSpeer = Input.GetAxis("Speer"+ ControllerSelector.type) == 1;
 		}
 		
-		if(ControllerSelector.type == "XBox")
+		if(ControllerSelector.type == "PS4")
 		{
 			wantsToThrowSpeer = Input.GetButtonDown("SpeerPS4");
 		}

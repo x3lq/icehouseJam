@@ -17,7 +17,6 @@ public class SceneSkip : MonoBehaviour
     {
         if (Input.GetButtonDown("Options" + ControllerSelector.type))
         {
-            Debug.Log("Hello");
             LevelChanger.Instance.fadeToLevel(levelToLoadTo);
         }
     }
