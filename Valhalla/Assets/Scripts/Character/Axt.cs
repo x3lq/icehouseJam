@@ -60,7 +60,7 @@ public class Axt : MonoBehaviour
         {
             pullToAxt = false;
 
-            if (Input.GetButtonDown("Jump") && jumpTimeAfterPullTimer > 0 && !usedAxtJump)
+            if (Input.GetButtonDown("Jump" + ControllerSelector.type) && jumpTimeAfterPullTimer > 0 && !usedAxtJump)
             {
                 usedAxtJump = true;
                 characterMovment.wantsAxtJump = true;
@@ -71,7 +71,7 @@ public class Axt : MonoBehaviour
             return;
         }
 
-        if (Input.GetButtonDown("LB") && !axt)
+        if (Input.GetButtonDown("LB" + ControllerSelector.type) && !axt)
         {
             startTime = DateTime.Now;
             active = true;
@@ -84,7 +84,7 @@ public class Axt : MonoBehaviour
         }
 
 
-        if (Input.GetButtonUp("LB") && !axt)
+        if (Input.GetButtonUp("LB" + ControllerSelector.type) && !axt)
         {
             if (active)
             {

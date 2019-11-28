@@ -104,6 +104,7 @@ public class CharacterMovement : MonoBehaviour
 
 		if (wantsToThrowSpeer && !blockedSpeer)
 		{
+			Debug.Log("Speer");
 			Speer speer = Instantiate(speerPrefab, transform.position, Quaternion.identity).GetComponent<Speer>();
 			speer.throwSpeer(new Vector2(horizontal, vertical));
 			blockedSpeer = true;
@@ -123,12 +124,12 @@ public class CharacterMovement : MonoBehaviour
 	{
 		horizontal = Input.GetAxis("Horizontal");
 		vertical = Input.GetAxis("Vertical");
-		wantsToJump = Input.GetButtonDown("Jump");
-		holdJump = Input.GetButton("Jump");
-		wantsToDash = Input.GetButtonDown("Dash");
-		wantsToAttack = Input.GetButtonDown("Attack");
-		wantsToHammer = Input.GetButtonDown("HammerAttack");
-		wantsToThrowSpeer = Input.GetButtonDown("Speer");
+		wantsToJump = Input.GetButtonDown("Jump" + ControllerSelector.type);
+		holdJump = Input.GetButton("Jump" + ControllerSelector.type);
+		wantsToDash = Input.GetButtonDown("Dash" + ControllerSelector.type);
+		wantsToAttack = Input.GetButtonDown("Attack" + ControllerSelector.type);
+		wantsToHammer = Input.GetButtonDown("HammerAttack"+ ControllerSelector.type);
+		wantsToThrowSpeer = Input.GetAxis("Speer"+ ControllerSelector.type) == 1;
 
 		if (wantsToDash && horizontal != 0)
 		{
@@ -259,6 +260,11 @@ public class CharacterMovement : MonoBehaviour
 	IEnumerator unblockSpeerAfterTime()
 	{
 		yield return new WaitForSeconds(speerTimer);
-		blockedSpeer = false;
+		blockedSpeer = Input.GetAxis("Speer" + ControllerSelector.type) == 1;
+
+		if (blockedSpeer)
+		{
+			StartCoroutine(unblockSpeerAfterTime());
+		}
 	}
 }
