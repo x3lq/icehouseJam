@@ -8,7 +8,7 @@ public class TextSwitcher : MonoBehaviour
 {
     public float duration;
     public Transform startPosition;
-
+    
     public String text;
 
     public GameObject runesText;
@@ -25,7 +25,12 @@ public class TextSwitcher : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        duration -= Time.deltaTime;
+
+        if (duration < 0)
+        {
+            LevelChanger.Instance.fadeToLevel(2);
+        }
     }
 
     IEnumerator writeRuneText()

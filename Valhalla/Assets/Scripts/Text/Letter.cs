@@ -65,7 +65,6 @@ public class Letter : MonoBehaviour
         color.a = 0;
         latinText.color = color;
         latinText.text = text.text.ToString();
-        Debug.Log(latinText.text);
 
         while (latinText.color.a < 1)
         {

@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Scenes/GameScenes/Controller.unity
+    guid: 5534e52754f96a34e89cf5087b7dfb4b
+  - enabled: 1
     path: Assets/Scenes/GameScenes/Intro.unity
     guid: daf9654a6fa4d4679afdc1e94a099480
   - enabled: 1
@@ -17,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScenes/Losing.unity
     guid: c99a06e61c378455d9ca1bbe3cb0d4e1
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/Wining.unity
+    guid: adda6b3fcddc44636ae1597789c7aa95
   m_configObjects: {}
