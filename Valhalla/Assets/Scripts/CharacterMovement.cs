@@ -43,6 +43,7 @@ public class CharacterMovement : MonoBehaviour
 	[Header("Attack Status")] 
 	public Boolean wantsToAttack;
 	public Boolean wantsToHammer;
+	public bool isHammering;
 	public Boolean wantsToThrowSpeer;
 
 	public Boolean blockedSpeer;
@@ -90,6 +91,7 @@ public class CharacterMovement : MonoBehaviour
 		if (wantsToHammer)
 		{
 			hammer.attack = true;
+			isHammering = true;
 		}
 
 		if (dashTimer <= 0)
@@ -105,7 +107,6 @@ public class CharacterMovement : MonoBehaviour
 
 		if (wantsToThrowSpeer && !blockedSpeer)
 		{
-			Debug.Log("Speer");
 			Speer speer = Instantiate(speerPrefab, transform.position, Quaternion.identity).GetComponent<Speer>();
 			speer.throwSpeer(new Vector2(horizontal, vertical));
 			blockedSpeer = true;
@@ -223,6 +224,11 @@ public class CharacterMovement : MonoBehaviour
 
 	void Move()
 	{
+		if (isHammering && grounded)
+		{
+			velocity.x = 0;
+		}
+
 		velocity = Vector2.ClampMagnitude(velocity, 50);
 
 		transform.Translate(velocity * Time.deltaTime);
@@ -295,5 +301,10 @@ public class CharacterMovement : MonoBehaviour
 			blockedSpeer = false;
 		}
 
+	}
+
+	void UnblockHammer()
+	{
+		isHammering = false;
 	}
 }

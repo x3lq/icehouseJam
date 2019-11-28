@@ -10,7 +10,7 @@ public class GoblinBoss : MonoBehaviour
     public Vector3 originalPos;
     public GameObject leftHand;
     public GameObject rightHand;
-	private bool active;
+	public bool active;
 
 	[Header("Boss Properties")]
     public float health;
@@ -53,6 +53,7 @@ public class GoblinBoss : MonoBehaviour
 
 		Move();
 
+		CheckPlayerDistance();
     }
 
 	void CheckPlayerDistance()
@@ -66,7 +67,7 @@ public class GoblinBoss : MonoBehaviour
 	void WakeUp()
 	{
 		active = true;
-
+		animator.SetBool("Active", true);
 
 	}
 
@@ -82,7 +83,7 @@ public class GoblinBoss : MonoBehaviour
         }
 
 		// Apply Gravity
-		velocity += Physics2D.gravity * Time.deltaTime;
+		velocity += Physics2D.gravity * Time.deltaTime / 2f;
 
 		grounded = transform.position.y <= originalPos.y;
 
@@ -99,7 +100,7 @@ public class GoblinBoss : MonoBehaviour
 
 	void Jump()
 	{
-		velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+		velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y) / 2f);
 		transform.position += Vector3.up * 0.001f;
 		timeTillNextJump = jumpTimer;
 	}
