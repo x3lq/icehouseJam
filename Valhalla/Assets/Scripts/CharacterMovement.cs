@@ -33,6 +33,7 @@ public class CharacterMovement : MonoBehaviour
 	private float dashTimer;
 	public float fallDistance;
 	public bool landing;
+	public bool lookingRight;
 
 	[Header("Collision")] 
 	public LayerMask collisionLayers;
@@ -117,6 +118,16 @@ public class CharacterMovement : MonoBehaviour
 		CollisionResolution();
 
 		CalculateFallDistance();
+
+		if (velocity.x > 0)
+		{
+			lookingRight = true;
+		}
+
+		if (velocity.x < 0)
+		{
+			lookingRight = false;
+		}
 	}
 
 	void PlayerInput()

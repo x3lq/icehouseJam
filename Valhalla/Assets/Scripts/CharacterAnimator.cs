@@ -47,14 +47,7 @@ public class CharacterAnimator : MonoBehaviour
 
 	void Flip()
 	{
-		if (movement.velocity.x < 0)
-		{
-			spriteRenderer.flipX = true;
-		}
-		if (movement.velocity.x > 0)
-		{
-			spriteRenderer.flipX = false;
-		}
+		spriteRenderer.flipX = !movement.lookingRight;
 	}
 
 	void SetParameters()
