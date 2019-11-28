@@ -4789,10 +4789,11 @@ GameObject:
   - component: {fileID: 1678506065025381537}
   - component: {fileID: -4213926305108524954}
   - component: {fileID: 4084348723676011450}
+  - component: {fileID: 2019025115555360083}
   - component: {fileID: 8401949938489381241}
   m_Layer: 0
   m_Name: Character 1
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5050,6 +5051,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   footstep: {fileID: 8300000, guid: 162afa90edf44ba469b1d64db93040c0, type: 3}
+--- !u!114 &2019025115555360083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8736148035927511299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9ff5a9226d1869498cf95f386acea03, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifes: 3
+  spawn: {fileID: 0}
+  health: 0
+  maxHealth: 100
+  lastDamage: 0
+  regenerationSpeed: 5
+  regenerationTime: 5
+  blur: {fileID: 0}
+  minAlpha: 0
 --- !u!82 &8401949938489381241
 AudioSource:
   m_ObjectHideFlags: 0
