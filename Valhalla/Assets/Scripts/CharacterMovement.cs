@@ -192,9 +192,9 @@ public class CharacterMovement : MonoBehaviour
 		if (dashTimer > 0)
 		{
 			velocity.x = dashDirection.x * dashSpeed;
-		} else
+		} else if (velocity.x != 0)
 		{
-			velocity.x = velocity.x/Mathf.Abs(velocity.x)*speed;
+			velocity.x = velocity.x / Mathf.Abs(velocity.x) * speed;
 		}
 
 		velocity.y = 0;
@@ -202,6 +202,8 @@ public class CharacterMovement : MonoBehaviour
 
 	void Move()
 	{
+		velocity = Vector2.ClampMagnitude(velocity, 50);
+
 		transform.Translate(velocity * Time.deltaTime);
 	}
 
@@ -240,8 +242,6 @@ public class CharacterMovement : MonoBehaviour
 			if (colliderDistance.isOverlapped)
 			{
 				Vector2 correction = colliderDistance.pointA - colliderDistance.pointB;
-
-				Debug.Log(correction);
 				transform.Translate(correction);
 				// velocity += correction / Time.deltaTime / 8;
 			}

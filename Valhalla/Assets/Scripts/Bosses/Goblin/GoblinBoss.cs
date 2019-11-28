@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class GoblinBoss : MonoBehaviour
 {
 
-    private Vector3 originalPos;
+    public Vector3 originalPos;
     public GameObject leftHand;
     public GameObject rightHand;
 
@@ -23,6 +23,7 @@ public class GoblinBoss : MonoBehaviour
     [Header("Movement")]
 	public Vector2 velocity;
 	public float speed;
+	public bool grounded;
     
     public float jumpHeight;
     public float jumpTimer;
@@ -51,44 +52,43 @@ public class GoblinBoss : MonoBehaviour
     }
 
 	void Move()
-    {
-        if (animationState == "Idle")
+	{
+		if (animationState == "Idle")
         {
-            if (timeTillNextJump <= 0)
-            {
-                timeTillNextJump = jumpTimer;
-            }
 
-            float elapsedTimePercentage = (jumpTimer - timeTillNextJump) / jumpTimer;
-            velocity.y = Mathf.Lerp(4f, -10f, elapsedTimePercentage);
-        
-            if(transform.position.y < originalPos.y)
-            {
-                velocity.y = 0;
-                transform.position = new Vector3(transform.position.x, originalPos.y, originalPos.z);
-            }
-            timeTillNextJump -= Time.deltaTime;
+			if (timeTillNextJump <= 0)
+			{
+				animator.SetTrigger("Jump");
+			}
         }
-        
-        if (animationState == "LeftSmash" || animationState == "RightSmash" ||  animationState == "JumpSmash" || animationState == "Roar")
-        {
-            if (transform.position.y > originalPos.y)
-            {
-                velocity.y += Physics2D.gravity.y * Time.deltaTime;
-            }
-            else
-            {
-                velocity.y = 0;
-                transform.position = new Vector3(transform.position.x, originalPos.y, originalPos.z);
-            }
-        }
+
+		// Apply Gravity
+		velocity += Physics2D.gravity * Time.deltaTime;
+
+		grounded = transform.position.y <= originalPos.y;
+
+		if (grounded)
+		{
+			transform.position = new Vector3(transform.position.x, originalPos.y, originalPos.z);
+			velocity = Vector2.zero;
+
+			timeTillNextJump -= Time.deltaTime;
+		}
 
 		transform.position += (Vector3)velocity * Time.deltaTime;
     }
 
+	void Jump()
+	{
+		velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+		transform.position += Vector3.up * 0.001f;
+		timeTillNextJump = jumpTimer;
+	}
+
     public void applyDamageToGoblin(float damage)
     {
         health -= damage;
+		animator.SetTrigger("Hit");
     }
 
 	public void SetVelocity(Vector2 velocity)
