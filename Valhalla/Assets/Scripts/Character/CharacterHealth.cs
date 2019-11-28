@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,6 +21,8 @@ public class CharacterHealth : MonoBehaviour
     public Image blur;
 
     public float minAlpha;
+
+    public Boolean hasWon;
     // Start is called before the first frame update
     void Start()
     {

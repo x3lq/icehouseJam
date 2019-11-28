@@ -12,6 +12,8 @@ public class GoblinBoss : MonoBehaviour
     public GameObject rightHand;
 	public bool active;
 
+	private bool alive = true;
+
 	[Header("Boss Properties")]
     public float health;
     public float rageHealth;
@@ -49,6 +51,12 @@ public class GoblinBoss : MonoBehaviour
         if (health < rageHealth)
         {
             rage = true;
+        }
+
+        if (health < 0 && alive)
+        {
+	        alive = false;
+	        animator.SetTrigger("Death");
         }
 
 		Move();
@@ -115,5 +123,11 @@ public class GoblinBoss : MonoBehaviour
     {
         velocity.y = this.velocity.y;
 		this.velocity = velocity;
+	}
+
+	public void onDeath()
+	{
+		GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterHealth>().hasWon = true;
+		GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>().onWin();
 	}
 }
