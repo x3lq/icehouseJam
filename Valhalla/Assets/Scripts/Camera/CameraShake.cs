@@ -74,8 +74,8 @@ public class CameraShake : MonoBehaviour
         ) * shake;
 
         transform.rotation = Quaternion.Euler(new Vector3(
-            maximumAngularShake.x * (Mathf.PerlinNoise(seed + 3, Time.time * frequency) * 2 - 1),
-            maximumAngularShake.y * (Mathf.PerlinNoise(seed + 4, Time.time * frequency) * 2 - 1),
+            0,
+            0,
             maximumAngularShake.z * (Mathf.PerlinNoise(seed + 5, Time.time * frequency) * 2 - 1)
         ) * shake);
 

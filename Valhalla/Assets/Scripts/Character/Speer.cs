@@ -12,6 +12,7 @@ public class Speer : MonoBehaviour
     
     public float speed;
     public Vector2 direction;
+	public Vector3 velocity;
     public float damage;
 
     public LayerMask collisionLayers;
@@ -24,7 +25,7 @@ public class Speer : MonoBehaviour
         //goblinBoss = GameObject.FindGameObjectWithTag("Boss").GetComponent<GoblinBoss>();
         boxCollider = GetComponent<BoxCollider2D>();
 
-		Rotate();
+		velocity = direction * speed;
     }
 
     // Update is called once per frame
@@ -33,11 +34,6 @@ public class Speer : MonoBehaviour
         if (hitTarget)
         {
             return;
-        }
-        
-        if (alifeFor < 0)
-        {
-            Destroy(gameObject);
         }
 
         hits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0, collisionLayers);
@@ -53,19 +49,30 @@ public class Speer : MonoBehaviour
             {
                 direction = Vector2.zero;
                 hitTarget = true;
-                // goblinBoss.applyDamageToGoblin(damage);
-                Destroy(gameObject, 0.1f);
-            }
+				transform.parent = hit.transform;
+                Destroy(gameObject, 5f);
+
+				if (hit.tag.Equals("Boss"))
+				{
+					hit.GetComponentInParent<GoblinBoss>().applyDamageToGoblin(damage);
+				}
+
+				return;
+			}
         }
-        
-        alifeFor -= Time.deltaTime;
-        
-        transform.position += (Vector3)direction * (speed * Time.deltaTime);
+
+		velocity += (Vector3)Physics2D.gravity * Time.deltaTime;
+
+        transform.position += velocity * Time.deltaTime;
+
+		Rotate();
     }
 
 	void Rotate()
 	{
-		float angle = Vector3.Angle(Vector3.up, direction);
+		transform.rotation = Quaternion.identity;
+
+		float angle = Vector3.Angle(Vector3.up, velocity);
 
 		angle *= direction.x > 0 ? -1 : 1;
 

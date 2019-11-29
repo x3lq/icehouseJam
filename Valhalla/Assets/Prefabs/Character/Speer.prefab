@@ -99,10 +99,11 @@ MonoBehaviour:
   hitTarget: 0
   speed: 30
   direction: {x: 0, y: 0}
+  velocity: {x: 0, y: 0, z: 0}
   damage: 7
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 6144
+    m_Bits: 6656
   hits: []
 --- !u!61 &4119444668531536793
 BoxCollider2D:
@@ -117,7 +118,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.015423775, y: -0.1634463}
+  m_Offset: {x: 0.015423775, y: 0.5473289}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -128,5 +129,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.12922192, y: 1.4989207}
+  m_Size: {x: 0.12922192, y: 0.4397266}
   m_EdgeRadius: 0

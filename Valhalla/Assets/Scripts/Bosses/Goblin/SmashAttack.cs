@@ -39,7 +39,12 @@ public class SmashAttack : MonoBehaviour
     
     private void applyDamageToPlayer()
     {
+		Debug.Log($"Apply Damage to {characterHealth.transform.position} from {smashingHand.transform.position}");
+
         float distance = (characterHealth.transform.position - smashingHand.transform.position).magnitude;
+
+		Debug.Log($"Distance {distance}");
+
         Vector2 handSize = smashingHand.transform.GetComponent<BoxCollider2D>().size;
         if (distance < handSize.x / 2)
         {

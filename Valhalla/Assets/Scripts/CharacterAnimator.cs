@@ -58,13 +58,14 @@ public class CharacterAnimator : MonoBehaviour
 		animator.SetBool("Dashing", movement.dashing);
 		animator.SetBool("Attack", movement.wantsToAttack);
 		animator.SetBool("Hammer", movement.wantsToHammer);
-		animator.SetBool("Speer", movement.wantsToThrowSpeer);
+		animator.SetBool("Speer", movement.throwSpeer);
+		movement.throwSpeer = false;
 		animator.SetBool("Landing", movement.fallDistance > landingHeight);
 	}
 
 	void AdjustSpeed()
 	{
-		if (!movement.grounded || animator.GetCurrentAnimatorStateInfo(0).IsName("Landing"))
+		if (!animator.GetCurrentAnimatorStateInfo(0).IsName("Grounded"))
 		{
 			animator.speed = 1;
 			return;
@@ -127,5 +128,10 @@ public class CharacterAnimator : MonoBehaviour
 	void AdjustMovement()
 	{
 		movement.landing = animator.GetCurrentAnimatorStateInfo(0).IsName("Landing");
+	}
+
+	public void ScreenShake(float stress)
+	{
+		CameraShake.current.shakeCamera(stress, 1f, 10);
 	}
 }

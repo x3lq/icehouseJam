@@ -82,7 +82,6 @@ public class GoblinBoss : MonoBehaviour
 	{
 		if (animationState == "Idle")
         {
-
 			if (timeTillNextJump <= 0)
 			{
 				animator.SetTrigger("Jump");
@@ -92,6 +91,8 @@ public class GoblinBoss : MonoBehaviour
 		// Apply Gravity
 		velocity += Physics2D.gravity * Time.deltaTime / 2f;
 
+		bool oldGrounded = grounded;
+
 		grounded = transform.position.y <= originalPos.y;
 
 		if (grounded)
@@ -100,6 +101,11 @@ public class GoblinBoss : MonoBehaviour
 			velocity = Vector2.zero;
 
 			timeTillNextJump -= Time.deltaTime;
+
+			if (!oldGrounded)
+			{
+				ScreenShake(0.3f);
+			}
 		}
 
 		transform.position += (Vector3)velocity * Time.deltaTime;
@@ -132,6 +138,6 @@ public class GoblinBoss : MonoBehaviour
 
 	public void ScreenShake(float stress)
 	{
-		CameraShake.current.shakeCamera(0.5f, 5, 1);
+		CameraShake.current.shakeCamera(stress, 1f, 7);
 	}
 }
