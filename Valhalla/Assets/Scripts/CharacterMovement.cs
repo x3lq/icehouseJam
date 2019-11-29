@@ -45,6 +45,7 @@ public class CharacterMovement : MonoBehaviour
 	public Boolean wantsToHammer;
 	public bool isHammering;
 	public Boolean wantsToThrowSpeer;
+	public bool throwSpeer;
 
 	public Boolean blockedSpeer;
 	public float speerTimer;
@@ -115,12 +116,8 @@ public class CharacterMovement : MonoBehaviour
 
 		if (wantsToThrowSpeer && !blockedSpeer)
 		{
-			Speer speer = Instantiate(speerPrefab, transform.position, Quaternion.identity).GetComponent<Speer>();
-			speer.throwSpeer(new Vector2(horizontal, vertical));
-			blockedSpeer = true;
-			StartCoroutine(unblockSpeerAfterTime());
+			throwSpeer = true;
 		}
-		wantsToThrowSpeer = false;
 
 		Move();
 
@@ -185,7 +182,7 @@ public class CharacterMovement : MonoBehaviour
 			velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
 		}
 
-		if (wantsToThrowSpeer)
+		if (throwSpeer)
 		{
 			velocity.x = 0;
 		}
@@ -333,5 +330,18 @@ public class CharacterMovement : MonoBehaviour
 		{
 			GameManager.instance.playerWon();
 		}
+	}
+
+	public void ThrowSpeer()
+	{
+		if (horizontal == 0 && vertical == 0)
+		{
+			return;
+		}
+
+		Speer speer = Instantiate(speerPrefab, transform.position, Quaternion.identity).GetComponent<Speer>();
+		speer.throwSpeer(new Vector2(horizontal, vertical).normalized);
+		blockedSpeer = true;
+		StartCoroutine(unblockSpeerAfterTime());
 	}
 }
