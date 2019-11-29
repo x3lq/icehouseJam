@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ContentModelStore">
-    <e p="C:\Users\ga78feh\.Rider2019.2\system\extResources" t="IncludeRecursive" />
-    <e p="C:\Users\ga78feh\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_Valhalla.351611162.00" t="ExcludeRecursive" />
-    <e p="C:\Users\ga78feh\Projects\icehouseJam\Valhalla" t="IncludeRecursive">
+    <e p="$USER_HOME$/Library/Caches/Rider2019.2/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/Library/Caches/Rider2019.2/resharper-host/local/Transient/ReSharperHost/v192/SolutionCaches/_Valhalla.-554825927.00" t="ExcludeRecursive" />
+    <e p="$PROJECT_DIR$" t="IncludeRecursive">
       <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
       <e p="Assets" t="Include">
+        <e p="FinalGate.cs" t="Include" />
+        <e p="LoadLevelAfterTime.cs" t="Include" />
         <e p="Scripts" t="Include">
-          <e p="AttackRune.cs" t="Include" />
           <e p="Bosses" t="Include">
             <e p="Goblin" t="Include">
               <e p="Behaviours" t="Include">
@@ -31,28 +32,31 @@
                 <e p="Roar.cs" t="Include" />
                 <e p="SoundWave.cs" t="Include" />
               </e>
+              <e p="RightSmash.cs" t="Include" />
               <e p="RoarAttack.cs" t="Include" />
               <e p="SmashAttack.cs" t="Include" />
               <e p="Spike.cs" t="Include" />
             </e>
           </e>
-          <e p="BossTile.cs" t="Include" />
           <e p="Camera" t="Include">
+            <e p="CameraController.cs" t="Include" />
             <e p="CameraFollow.cs" t="Include" />
             <e p="CameraShake.cs" t="Include" />
           </e>
-          <e p="CameraController.cs" t="Include" />
           <e p="Character" t="Include">
+            <e p="AttackRune.cs" t="Include" />
             <e p="Axt.cs" t="Include" />
             <e p="AxtRotation.cs" t="Include" />
+            <e p="CharacterAnimator.cs" t="Include" />
+            <e p="CharacterAudio.cs" t="Include" />
             <e p="CharacterHealth.cs" t="Include" />
+            <e p="CharacterMovement.cs" t="Include" />
             <e p="Hammer.cs" t="Include" />
             <e p="HandAttack.cs" t="Include" />
             <e p="Speer.cs" t="Include" />
+            <e p="Splash.cs" t="Include" />
           </e>
-          <e p="CharacterAnimator.cs" t="Include" />
-          <e p="CharacterAudio.cs" t="Include" />
-          <e p="CharacterMovement.cs" t="Include" />
+          <e p="Destruct.cs" t="Include" />
           <e p="Game" t="Include">
             <e p="GameManager.cs" t="Include" />
             <e p="HealthManager.cs" t="Include" />
@@ -69,6 +73,8 @@
           </e>
           <e p="Util.cs" t="Include" />
           <e p="World" t="Include">
+            <e p="BossTile.cs" t="Include" />
+            <e p="Spawn.cs" t="Include" />
             <e p="TilePool.cs" t="Include" />
             <e p="WorldGenerator.cs" t="Include" />
             <e p="WorldLayer.cs" t="Include" />
@@ -79,7 +85,7 @@
       </e>
       <e p="obj" t="ExcludeRecursive" />
       <e p="Packages" t="ExcludeRecursive" />
-      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Temp/bin" t="ExcludeRecursive" />
       <e p="Valhalla.sln" t="IncludeFlat" />
     </e>
   </component>

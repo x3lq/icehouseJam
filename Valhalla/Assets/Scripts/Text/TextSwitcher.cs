@@ -46,11 +46,11 @@ public class TextSwitcher : MonoBehaviour
                 GameObject newText = Instantiate(runesText, position, Quaternion.identity);
                 newText.GetComponent<Text>().text = letter.ToString();
                 newText.transform.SetParent(startPosition);
-                xOffset += 20f;
+                xOffset += 15f;
             }
             yield return new WaitForSeconds(0.1f);
 
-            xOffset += 40;
+            xOffset += 30;
             if (xOffset > 600)
             {
                 xOffset = 0;

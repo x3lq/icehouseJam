@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/GameScenes/EnterHall.unity
     guid: a1d536000af0ac542809abc0bb5e18f4
+  - enabled: 1
+    path: Assets/Scenes/GameScenes/WiningScreen.unity
+    guid: 16063168a42fd47aaa93a330f9c239bf
   m_configObjects: {}
