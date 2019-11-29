@@ -42,6 +42,9 @@ public class Axt : MonoBehaviour
     public Boolean axtJumpTriggerBefore;
     public float distanceJumpEnable;
 
+    [Header("Indicator")] 
+    public GameObject rotator;
+
     [Header("Collision")] public LayerMask collisionLayers;
     public Collider2D[] hits;
     private BoxCollider2D boxCollider;
@@ -81,8 +84,22 @@ public class Axt : MonoBehaviour
             //measure time and slow time
             StartCoroutine(startTimer());
             Time.timeScale = slowedTimeSpeed;
+            
+            rotator.SetActive(true);
+        }
 
-            //show arrow Indicator with direction ?
+        if (rotator.active)
+        {
+            direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0).normalized;
+            rotator.transform.rotation = Quaternion.identity;
+            if (direction.x > 0)
+            {
+                rotator.transform.Rotate(0,0,-Vector3.Angle(Vector3.up, direction));
+            }
+            else
+            {
+                rotator.transform.Rotate(0,0,Vector3.Angle(Vector3.up, direction));
+            }
         }
 
 
@@ -93,11 +110,12 @@ public class Axt : MonoBehaviour
                 active = false;
                 Time.timeScale = 1;
                 //throw axt on release
-                direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
+                direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0).normalized;
+                rotator.SetActive(false);
 
                 if (direction != Vector3.zero)
                 {
-                    throwAxt();
+                    GetComponent<Animator>().SetTrigger("ThrowAxt");
                 }
             }
         }
@@ -163,7 +181,7 @@ public class Axt : MonoBehaviour
         collisionResolution();
     }
 
-    private void throwAxt()
+    public void throwAxt()
     {
 
         if (axt)
@@ -221,7 +239,8 @@ public class Axt : MonoBehaviour
         {
             yield return null;
         }
-
+        
+        rotator.SetActive(false);
         if (!axt)
         {
             active = false;
