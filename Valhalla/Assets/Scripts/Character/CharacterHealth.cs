@@ -34,7 +34,7 @@ public class CharacterHealth : MonoBehaviour
     {
         if (health < 0 && lifes == 0)
         {
-            Camera.main.GetComponent<GameManager>().playerLost();
+            GameManager.instance.playerLost();
         } else if(health < 0)
         {
             lifes -= 1;
