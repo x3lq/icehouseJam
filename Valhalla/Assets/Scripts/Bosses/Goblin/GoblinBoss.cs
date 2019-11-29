@@ -24,11 +24,12 @@ public class GoblinBoss : MonoBehaviour
 
     public String animationState;
     private Animator animator;
+	private GoblinAudio audio;
 
     [Header("Movement")]
 	public Vector2 velocity;
 	public float speed;
-	public bool grounded;
+	public bool grounded = true;
     
     public float jumpHeight;
     public float jumpTimer;
@@ -38,9 +39,9 @@ public class GoblinBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         animator = GetComponent<Animator>();
 		character = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>();
+		audio = GetComponent<GoblinAudio>();
     }
 
     // Update is called once per frame
@@ -86,6 +87,7 @@ public class GoblinBoss : MonoBehaviour
 	{
 		active = true;
 		animator.SetBool("Active", true);
+		audio.StartSoundtrack();
 
 	}
 
@@ -116,6 +118,7 @@ public class GoblinBoss : MonoBehaviour
 			if (!oldGrounded)
 			{
 				ScreenShake(0.3f);
+				audio.PlayLanding();
 			}
 		}
 
