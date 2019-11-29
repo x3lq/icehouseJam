@@ -39,6 +39,8 @@ public class Axt : MonoBehaviour
     public float jumpTimeAfterPull;
     private float jumpTimeAfterPullTimer;
     private Boolean usedAxtJump;
+    public Boolean axtJumpTriggerBefore;
+    public float distanceJumpEnable;
 
     [Header("Collision")] public LayerMask collisionLayers;
     public Collider2D[] hits;
@@ -129,6 +131,10 @@ public class Axt : MonoBehaviour
 
                 Vector3 newPlayerPos = transform.position + distanceLeft.normalized * currentPullSpeed * Time.deltaTime;
 
+                if (Input.GetButtonDown("Jump" + ControllerSelector.type) && (newPlayerPos - axt.transform.position).magnitude < distanceJumpEnable && !usedAxtJump)
+                {
+                    axtJumpTriggerBefore = true;
+                }
 
                 if ((newPlayerPos - axt.transform.position).magnitude < 0.6)
                 {
@@ -136,6 +142,15 @@ public class Axt : MonoBehaviour
                     Destroy(axt);
                     coolDownTimer = coolDownDuration;
                     jumpTimeAfterPullTimer = jumpTimeAfterPull;
+                    characterMovment.velocity = Vector2.zero;
+
+                    if (axtJumpTriggerBefore)
+                    {
+                        axtJumpTriggerBefore = false;
+                        usedAxtJump = true;
+                        characterMovment.wantsAxtJump = true;
+                        jumpTimeAfterPullTimer = 0;
+                    }
                 }
                 else
                 {
