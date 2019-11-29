@@ -15,6 +15,10 @@ public class WorldGenerator : MonoBehaviour
 	public int numberOfLayers = 4;
 	public WorldLayer[] layers;
 
+	[Header("Status")]
+	public WorldTile spawnTile;
+	public WorldTile bossTile;
+
 	[Header("Debug")]
 	public bool drawGridGizmos;
 	public static bool staticDrawGridGizmos;
@@ -70,6 +74,7 @@ public class WorldGenerator : MonoBehaviour
 		WorldTile baseTile = layers[0].tiles[sizeX / 2, sizeY / 2];
 		baseTile.isSpawn = true;
 		baseTile.distanceFromSpawn = 0;
+		spawnTile = baseTile;
 
 		List<WorldTile> open = new List<WorldTile>();
 		List<WorldTile> closed = new List<WorldTile>();

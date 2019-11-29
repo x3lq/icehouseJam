@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4975574678697903649}
   - component: {fileID: 4975574678697903710}
   - component: {fileID: 1382692853}
+  - component: {fileID: 197470698}
   m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -177,12 +178,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  distance: 10
+  distance: 15
   lookAheadDistance: 4
   offset: {x: 0, y: 2}
   target: {fileID: 0}
   verticalMaxDistance: 2
   distanceToTarget: 0
+  position: {x: 0, y: 0, z: 0}
 --- !u!82 &1382692853
 AudioSource:
   m_ObjectHideFlags: 0
@@ -279,3 +281,20 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &197470698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4975574678697903706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61f81801953e84f6197d67102a27425a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maximumTranslationShake: {x: 1, y: 1, z: 1}
+  maximumAngularShake: {x: 15, y: 15, z: 15}
+  frequency: 25
+  traumaExponent: 1.2
+  recoverySpeed: 1
