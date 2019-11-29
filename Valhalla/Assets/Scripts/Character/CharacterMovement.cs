@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CharacterMovement : MonoBehaviour
@@ -147,6 +148,11 @@ public class CharacterMovement : MonoBehaviour
 		wantsToAttack = Input.GetButtonDown("Attack" + ControllerSelector.type);
 		wantsToHammer = Input.GetButtonDown("HammerAttack"+ ControllerSelector.type);
 
+		if (wantsToDash)
+		{
+			EditorApplication.isPaused = true;
+		}
+
 		if (ControllerSelector.type == "XBox")
 		{
 			wantsToThrowSpeer = Input.GetAxis("Speer"+ ControllerSelector.type) == 1;
@@ -241,6 +247,13 @@ public class CharacterMovement : MonoBehaviour
 
 	void CollisionDetection()
 	{
+		if (dashTimer > 0)
+		{
+			boxCollider.size = new Vector2(1, boxCollider.size.y);
+		} else
+		{
+			boxCollider.size = new Vector2(0.5f, boxCollider.size.y);
+		}
 		hits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0, collisionLayers);
 	}
 
@@ -266,6 +279,7 @@ public class CharacterMovement : MonoBehaviour
 			else if (Vector2.Angle(colliderDistance.normal, Vector2.left) < 45 && velocity.x > 0 || Vector2.Angle(colliderDistance.normal, Vector2.right) < 45 && velocity.x < 0)
 			{
 				velocity.x = 0;
+				dashTimer = 0;
 			} else if (Vector2.Angle(colliderDistance.normal, Vector2.down) < 45 && velocity.y > 0)
 			{
 				velocity.y = 0;
