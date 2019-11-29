@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 [RequireComponent(typeof(BoxCollider2D))]
 public class CharacterMovement : MonoBehaviour
@@ -147,11 +146,6 @@ public class CharacterMovement : MonoBehaviour
 		wantsToDash = Input.GetButtonDown("Dash" + ControllerSelector.type);
 		wantsToAttack = Input.GetButtonDown("Attack" + ControllerSelector.type);
 		wantsToHammer = Input.GetButtonDown("HammerAttack"+ ControllerSelector.type);
-
-		if (wantsToDash)
-		{
-			EditorApplication.isPaused = true;
-		}
 
 		if (ControllerSelector.type == "XBox")
 		{
