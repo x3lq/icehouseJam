@@ -31,6 +31,9 @@ public class CharacterMovement : MonoBehaviour
 	private float lastGroundedY;
 	public bool dashing;
 	private float dashTimer;
+	private bool dashInAir = false;
+	public float dashCooldown;
+	private float dashCooldownTimer;
 	public float fallDistance;
 	public bool landing;
 	public bool lookingRight;
@@ -135,6 +138,8 @@ public class CharacterMovement : MonoBehaviour
 		{
 			lookingRight = false;
 		}
+
+		dashCooldownTimer -= Time.deltaTime;
 	}
 
 	void PlayerInput()
@@ -157,10 +162,16 @@ public class CharacterMovement : MonoBehaviour
 			wantsToThrowSpeer = Input.GetButtonDown("SpeerPS4");
 		}
 
-		if (wantsToDash && horizontal != 0)
+		if ((!grounded && !dashInAir || grounded && dashCooldownTimer <= 0) && wantsToDash && horizontal != 0)
 		{
+			dashCooldownTimer = dashCooldown;
 			dashTimer = dashDistance / dashSpeed;
 			dashDirection = new Vector2(horizontal, 0).normalized;
+
+			if (!grounded)
+			{
+				dashInAir = true;
+			}
 		}
 	}
 
@@ -267,6 +278,7 @@ public class CharacterMovement : MonoBehaviour
 			if (Vector2.Angle(colliderDistance.normal, Vector2.up) < 45 && velocity.y < 0)
 			{
 				grounded = true;
+				dashInAir = false;
 				velocity.y = 0;
 				lastGroundedY = transform.position.y;
 			}
