@@ -35,4 +35,9 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene(4);
     }
+
+    public void finalScreen()
+    {
+        SceneManager.LoadScene(5);
+    }
 }
