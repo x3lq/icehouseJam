@@ -11,6 +11,7 @@ public class GoblinBoss : MonoBehaviour
     public GameObject leftHand;
     public GameObject rightHand;
 	public bool active;
+	public bool positionSet;
 
 	private bool alive = true;
 
@@ -37,7 +38,6 @@ public class GoblinBoss : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        originalPos = transform.position;
         
         animator = GetComponent<Animator>();
 		character = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>();
@@ -45,8 +45,14 @@ public class GoblinBoss : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        
+	{
+		CheckPlayerDistance();
+
+		if (!active || !positionSet)
+		{
+			return;
+		}
+
         if (health < rageHealth)
         {
             rage = true;
@@ -59,9 +65,14 @@ public class GoblinBoss : MonoBehaviour
         }
 
 		Move();
-
-		CheckPlayerDistance();
     }
+
+	void SetOriginalPosition()
+	{
+		Debug.Log($"Original Position Set: {transform.position}");
+		originalPos = transform.position;
+		positionSet = true;
+	}
 
 	void CheckPlayerDistance()
 	{

@@ -390,8 +390,8 @@ MonoBehaviour:
   playedRage: 0
   playerTransform: {fileID: 0}
   attacks:
-  - Smash
   - Roar
+  - Smash
   - JumpSmash
   timeTillNextJump: 0
   jumpTimer: 1

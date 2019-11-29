@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8528237810436965822}
   m_Layer: 11
   m_Name: Head
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -88,7 +88,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8528237810436965820}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -114,7 +114,7 @@ GameObject:
   - component: {fileID: 8528237810928085245}
   m_Layer: 11
   m_Name: GoblinBoss
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,16 +172,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad518068887795348a5e8e1d43954283, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  originalPos: {x: 0, y: 0, z: 0}
   leftHand: {fileID: 8528237811186421298}
   rightHand: {fileID: 8528237811359148240}
+  active: 0
   health: 100
   rageHealth: 1
+  wakeUpDistance: 20
   rage: 0
   animationState: 
   velocity: {x: 0, y: 0}
   speed: 1
-  jumpHeight: 0.5
-  jumpTimer: 2
+  grounded: 0
+  jumpHeight: 2
+  jumpTimer: 1
   timeTillNextJump: 0
 --- !u!114 &8528237810928085243
 MonoBehaviour:
@@ -212,7 +216,7 @@ MonoBehaviour:
   rightHand: {fileID: 8528237811359148240}
   smashingHand: {fileID: 0}
   characterHealth: {fileID: 0}
-  maxSmashDistance: 5
+  maxSmashDistance: 2
   maxDamage: 40
 --- !u!114 &8528237810928085244
 MonoBehaviour:
@@ -229,7 +233,7 @@ MonoBehaviour:
   leftHand: {fileID: 8528237811186421298}
   rightHand: {fileID: 8528237811359148240}
   characterHealth: {fileID: 0}
-  maxSmashDistance: 10
+  maxSmashDistance: 4
   maxDamage: 80
 --- !u!114 &8528237810928085245
 MonoBehaviour:
@@ -246,6 +250,7 @@ MonoBehaviour:
   spikePrefabs:
   - {fileID: 3674442986808986681, guid: 4dba43e090ce84f17ad32d327f33f336, type: 3}
   - {fileID: 3674442986808986681, guid: e6a8922fce4124244b3cadcc55e20f47, type: 3}
+  offset: 3.5
   ground: {fileID: 0}
   characterHealth: {fileID: 0}
   spikeAmount: 20
@@ -276,7 +281,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8528237811020884125}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.13, y: -1.18, z: 1}
+  m_LocalPosition: {x: -0.25, y: -1.49, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8528237810928085241}
@@ -370,7 +375,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8528237811167119044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.14, y: 1.24, z: 1}
+  m_LocalPosition: {x: -0, y: 0.24, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8528237810928085241}
@@ -385,7 +390,7 @@ BoxCollider:
   m_GameObject: {fileID: 8528237811167119044}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -453,7 +458,7 @@ GameObject:
   - component: {fileID: 8528237811186421301}
   m_Layer: 12
   m_Name: LeftHand
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -492,7 +497,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8528237811186421298}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -591,7 +596,7 @@ GameObject:
   - component: {fileID: 8528237811359148243}
   m_Layer: 12
   m_Name: RightHand
-  m_TagString: Untagged
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -630,7 +635,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8528237811359148240}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0

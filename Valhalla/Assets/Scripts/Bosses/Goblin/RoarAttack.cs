@@ -9,6 +9,8 @@ public class RoarAttack : MonoBehaviour
     [Header("Prefabs and GameObjects")]
     public GameObject[] spikePrefabs;
 
+	public float offset;
+
     public GameObject ground;
     public CharacterHealth characterHealth;
     
@@ -36,7 +38,7 @@ public class RoarAttack : MonoBehaviour
         
         float xOffset = width / (2 * spikePrefabs.Length);
         float totalXOffset = 0;
-        Vector3 startPosition = ground.transform.position;
+        Vector3 startPosition = transform.position + Vector3.down * offset;
         startPosition.x = transform.position.x;
         //startPosition.y = characterHealth.transform.position.y;
 
