@@ -5070,7 +5070,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.02625227, y: 0.0023760796}
+  m_Offset: {x: 0.0067625046, y: 0.0023760796}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -5081,7 +5081,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.4523363, y: 1.3846636}
+  m_Size: {x: 0.51836586, y: 1.3846636}
   m_EdgeRadius: 0
 --- !u!114 &8736148035927511310
 MonoBehaviour:
@@ -5112,6 +5112,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0}
   grounded: 0
   dashing: 0
+  dashCooldown: 1
   fallDistance: 0
   landing: 0
   lookingRight: 0
@@ -5176,7 +5177,9 @@ MonoBehaviour:
   pullDurationBasedOnDistance: 0
   pullDuration: 1
   pullSpeed: 25
-  jumpTimeAfterPull: 1
+  jumpTimeAfterPull: 0.2
+  axtJumpTriggerBefore: 0
+  distanceJumpEnable: 5
   collisionLayers:
     serializedVersion: 2
     m_Bits: 6656
