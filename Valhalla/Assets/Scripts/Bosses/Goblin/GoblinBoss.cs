@@ -61,7 +61,7 @@ public class GoblinBoss : MonoBehaviour
         if (health < 0 && alive)
         {
 	        alive = false;
-	        animator.SetTrigger("Death");
+			animator.SetBool("Dead", true);
         }
 
 		Move();

@@ -184,6 +184,7 @@ public class WorldGenerator : MonoBehaviour
 			}
 		}
 
+		/*
 		neighbours = layers[2].GetNeighbours(baseTile);
 		for (int i = 0; i < 4; i++)
 		{
@@ -205,6 +206,7 @@ public class WorldGenerator : MonoBehaviour
 				open.Add(neighbours[i]);
 			}
 		}
+		*/
 	}
 
 	// Connects the given tile to the neighbouring tile in the specified direction and layer

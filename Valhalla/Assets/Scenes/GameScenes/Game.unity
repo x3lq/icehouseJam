@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -279,11 +279,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   worldLayerPrefab: {fileID: 1252719797102238848, guid: 530f42d705104294d8f8518f9c272c48,
     type: 3}
-  sizeX: 5
-  sizeY: 5
+  sizeX: 4
+  sizeY: 4
   tileSize: {x: 100, y: 100}
-  bossTileDistance: 6
-  numberOfLayers: 4
+  bossTileDistance: 5
+  numberOfLayers: 2
   layers: []
   spawnTile: {fileID: 0}
   bossTile: {fileID: 0}

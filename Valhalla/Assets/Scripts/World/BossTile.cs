@@ -41,5 +41,8 @@ public class BossTile : MonoBehaviour
 		{
 			rightBlock.SetActive(true);
 		}
+
+
+		GetComponent<CompositeCollider2D>().GenerateGeometry();
 	}
 }
