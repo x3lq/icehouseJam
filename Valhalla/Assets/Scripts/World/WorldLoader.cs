@@ -32,7 +32,7 @@ public class WorldLoader : MonoBehaviour
 		{
 			if (!playerLoaded)
 			{
-				currentTile = generator.layers[0].tiles[generator.sizeX / 2, generator.sizeY / 2];
+				currentTile = generator.spawnTile;
 				currentTile.active = true;
 				playerLayer = currentTile.layer;
 				playerTransform.position = currentTile.transform.position;

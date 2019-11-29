@@ -5107,7 +5107,7 @@ MonoBehaviour:
   airAcceleration: 15
   airDeceleration: 15
   jumpHeight: 5
-  dashSpeed: 10
+  dashSpeed: 20
   dashDistance: 4
   velocity: {x: 0, y: 0}
   grounded: 0
@@ -5117,12 +5117,13 @@ MonoBehaviour:
   lookingRight: 0
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 15159
+    m_Bits: 9015
   hits: []
   wantsToAttack: 0
   wantsToHammer: 0
   isHammering: 0
   wantsToThrowSpeer: 0
+  throwSpeer: 0
   blockedSpeer: 0
   speerTimer: 0.5
   handAttack: {fileID: 0}
@@ -5178,7 +5179,7 @@ MonoBehaviour:
   jumpTimeAfterPull: 1
   collisionLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 6656
   hits: []
 --- !u!114 &1678506065025381537
 MonoBehaviour:
@@ -5195,11 +5196,11 @@ MonoBehaviour:
   attackPrefab: {fileID: 6994217411650977944, guid: d2c951f5f43672d4e9c0092e3a24b49c,
     type: 3}
   goblinBoss: {fileID: 0}
-  damage: 1
-  attackRange: 3
-  attackSpeed: 8
+  damage: 10
+  attackRange: 2
+  attackSpeed: 15
   attackScale: 1.5
-  attackScaleSpeed: 5
+  attackScaleSpeed: 15
   attack: 0
 --- !u!114 &-4213926305108524954
 MonoBehaviour:
@@ -5214,9 +5215,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   goblinBoss: {fileID: 0}
-  hammerLength: 0
-  damage: 10
-  attackRange: 2
+  splashPrefab: {fileID: 6899537522440288983, guid: 060ba54f38899f246bc25e7725a2741e,
+    type: 3}
   attack: 0
 --- !u!114 &4084348723676011450
 MonoBehaviour:
@@ -5252,6 +5252,7 @@ MonoBehaviour:
   regenerationTime: 5
   blur: {fileID: 193242443}
   minAlpha: 0
+  hasWon: 0
 --- !u!82 &8401949938489381241
 AudioSource:
   m_ObjectHideFlags: 0

@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -132,29 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fc0cea8824c1c64a9fc17422c5d98b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &197470697 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4975574678697903706, guid: cb1c9b74d1bee95429e388ca186b9c5a,
-    type: 3}
-  m_PrefabInstance: {fileID: 1709107569}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &197470698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 197470697}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61f81801953e84f6197d67102a27425a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maximumTranslationShake: {x: 1, y: 1, z: 1}
-  maximumAngularShake: {x: 15, y: 15, z: 15}
-  frequency: 25
-  traumaExponent: 1.2
-  recoverySpeed: 1
 --- !u!1001 &609923181
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -318,11 +295,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4975574678697903710, guid: cb1c9b74d1bee95429e388ca186b9c5a,
         type: 3}
-      propertyPath: distance
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4975574678697903710, guid: cb1c9b74d1bee95429e388ca186b9c5a,
-        type: 3}
       propertyPath: target
       value: 
       objectReference: {fileID: 130310362}
@@ -415,20 +387,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character 1
       objectReference: {fileID: 0}
-    - target: {fileID: 8736148035927511310, guid: 3b0b04d4e0e58a04f91e90e655feefcc,
-        type: 3}
-      propertyPath: dashSpeed
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 8736148035927511310, guid: 3b0b04d4e0e58a04f91e90e655feefcc,
-        type: 3}
-      propertyPath: collisionLayers.m_Bits
-      value: 9015
-      objectReference: {fileID: 0}
     - target: {fileID: 8736148035927511297, guid: 3b0b04d4e0e58a04f91e90e655feefcc,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -32.54
       objectReference: {fileID: 0}
     - target: {fileID: 8736148035927511297, guid: 3b0b04d4e0e58a04f91e90e655feefcc,
         type: 3}
@@ -478,56 +440,6 @@ PrefabInstance:
     - target: {fileID: 8736148035927511297, guid: 3b0b04d4e0e58a04f91e90e655feefcc,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1678506065025381537, guid: 3b0b04d4e0e58a04f91e90e655feefcc,
-        type: 3}
-      propertyPath: attackRange
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1678506065025381537, guid: 3b0b04d4e0e58a04f91e90e655feefcc,
-        type: 3}
-      propertyPath: attackSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1678506065025381537, guid: 3b0b04d4e0e58a04f91e90e655feefcc,
-        type: 3}
-      propertyPath: attackScaleSpeed
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 1762236321, guid: 3b0b04d4e0e58a04f91e90e655feefcc, type: 3}
-      propertyPath: collisionLayers.m_Bits
-      value: 6656
-      objectReference: {fileID: 0}
-    - target: {fileID: -4213926305108524954, guid: 3b0b04d4e0e58a04f91e90e655feefcc,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -4213926305108524954, guid: 3b0b04d4e0e58a04f91e90e655feefcc,
-        type: 3}
-      propertyPath: hammerLength
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -4213926305108524954, guid: 3b0b04d4e0e58a04f91e90e655feefcc,
-        type: 3}
-      propertyPath: damage
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: -4213926305108524954, guid: 3b0b04d4e0e58a04f91e90e655feefcc,
-        type: 3}
-      propertyPath: attackRange
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: -4213926305108524954, guid: 3b0b04d4e0e58a04f91e90e655feefcc,
-        type: 3}
-      propertyPath: splashPrefab
-      value: 
-      objectReference: {fileID: 6899537522440288983, guid: 060ba54f38899f246bc25e7725a2741e,
-        type: 3}
-    - target: {fileID: 2019025115555360083, guid: 3b0b04d4e0e58a04f91e90e655feefcc,
-        type: 3}
-      propertyPath: health
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

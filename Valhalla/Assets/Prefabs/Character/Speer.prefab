@@ -100,7 +100,7 @@ MonoBehaviour:
   speed: 30
   direction: {x: 0, y: 0}
   velocity: {x: 0, y: 0, z: 0}
-  damage: 7
+  damage: 5
   collisionLayers:
     serializedVersion: 2
     m_Bits: 6656
