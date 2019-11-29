@@ -26,6 +26,11 @@ public class WorldTile : MonoBehaviour
 		up = down = left = right = -1;
 	}
 
+	private void Start()
+	{
+		Load();
+	}
+
 	private void OnDrawGizmos()
 	{
 		// Only Draw if selected in WorldGenerator and if active
@@ -70,12 +75,12 @@ public class WorldTile : MonoBehaviour
 			// Load
 			if (active)
 			{
-				Load();
+				Activate();
 			}
 			// UnLoad
 			else
 			{
-				Unload();
+				Deactivate();
 			}
 		}
 
@@ -110,11 +115,18 @@ public class WorldTile : MonoBehaviour
 		{
 			prefab.GetComponent<BossTile>().tile = this;
 		}
+
+		Deactivate();
 	}
 
-	public void Unload()
+	public void Activate()
 	{
-		Destroy(prefab);
+		prefab.transform.position = transform.position;
+	}
+
+	public void Deactivate()
+	{
+		prefab.transform.position = new Vector3(-1000, 0, 0);
 	}
 
 	private Color GetColorBasedOnLayer(int layer)

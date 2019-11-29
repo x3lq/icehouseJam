@@ -32,18 +32,6 @@ public class TilePool : MonoBehaviour
 		current = this;
 	}
 
-	// Start is called before the first frame update
-	void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 	public TileKind GetTileKind(bool up, bool down, bool left, bool right)
 	{
 		int connections = 0 + (up ? 1 : 0) + (down ? 1 : 0) + (left ? 1 : 0) + (right ? 1 : 0);
