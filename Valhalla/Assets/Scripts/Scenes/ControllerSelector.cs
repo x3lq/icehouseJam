@@ -34,7 +34,7 @@ public class ControllerSelector : MonoBehaviour
         if (Input.GetButtonDown("Jump" + type))
         {
             Debug.Log(ControllerSelector.type);
-            SceneManager.LoadScene(1);
+            LevelChanger.Instance.fadeToLevel(1);
         }
         
         deadTimer -= Time.deltaTime;
