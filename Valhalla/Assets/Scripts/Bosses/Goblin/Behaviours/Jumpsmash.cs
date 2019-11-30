@@ -5,10 +5,13 @@ using UnityEngine;
 public class Jumpsmash : StateMachineBehaviour
 {
     public GoblinBoss goblin;
+
+    public CharacterMovement characterMovement;
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         goblin = animator.GetComponent<GoblinBoss>();
+        characterMovement = GameObject.FindWithTag("Player").GetComponent<CharacterMovement>();
         goblin.animationState = "JumpSmash";
     }
 

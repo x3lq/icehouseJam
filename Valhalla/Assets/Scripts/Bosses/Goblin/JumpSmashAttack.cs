@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,9 @@ public class JumpSmashAttack : MonoBehaviour
 
     public GameObject leftHand;
     public GameObject rightHand;
+
+    public Boolean jump;
+    public Vector3 direction; 
 
     [Header("Smash Damage")] public CharacterHealth characterHealth;
 
@@ -22,8 +26,17 @@ public class JumpSmashAttack : MonoBehaviour
 
     }
 
+    private void Update()
+    {
+        if (jump)
+        {
+            transform.position += direction * (goblinBoss.speed * 2 * Time.deltaTime);
+        }
+    }
+
     public void onJumpSmash()
     {
+        jump = false;
         Vector3 leftHandDistance = leftHand.transform.position - characterHealth.transform.position;
         Vector3 rightHandDistance = rightHand.transform.position - characterHealth.transform.position;
 
@@ -44,6 +57,14 @@ public class JumpSmashAttack : MonoBehaviour
         {
             characterHealth.applyDamage(characterHealth.maxHealth);
         }
+    }
+
+    public void beginJump()
+    {
+        jump = true;
+        direction = characterHealth.transform.position - transform.position;
+        direction.y = 0;
+        direction.z = 0;
     }
 
     private void applyDamageToPlayer(float distance)

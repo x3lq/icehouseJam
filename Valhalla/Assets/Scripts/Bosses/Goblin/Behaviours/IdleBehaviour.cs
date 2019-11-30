@@ -17,6 +17,8 @@ public class IdleBehaviour : StateMachineBehaviour
 	public float jumpTimer;
     public float timer, minTime, maxTime;
 
+    public Boolean attacking;
+
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
@@ -37,11 +39,13 @@ public class IdleBehaviour : StateMachineBehaviour
 		}
 
 		goblin.animationState = "Idle";
-	}
+		attacking = false;
+    }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+	    /*
         if (timer <= 0)
         {
             int random = Random.Range(0, attacks.Count);
@@ -59,7 +63,58 @@ public class IdleBehaviour : StateMachineBehaviour
         else
         {
             timer -= Time.deltaTime;
-        }
+        } */
+	    //Roar Smash JumpSmash
+	    if(attacking)
+		    return;
+
+	    attacking = true;
+	    float[] attackProbability;
+	    float distanceToPlayer = Math.Abs((playerTransform.position - goblin.transform.position).magnitude);
+	    if (distanceToPlayer < 3)
+	    {
+		    attackProbability = new[] {0.1f, 0.2f, 1};
+	    } else if (distanceToPlayer < 7)
+	    {
+		    attackProbability = new[] {0.6f, 0.8f, 1};
+	    } else if (distanceToPlayer < 10)
+	    {
+		    attackProbability = new[] {0.2f, 0.6f, 1};
+	    }
+	    else
+	    {
+		    attackProbability = null;
+	    }
+
+	    float randomValue = Random.value;
+
+	    if (attackProbability != null)
+	    {
+		    int i = 0;
+		    foreach (var probability in attackProbability)
+		    {
+			    if (randomValue <= probability)
+			    {
+				    break;
+			    }
+
+			    i++;
+		    }
+	    
+		    String attack = attacks[i];
+
+		    if (attack.Equals("Smash"))
+		    {
+			    attack = playerTransform.transform.position.x > goblin.transform.position.x ? "RightSmash" : "LeftSmash";
+		    }
+		    animator.SetTrigger(attack);
+	    }
+	    else
+	    {
+		    animator.SetTrigger("Idle");
+	    }
+	    
+	    
 
 		CalculateVelocity();
     }

@@ -65,6 +65,10 @@ public class GoblinBoss : MonoBehaviour
 			animator.SetBool("Dead", true);
         }
 
+        if (animationState == "JumpSmash")
+        {
+	        
+        }
 		Move();
     }
 
@@ -102,7 +106,7 @@ public class GoblinBoss : MonoBehaviour
 				animator.SetTrigger("Jump");
 			}
         }
-
+		
 		// Apply Gravity
 		velocity += Physics2D.gravity * Time.deltaTime / 2f;
 
