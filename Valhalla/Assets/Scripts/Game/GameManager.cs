@@ -23,21 +23,23 @@ public class GameManager : MonoBehaviour
 
     public void startGame()
     {
-        SceneManager.LoadScene(1);
+        LevelChanger.Instance.fadeToLevel(2);
     }
 
     public void playerLost()
     {
-        SceneManager.LoadScene(3);
+        LevelChanger.Instance.fadeToLevel(3);
+
     }
 
     public void playerWon()
     {
-        SceneManager.LoadScene(4);
+        LevelChanger.Instance.fadeToLevel(4);
+
     }
 
     public void finalScreen()
     {
-        SceneManager.LoadScene(5);
+        LevelChanger.Instance.fadeToLevel(5);
     }
 }

@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 public class LevelChanger : MonoBehaviour
 {
     private static LevelChanger instance;
+    public Boolean isGameScene;
+    public float timeTillEnteringScene;
 
     public static LevelChanger Instance
     {
@@ -29,6 +31,12 @@ public class LevelChanger : MonoBehaviour
     private void Start()
     {
         animator = GetComponent<Animator>();
+        
+        if (isGameScene)
+        {
+            animator.SetTrigger("HoldImage");
+            StartCoroutine(fadeInAfterTime());
+        }
     }
 
     public void fadeToLevel(int levelIndex)
@@ -40,5 +48,11 @@ public class LevelChanger : MonoBehaviour
     public void onFadeComplete()
     {
         SceneManager.LoadSceneAsync(levelToLoad);
+    }
+
+    IEnumerator fadeInAfterTime()
+    {
+        yield return new WaitForSeconds(timeTillEnteringScene);
+        animator.SetTrigger("Fade_In");
     }
 }
