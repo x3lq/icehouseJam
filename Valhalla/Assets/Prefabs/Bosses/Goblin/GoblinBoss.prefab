@@ -176,7 +176,8 @@ MonoBehaviour:
   leftHand: {fileID: 8528237811186421298}
   rightHand: {fileID: 8528237811359148240}
   active: 0
-  health: 100
+  positionSet: 0
+  health: 500
   rageHealth: 1
   wakeUpDistance: 20
   rage: 0
@@ -232,6 +233,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftHand: {fileID: 8528237811186421298}
   rightHand: {fileID: 8528237811359148240}
+  jump: 0
+  direction: {x: 0, y: 0, z: 0}
   characterHealth: {fileID: 0}
   maxSmashDistance: 4
   maxDamage: 80

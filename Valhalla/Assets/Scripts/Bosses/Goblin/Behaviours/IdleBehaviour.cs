@@ -73,10 +73,10 @@ public class IdleBehaviour : StateMachineBehaviour
 	    float distanceToPlayer = Math.Abs((playerTransform.position - goblin.transform.position).magnitude);
 	    if (distanceToPlayer < 3)
 	    {
-		    attackProbability = new[] {0.1f, 0.2f, 1};
+		    attackProbability = new[] {0.6f, 0.8f, 1};
 	    } else if (distanceToPlayer < 7)
 	    {
-		    attackProbability = new[] {0.6f, 0.8f, 1};
+		    attackProbability = new[] {0.1f, 0.2f, 1};
 	    } else if (distanceToPlayer < 10)
 	    {
 		    attackProbability = new[] {0.2f, 0.6f, 1};

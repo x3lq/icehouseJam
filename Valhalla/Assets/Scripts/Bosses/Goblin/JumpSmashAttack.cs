@@ -30,7 +30,7 @@ public class JumpSmashAttack : MonoBehaviour
     {
         if (jump)
         {
-            transform.position += direction * (goblinBoss.speed * 2 * Time.deltaTime);
+            transform.position += direction.normalized * (goblinBoss.speed * 2 * Time.deltaTime);
         }
     }
 

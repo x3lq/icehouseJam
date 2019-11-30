@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class ControllerSelector : MonoBehaviour
 {
-    public static String type = "PS4";
+    public static String type = "XBox";
 
     public Text topText;
     public Text bottomText;
