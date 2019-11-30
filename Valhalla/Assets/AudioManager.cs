@@ -25,11 +25,15 @@ public class AudioManager : MonoBehaviour
 	public AudioSource bossSource;
 	public AudioSource lastHallSource;
 
+	void Awake()
+	{
+		DontDestroyOnLoad(gameObject);
+		current = this;
+	}
+
 	// Start is called before the first frame update
 	void Start()
     {
-		DontDestroyOnLoad(gameObject);
-		current = this;
 		lastSelection = Tracks.lastHall;
 	}
 
@@ -65,12 +69,12 @@ public class AudioManager : MonoBehaviour
 				break;
 
 			case Tracks.ambienceWithMusic:
-				if (ambienceWithMusicSource.volume == 1)
+				if (ambienceWithMusicSource.volume == 0.8f)
 				{
 					return;
 				}
 				ambienceSource.volume = Mathf.MoveTowards(ambienceSource.volume, 0, Time.deltaTime * fadeSpeed);
-				ambienceWithMusicSource.volume = Mathf.MoveTowards(ambienceWithMusicSource.volume, 1, Time.deltaTime * fadeSpeed);
+				ambienceWithMusicSource.volume = Mathf.MoveTowards(ambienceWithMusicSource.volume, 0.8f, Time.deltaTime * fadeSpeed);
 				bossSource.volume = Mathf.MoveTowards(bossSource.volume, 0, Time.deltaTime * fadeSpeed);
 				lastHallSource.volume = Mathf.MoveTowards(lastHallSource.volume, 0, Time.deltaTime * fadeSpeed);
 				if (selection == lastSelection)
@@ -81,13 +85,13 @@ public class AudioManager : MonoBehaviour
 				break;
 
 			case Tracks.boss:
-				if (bossSource.volume == 1)
+				if (ambienceSource.volume == 0 && ambienceWithMusicSource.volume == 0 && lastHallSource.volume == 0)
 				{
 					return;
 				}
 				ambienceSource.volume = Mathf.MoveTowards(ambienceSource.volume, 0, Time.deltaTime * fadeSpeed);
 				ambienceWithMusicSource.volume = Mathf.MoveTowards(ambienceWithMusicSource.volume, 0, Time.deltaTime * fadeSpeed);
-				bossSource.volume = Mathf.MoveTowards(bossSource.volume, 1, Time.deltaTime * fadeSpeed);
+				bossSource.volume = 1;
 				lastHallSource.volume = Mathf.MoveTowards(lastHallSource.volume, 0, Time.deltaTime * fadeSpeed);
 				if (selection == lastSelection)
 				{

@@ -5346,8 +5346,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a1845727986cf74c92e5bfa58d579e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dash: {fileID: 8300000, guid: ed1ece4e6eef5d0439a1fc09467b8e7f, type: 3}
+  dash: {fileID: 8300000, guid: 9c74e89ae12ed5b468b343fcb9eb42f5, type: 3}
   axtHit: {fileID: 8300000, guid: 445644839df9f6f4aa3f25edec54c730, type: 3}
+  axtThrow: {fileID: 0}
 --- !u!114 &2019025115555360083
 MonoBehaviour:
   m_ObjectHideFlags: 0

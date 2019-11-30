@@ -9,7 +9,11 @@ public class GoblinAudio : MonoBehaviour
 	public AudioClip landing;
 	public AudioClip smash;
 	public AudioClip rockSmash;
-	public AudioClip randomGrowl;
+	public List<AudioClip> randomGrowl;
+	public List<AudioClip> damage;
+	public AudioClip death;
+	public AudioClip horn;
+	private bool dead;
 
 	private AudioSource source;
 
@@ -21,12 +25,6 @@ public class GoblinAudio : MonoBehaviour
 		StartCoroutine(RandomNoise());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 	void PlayOneShot(AudioClip clip)
 	{
 		source.PlayOneShot(clip);
@@ -34,16 +32,32 @@ public class GoblinAudio : MonoBehaviour
 
 	IEnumerator RandomNoise()
 	{
-		yield return new WaitForSeconds(Random.Range(2, 5));
+		if (!dead)
+		{
+			yield return new WaitForSeconds(Random.Range(5, 8));
+			PlayOneShot(randomGrowl[Random.Range(0, randomGrowl.Count)]);
 
-		PlayOneShot(randomGrowl);
-
-		StartCoroutine(RandomNoise());
+			StartCoroutine(RandomNoise());
+		}
 	}
  
 	public void PlayGrowl()
 	{
 		PlayOneShot(growl);
+	}
+
+	public void Intro()
+	{
+		StartCoroutine(IntroCoroutine());
+	}
+
+	private IEnumerator IntroCoroutine()
+	{
+		PlayOneShot(horn);
+
+		yield return new WaitForSeconds(7);
+
+		AudioManager.current.selection = AudioManager.Tracks.boss;
 	}
 
 	public void PlayLanding()
@@ -59,5 +73,15 @@ public class GoblinAudio : MonoBehaviour
 	public void PlayRockSmash()
 	{
 		PlayOneShot(rockSmash);
+	}
+
+	public void PlayDamage()
+	{
+		PlayOneShot(damage[Random.Range(0, damage.Count)]);
+	}
+
+	public void PlayDeath()
+	{
+		PlayOneShot(death);
 	}
 }
