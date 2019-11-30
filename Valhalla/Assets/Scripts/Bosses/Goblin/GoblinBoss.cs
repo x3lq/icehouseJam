@@ -34,14 +34,14 @@ public class GoblinBoss : MonoBehaviour
     public float jumpHeight;
     public float jumpTimer;
     public float timeTillNextJump;
-
-
+	
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponent<Animator>();
 		character = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>();
 		audio = GetComponent<GoblinAudio>();
+		AudioManager.current.boss = gameObject;
     }
 
     // Update is called once per frame
@@ -83,11 +83,13 @@ public class GoblinBoss : MonoBehaviour
 		}
 	}
 
+
+
 	void WakeUp()
 	{
 		active = true;
 		animator.SetBool("Active", true);
-		audio.StartSoundtrack();
+		AudioManager.current.selection = AudioManager.Tracks.boss;
 
 	}
 

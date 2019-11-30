@@ -6,7 +6,8 @@ public class CharacterAudio : MonoBehaviour
 {
 	private AudioSource source;
 
-	public AudioClip footstep;
+	public AudioClip dash;
+	public AudioClip axtHit;
 
     // Start is called before the first frame update
     void Start()
@@ -17,5 +18,15 @@ public class CharacterAudio : MonoBehaviour
 	void PlayOneShot(AudioClip clip)
 	{
 		source.PlayOneShot(clip);
+	}
+
+	public void PlayDashSound()
+	{
+		source.PlayOneShot(dash, 0.2f);
+	}
+
+	public void PlayAxtHitSound()
+	{
+		source.PlayOneShot(axtHit);
 	}
 }

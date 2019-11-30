@@ -29,6 +29,8 @@ public class Axt : MonoBehaviour
 
     public Boolean axtReturns;
 
+	private CharacterAudio audio;
+
     [Header("Pulling Towards Axt")] public Boolean pullToAxt;
     public float pullDurationBasedOnDistance;
     public float pullDuration;
@@ -56,7 +58,8 @@ public class Axt : MonoBehaviour
     {
         characterMovment = GetComponent<CharacterMovement>();
         coolDownDuration = jumpTimeAfterPull;
-    }
+		audio = GetComponent<CharacterAudio>();
+	}
 
     // Update is called once per frame
     void Update()
@@ -216,6 +219,10 @@ public class Axt : MonoBehaviour
 
             if (colliderDistance.distance < 0.1 && !axtReturns)
             {
+				if (currentSpeed != 0)
+				{
+					audio.PlayAxtHitSound();
+				}
                 axt.GetComponent<AxtRotation>().rotate = false;
                 currentSpeed = 0;
                 pullToAxt = true;
