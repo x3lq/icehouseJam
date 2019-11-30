@@ -32,7 +32,7 @@ public class CharacterHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health < 0 && lifes == 0)
+        if (health <= 0 && lifes == 0)
         {
             GameManager.instance.playerLost();
         } else if(health < 0)

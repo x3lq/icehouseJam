@@ -87,8 +87,6 @@ public class GoblinBoss : MonoBehaviour
 		}
 	}
 
-
-
 	void WakeUp()
 	{
 		active = true;
@@ -150,8 +148,21 @@ public class GoblinBoss : MonoBehaviour
 
 	public void onDeath()
 	{
-		GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterHealth>().hasWon = true;
-		GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>().onWin();
+		StartCoroutine(deathCoroutine());
+	}
+
+	public IEnumerator deathCoroutine()
+	{
+		AudioManager.current.selection = AudioManager.Tracks.lastHall;
+
+		yield return new WaitForSeconds(5f);
+
+		CharacterMovement movement = GameObject.FindGameObjectWithTag("Player").GetComponent<CharacterMovement>();
+
+		yield return new WaitUntil(() => movement.grounded);
+
+		movement.GetComponent<CharacterHealth>().hasWon = true;
+		movement.onWin();
 	}
 
 	public void ScreenShake(float stress)

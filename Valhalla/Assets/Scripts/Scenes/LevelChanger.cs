@@ -3,12 +3,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class LevelChanger : MonoBehaviour
 {
     private static LevelChanger instance;
     public Boolean isGameScene;
+	public bool isLastHall;
     public float timeTillEnteringScene;
+
+	public Image blackFade;
 
     public static LevelChanger Instance
     {
@@ -41,6 +45,10 @@ public class LevelChanger : MonoBehaviour
 
     public void fadeToLevel(int levelIndex)
     {
+		if(isLastHall)
+		{
+			blackFade.color = Color.white;
+		}
         animator.SetTrigger("Fade_Out");
         levelToLoad = levelIndex;
     }

@@ -335,6 +335,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3743934600287785891, guid: bdedb8e6b633cc84e9e39168c46e3616,
+        type: 3}
+      propertyPath: health
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3743934600287785889, guid: bdedb8e6b633cc84e9e39168c46e3616,
         type: 3}
       propertyPath: spikeSpawnTimeDiff

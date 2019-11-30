@@ -163,6 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec0f35cb8788fea4d8721ea8f9de6244, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isGameScene: 0
+  timeTillEnteringScene: 0
   animator: {fileID: 0}
 --- !u!1 &8244760315675863342
 GameObject:
@@ -222,7 +224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.13207549, g: 0.13207549, b: 0.13207549, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:

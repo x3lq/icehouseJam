@@ -340,12 +340,6 @@ public class CharacterMovement : MonoBehaviour
 
 	public void onWin()
 	{
-		StartCoroutine(onWinTimer());
-	}
-
-	IEnumerator onWinTimer()
-	{
-		yield return new WaitForSeconds(0.8f);
 		GetComponent<Animator>().SetTrigger("Death");
 	}
 

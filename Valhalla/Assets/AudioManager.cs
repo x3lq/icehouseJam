@@ -28,6 +28,12 @@ public class AudioManager : MonoBehaviour
 	void Awake()
 	{
 		DontDestroyOnLoad(gameObject);
+
+		if (current)
+		{
+			Destroy(current.gameObject);
+		}
+
 		current = this;
 	}
 
@@ -40,7 +46,10 @@ public class AudioManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-		CheckBossTriggerDistance();
+		if (selection != Tracks.lastHall)
+		{
+			CheckBossTriggerDistance();
+		}
 
 		SwitchBasedOnSelection();
 

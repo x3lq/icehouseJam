@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -209,6 +209,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelChanger
       objectReference: {fileID: 0}
+    - target: {fileID: 8244760315446007085, guid: c0d9d0cbdf77bb5498c087d80b7e997a,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8244760315541993794, guid: c0d9d0cbdf77bb5498c087d80b7e997a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -264,10 +269,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8244760315446007085, guid: c0d9d0cbdf77bb5498c087d80b7e997a,
+    - target: {fileID: 8244760315675863340, guid: c0d9d0cbdf77bb5498c087d80b7e997a,
         type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244760315675863340, guid: c0d9d0cbdf77bb5498c087d80b7e997a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8244760315675863340, guid: c0d9d0cbdf77bb5498c087d80b7e997a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0d9d0cbdf77bb5498c087d80b7e997a, type: 3}
