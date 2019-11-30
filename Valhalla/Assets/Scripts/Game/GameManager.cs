@@ -28,6 +28,9 @@ public class GameManager : MonoBehaviour
 
     public void playerLost()
     {
+		AudioManager.current.selection = AudioManager.Tracks.ambienceWithMusic;
+		AudioManager.current.boss = null;
+		AudioManager.current.character = null;
         LevelChanger.Instance.fadeToLevel(3);
 
     }
