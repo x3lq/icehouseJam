@@ -93,8 +93,6 @@ public class GoblinBoss : MonoBehaviour
 	{
 		active = true;
 		animator.SetBool("Active", true);
-		AudioManager.current.selection = AudioManager.Tracks.boss;
-
 	}
 
 	void Move()
