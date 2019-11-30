@@ -185,7 +185,7 @@ InputManager:
     m_Name: HammerAttackXBox
     descriptiveName: 
     descriptiveNegativeName: 
-    negativeButton: joystick button 5
+    negativeButton: joystick button 2
     positiveButton: 
     altNegativeButton: 
     altPositiveButton: 
