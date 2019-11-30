@@ -13,8 +13,6 @@ public class GoblinAudio : MonoBehaviour
 
 	private AudioSource source;
 
-	public AudioSource soundtrack;
-
 	// Start is called before the first frame update
 	void Start()
     {
@@ -28,11 +26,6 @@ public class GoblinAudio : MonoBehaviour
     {
         
     }
-
-	public void StartSoundtrack()
-	{
-		soundtrack.gameObject.SetActive(true);
-	}
 
 	void PlayOneShot(AudioClip clip)
 	{

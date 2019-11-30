@@ -24,6 +24,7 @@ public class CharacterMovement : MonoBehaviour
 	public float jumpHeight;
 	public float dashSpeed;
 	public float dashDistance;
+	private CharacterAudio audio;
 
 	[Header("Status")]
 	public Vector2 velocity;
@@ -72,6 +73,9 @@ public class CharacterMovement : MonoBehaviour
 		boxCollider = GetComponent<BoxCollider2D>();
 		axt = GetComponent<Axt>();
 		characterHealth = GetComponent<CharacterHealth>();
+		audio = GetComponent<CharacterAudio>();
+
+		AudioManager.current.character = gameObject;
     }
 
 	// Update is called once per frame
@@ -100,7 +104,7 @@ public class CharacterMovement : MonoBehaviour
 			handAttack.attack = true;
 		}
 
-		if (wantsToHammer)
+		if (wantsToHammer && !dashing)
 		{
 			hammer.attack = true;
 			isHammering = true;
@@ -162,8 +166,9 @@ public class CharacterMovement : MonoBehaviour
 			wantsToThrowSpeer = Input.GetButtonDown("SpeerPS4");
 		}
 
-		if ((!grounded && !dashInAir || grounded && dashCooldownTimer <= 0) && wantsToDash && horizontal != 0)
+		if (!isHammering && (!grounded && !dashInAir || grounded && dashCooldownTimer <= 0) && wantsToDash && horizontal != 0)
 		{
+			audio.PlayDashSound();
 			dashCooldownTimer = dashCooldown;
 			dashTimer = dashDistance / dashSpeed;
 			dashDirection = new Vector2(horizontal, 0).normalized;

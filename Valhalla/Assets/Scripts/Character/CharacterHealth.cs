@@ -69,6 +69,8 @@ public class CharacterHealth : MonoBehaviour
     {
         health -= damage;
         lastDamage = Time.time;
+
+		CameraShake.current.shakeCamera(.6f, 0.1f, 20);
     }
 
     private void resetPlayerToSpawn()
