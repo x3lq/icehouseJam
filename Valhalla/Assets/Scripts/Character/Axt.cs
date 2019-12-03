@@ -93,7 +93,18 @@ public class Axt : MonoBehaviour
 
         if (rotator.active)
         {
-            direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0).normalized;
+            if (ControllerSelector.type == "PC")
+            {
+                Vector3 mousePosition = Input.mousePosition;
+                mousePosition.z = 15;
+                mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+                direction = (mousePosition - characterMovment.transform.position).normalized;
+            }
+            else
+            {
+                direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0).normalized;
+            }
+            
             rotator.transform.rotation = Quaternion.identity;
             if (direction.x > 0)
             {
@@ -114,6 +125,15 @@ public class Axt : MonoBehaviour
                 Time.timeScale = 1;
                 //throw axt on release
                 direction = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0).normalized;
+                
+                if (ControllerSelector.type == "PC")
+                {
+                    Vector3 mousePosition = Input.mousePosition;
+                    mousePosition.z = 15;
+                    mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+                    direction = (mousePosition - characterMovment.transform.position).normalized;
+                }
+                
                 rotator.SetActive(false);
 
                 if (direction != Vector3.zero)

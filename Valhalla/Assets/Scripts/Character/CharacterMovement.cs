@@ -161,9 +161,9 @@ public class CharacterMovement : MonoBehaviour
 			wantsToThrowSpeer = Input.GetAxis("Speer"+ ControllerSelector.type) == 1;
 		}
 		
-		if(ControllerSelector.type == "PS4")
+		if(ControllerSelector.type == "PS4" || ControllerSelector.type == "PC")
 		{
-			wantsToThrowSpeer = Input.GetButtonDown("SpeerPS4");
+			wantsToThrowSpeer = Input.GetButtonDown("Speer" + ControllerSelector.type);
 		}
 
 		if (!isHammering && (!grounded && !dashInAir || grounded && dashCooldownTimer <= 0) && wantsToDash && horizontal != 0)
@@ -359,7 +359,21 @@ public class CharacterMovement : MonoBehaviour
 		}
 
 		Speer speer = Instantiate(speerPrefab, transform.position, Quaternion.identity).GetComponent<Speer>();
-		speer.throwSpeer(new Vector2(horizontal, vertical).normalized);
+
+		Vector2 direction;
+		if (ControllerSelector.type == "PC")
+		{
+			Vector3 mousePosition = Input.mousePosition;
+			mousePosition.z = 15;
+			mousePosition = Camera.main.ScreenToWorldPoint(mousePosition);
+			direction = (mousePosition - transform.position).normalized;
+		}
+		else
+		{
+			direction = new Vector2(horizontal, vertical).normalized;
+		}
+		
+		speer.throwSpeer(direction);
 		blockedSpeer = true;
 		StartCoroutine(unblockSpeerAfterTime());
 	}

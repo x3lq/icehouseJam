@@ -7,9 +7,10 @@ using UnityEngine.UI;
 
 public class ControllerSelector : MonoBehaviour
 {
-    public static String type = "PS4";
+    public static String type = "PC";
 
     public Text topText;
+    public Text midText;
     public Text bottomText;
 
     public float deadTime;
@@ -19,9 +20,9 @@ public class ControllerSelector : MonoBehaviour
 
     private void Update()
     {
-        if ( (Input.GetAxis("Vertical") < -0.8 || Input.GetAxis("Vertical") > 0.8) && deadTimer < 0)
+        if (Input.GetAxis("Vertical") < -0.8 && deadTimer < 0) 
         {
-			selection = (selection + 1) % 2;
+			selection = (selection + 1) % 3;
 			/*
             String buffer = topText.text;
             topText.text = bottomText.text;
@@ -30,8 +31,14 @@ public class ControllerSelector : MonoBehaviour
 			deadTimer = deadTime;
 
         }
+        
+        if(Input.GetAxis("Vertical") > 0.8 && deadTimer < 0)
+        {
+	        selection = (selection - 1) % 3;
+	        deadTimer = deadTime;
+        }
 
-        if (Input.GetButtonDown("Jump" + type))
+        if (Input.GetButtonDown("Jump" + type) || Input.GetKeyDown(KeyCode.Return))
         {
             Debug.Log(ControllerSelector.type);
             LevelChanger.Instance.fadeToLevel(1);
@@ -39,7 +46,29 @@ public class ControllerSelector : MonoBehaviour
         
         deadTimer -= Time.deltaTime;
 
-		type = selection == 0 ? "XBox" : "PS4";
+        switch (selection)
+        {
+	        case 0:
+		        topText.text = "> XBox <";
+		        midText.text = "PS4";
+		        bottomText.text = "PC";
+		        type = "XBox";
+		        break;
+	        case 1:
+		        topText.text = "XBox";
+		        midText.text = "> PS4 <";
+		        bottomText.text = "PC";
+		        type = "PS4";
+		        break;
+	        case 2:
+		        topText.text = "XBox";
+		        midText.text = "PS4";
+		        bottomText.text = "> PC <";
+		        type = "PC";
+		        break;
+        }
+
+		/*type = selection == 0 ? "XBox" : "PS4";
 		if (selection == 0)
 		{
 			topText.text = "> XBox <";
@@ -49,6 +78,6 @@ public class ControllerSelector : MonoBehaviour
 		{
 			topText.text = "XBox";
 			bottomText.text = "> PS4 <";
-		}
+		}*/
 	}
 }
